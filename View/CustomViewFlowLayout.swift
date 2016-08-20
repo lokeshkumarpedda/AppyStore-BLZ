@@ -43,7 +43,7 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
     func playListSetUpLayout(w: CGFloat, h: CGFloat){
         minimumInteritemSpacing = 3
         minimumLineSpacing = 20
-        itemSize = CGSize(width: w/5, height: h)
+        itemSize = CGSize(width: w/4, height: h)
         sectionInset = UIEdgeInsetsMake(20,10,10,10)
         scrollDirection = .Horizontal
     }

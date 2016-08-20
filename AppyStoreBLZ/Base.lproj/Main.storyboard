@@ -541,10 +541,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjS-Bp-Ggi">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                                         <state key="normal" title="Done">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="doneButtonAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="VAK-P9-WWd"/>
                                             <segue destination="Cjd-cg-aNP" kind="presentation" identifier="VideoPlayerToSubCategory" id="0Er-HR-mOK"/>
                                         </connections>
                                     </button>
@@ -635,50 +634,56 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaD-6m-1Ig">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xaD-6m-1Ig">
                                 <rect key="frame" x="200" y="460" width="200" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyU-LZ-HXn">
-                                        <rect key="frame" x="0.0" y="5" width="50" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyU-LZ-HXn">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
+                                        <state key="normal" image="previousvideobutton"/>
                                         <connections>
                                             <action selector="previousVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="yDJ-QM-1WV"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zT-wu-2JV">
-                                        <rect key="frame" x="75" y="5" width="50" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zT-wu-2JV">
+                                        <rect key="frame" x="75" y="0.0" width="50" height="40"/>
+                                        <state key="normal" image="pauseButton"/>
                                         <connections>
                                             <action selector="playAndPauseAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="Ry6-u5-U2b"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJD-7F-iH9">
-                                        <rect key="frame" x="148" y="-7" width="54" height="54"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqC-fe-oHG">
+                                        <rect key="frame" x="150" y="0.0" width="50" height="40"/>
                                         <state key="normal" image="nextvideobutton"/>
                                         <connections>
-                                            <action selector="nextVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="9a1-JD-Lcu"/>
+                                            <action selector="previousVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="eut-pu-FDx"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="nJD-7F-iH9" secondAttribute="bottom" constant="5" id="4kR-9b-yEC"/>
-                                    <constraint firstItem="nJD-7F-iH9" firstAttribute="leading" secondItem="8zT-wu-2JV" secondAttribute="trailing" constant="25" id="7X6-Uz-Yyi"/>
-                                    <constraint firstAttribute="bottom" secondItem="8zT-wu-2JV" secondAttribute="bottom" constant="5" id="A4R-6p-xh0"/>
-                                    <constraint firstItem="8zT-wu-2JV" firstAttribute="leading" secondItem="DyU-LZ-HXn" secondAttribute="trailing" constant="25" id="KOj-gE-DYv"/>
-                                    <constraint firstAttribute="bottom" secondItem="DyU-LZ-HXn" secondAttribute="bottom" constant="5" id="NpS-8k-qrB"/>
-                                    <constraint firstAttribute="trailing" secondItem="nJD-7F-iH9" secondAttribute="trailing" id="QTl-Ie-gyB"/>
-                                    <constraint firstItem="8zT-wu-2JV" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" constant="5" id="SlC-xx-ETe"/>
-                                    <constraint firstItem="nJD-7F-iH9" firstAttribute="leading" secondItem="8zT-wu-2JV" secondAttribute="trailing" constant="25" id="Wtf-ZS-4QZ"/>
-                                    <constraint firstAttribute="height" constant="40" id="Xa6-B2-0iw"/>
-                                    <constraint firstItem="nJD-7F-iH9" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" constant="5" id="gNi-jF-8yW"/>
-                                    <constraint firstItem="DyU-LZ-HXn" firstAttribute="leading" secondItem="xaD-6m-1Ig" secondAttribute="leading" id="qpm-tQ-cJ9"/>
-                                    <constraint firstItem="DyU-LZ-HXn" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" constant="5" id="tUY-HF-2nC"/>
-                                    <constraint firstItem="8zT-wu-2JV" firstAttribute="leading" secondItem="DyU-LZ-HXn" secondAttribute="trailing" constant="25" id="yXA-FE-hoM"/>
+                                    <constraint firstItem="8zT-wu-2JV" firstAttribute="centerY" secondItem="xaD-6m-1Ig" secondAttribute="centerY" id="2dM-V4-3Z2"/>
+                                    <constraint firstAttribute="bottom" secondItem="8zT-wu-2JV" secondAttribute="bottom" id="2wq-DC-Vw8"/>
+                                    <constraint firstItem="8zT-wu-2JV" firstAttribute="leading" secondItem="DyU-LZ-HXn" secondAttribute="trailing" constant="25" id="3aR-cw-l6p"/>
+                                    <constraint firstItem="DyU-LZ-HXn" firstAttribute="centerY" secondItem="xaD-6m-1Ig" secondAttribute="centerY" id="PDi-EM-JRR"/>
+                                    <constraint firstItem="8zT-wu-2JV" firstAttribute="leading" secondItem="DyU-LZ-HXn" secondAttribute="trailing" constant="25" id="Pih-Ca-iSf"/>
+                                    <constraint firstItem="gqC-fe-oHG" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" id="QLE-8Q-98A"/>
+                                    <constraint firstItem="gqC-fe-oHG" firstAttribute="centerY" secondItem="xaD-6m-1Ig" secondAttribute="centerY" id="QOE-rN-3j1"/>
+                                    <constraint firstItem="gqC-fe-oHG" firstAttribute="leading" secondItem="8zT-wu-2JV" secondAttribute="trailing" constant="25" id="Utr-5r-VIa"/>
+                                    <constraint firstItem="gqC-fe-oHG" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" id="bh2-KW-dcu"/>
+                                    <constraint firstItem="8zT-wu-2JV" firstAttribute="centerX" secondItem="xaD-6m-1Ig" secondAttribute="centerX" id="fUW-cW-THP"/>
+                                    <constraint firstAttribute="trailing" secondItem="gqC-fe-oHG" secondAttribute="trailing" id="gBY-yj-fQq"/>
+                                    <constraint firstAttribute="bottom" secondItem="gqC-fe-oHG" secondAttribute="bottom" id="jL2-f9-gkr"/>
+                                    <constraint firstItem="DyU-LZ-HXn" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" id="lPI-ye-fZ2"/>
+                                    <constraint firstAttribute="bottom" secondItem="DyU-LZ-HXn" secondAttribute="bottom" id="lb1-kt-Czh"/>
+                                    <constraint firstItem="gqC-fe-oHG" firstAttribute="leading" secondItem="8zT-wu-2JV" secondAttribute="trailing" constant="25" id="n0A-pX-rjq"/>
+                                    <constraint firstAttribute="trailing" secondItem="gqC-fe-oHG" secondAttribute="trailing" id="qwk-sY-K51"/>
+                                    <constraint firstItem="DyU-LZ-HXn" firstAttribute="leading" secondItem="xaD-6m-1Ig" secondAttribute="leading" id="rja-bc-E1M"/>
+                                    <constraint firstItem="8zT-wu-2JV" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" id="tgT-dx-i2F"/>
+                                    <constraint firstAttribute="bottom" secondItem="gqC-fe-oHG" secondAttribute="bottom" id="xPz-Vg-Oc7"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="du6-ML-H1a">
-                                <rect key="frame" x="90" y="40" width="420" height="420"/>
+                            <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="du6-ML-H1a">
+                                <rect key="frame" x="100" y="40" width="400" height="420"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="du6-ML-H1a" secondAttribute="height" multiplier="1:1" id="D6E-cr-YEX"/>
@@ -687,6 +692,7 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="D6E-cr-YEX"/>
                                         <exclude reference="Tet-Cd-veh"/>
                                         <exclude reference="d0h-20-PTu"/>
                                     </mask>
@@ -694,26 +700,36 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="bih-LU-kmR" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="bottom" id="42E-0e-qLf"/>
-                            <constraint firstAttribute="trailing" secondItem="xaD-6m-1Ig" secondAttribute="trailing" constant="200" id="FF8-m9-2dE"/>
+                            <constraint firstItem="xaD-6m-1Ig" firstAttribute="top" secondItem="du6-ML-H1a" secondAttribute="bottom" id="6Ws-Qg-bqX"/>
+                            <constraint firstItem="bih-LU-kmR" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="bottom" id="E7U-vH-yo1"/>
+                            <constraint firstItem="du6-ML-H1a" firstAttribute="centerX" secondItem="Dr8-PX-ebg" secondAttribute="centerX" id="G4t-0f-4hb"/>
                             <constraint firstItem="cAA-K6-6Bo" firstAttribute="top" secondItem="Dr8-PX-ebg" secondAttribute="top" id="KwT-WI-u7n"/>
                             <constraint firstItem="du6-ML-H1a" firstAttribute="centerY" secondItem="Dr8-PX-ebg" secondAttribute="centerY" id="L88-RE-hCz"/>
+                            <constraint firstItem="du6-ML-H1a" firstAttribute="leading" secondItem="Dr8-PX-ebg" secondAttribute="leading" constant="90" id="MTg-l2-CpG"/>
+                            <constraint firstItem="xaD-6m-1Ig" firstAttribute="leading" secondItem="Dr8-PX-ebg" secondAttribute="leading" constant="200" id="MeB-6s-M6Q"/>
                             <constraint firstItem="cAA-K6-6Bo" firstAttribute="leading" secondItem="Dr8-PX-ebg" secondAttribute="leading" id="Odj-I3-xz3"/>
-                            <constraint firstItem="xaD-6m-1Ig" firstAttribute="top" secondItem="du6-ML-H1a" secondAttribute="bottom" id="Ww0-J3-lHd"/>
-                            <constraint firstItem="xaD-6m-1Ig" firstAttribute="centerX" secondItem="Dr8-PX-ebg" secondAttribute="centerX" id="b05-y2-mFC"/>
+                            <constraint firstItem="xaD-6m-1Ig" firstAttribute="top" secondItem="du6-ML-H1a" secondAttribute="bottom" id="Ppt-Ev-hZm"/>
+                            <constraint firstItem="xaD-6m-1Ig" firstAttribute="centerX" secondItem="Dr8-PX-ebg" secondAttribute="centerX" id="Y66-BG-QBF"/>
+                            <constraint firstAttribute="trailing" secondItem="xaD-6m-1Ig" secondAttribute="trailing" constant="200" id="eP6-ay-4C8"/>
+                            <constraint firstItem="du6-ML-H1a" firstAttribute="leading" secondItem="Dr8-PX-ebg" secondAttribute="leading" constant="100" id="gNd-SH-VD7"/>
+                            <constraint firstAttribute="trailing" secondItem="du6-ML-H1a" secondAttribute="trailing" constant="90" id="gjz-ps-D2c"/>
                             <constraint firstAttribute="trailing" secondItem="cAA-K6-6Bo" secondAttribute="trailing" id="ifB-oU-VIs"/>
+                            <constraint firstItem="xaD-6m-1Ig" firstAttribute="top" secondItem="du6-ML-H1a" secondAttribute="bottom" id="j3x-FC-b7s"/>
                             <constraint firstItem="7tT-M6-1BD" firstAttribute="top" secondItem="bih-LU-kmR" secondAttribute="bottom" id="jqh-Q2-HTH"/>
+                            <constraint firstItem="du6-ML-H1a" firstAttribute="top" secondItem="cAA-K6-6Bo" secondAttribute="bottom" id="mRt-WT-g0S"/>
                             <constraint firstAttribute="trailing" secondItem="bih-LU-kmR" secondAttribute="trailing" id="mcc-ew-0Nt"/>
-                            <constraint firstItem="xaD-6m-1Ig" firstAttribute="leading" secondItem="Dr8-PX-ebg" secondAttribute="leading" constant="200" id="ntz-f2-6N8"/>
-                            <constraint firstItem="du6-ML-H1a" firstAttribute="centerX" secondItem="Dr8-PX-ebg" secondAttribute="centerX" id="sYe-4p-dt7"/>
-                            <constraint firstItem="du6-ML-H1a" firstAttribute="top" secondItem="cAA-K6-6Bo" secondAttribute="bottom" id="tbb-wV-sHI"/>
+                            <constraint firstAttribute="trailing" secondItem="du6-ML-H1a" secondAttribute="trailing" constant="100" id="t31-e6-Ko7"/>
                             <constraint firstItem="du6-ML-H1a" firstAttribute="top" secondItem="cAA-K6-6Bo" secondAttribute="bottom" id="vlX-nU-F4r"/>
                             <constraint firstItem="bih-LU-kmR" firstAttribute="leading" secondItem="Dr8-PX-ebg" secondAttribute="leading" id="wpu-GC-cFO"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="L88-RE-hCz"/>
+                                <exclude reference="MTg-l2-CpG"/>
+                                <exclude reference="gjz-ps-D2c"/>
                                 <exclude reference="vlX-nU-F4r"/>
+                                <exclude reference="6Ws-Qg-bqX"/>
+                                <exclude reference="j3x-FC-b7s"/>
                             </mask>
                         </variation>
                     </view>
@@ -723,7 +739,7 @@
                         <outlet property="currentTimeLabel" destination="NJ2-uk-gh9" id="DHe-RN-sCO"/>
                         <outlet property="doneButton" destination="hjS-Bp-Ggi" id="iLN-T6-gBQ"/>
                         <outlet property="headerView" destination="cAA-K6-6Bo" id="Cd4-gS-fha"/>
-                        <outlet property="nextVideoButton" destination="nJD-7F-iH9" id="zUU-Zb-gZM"/>
+                        <outlet property="nextVideoButton" destination="gqC-fe-oHG" id="FK7-B9-Tlf"/>
                         <outlet property="playAndPauseButton" destination="8zT-wu-2JV" id="dII-7I-x0X"/>
                         <outlet property="playListView" destination="bih-LU-kmR" id="44c-dK-aiP"/>
                         <outlet property="previousVideoButton" destination="DyU-LZ-HXn" id="THl-Pt-DXZ"/>
@@ -1160,11 +1176,13 @@
     <resources>
         <image name="imagebutton" width="288" height="163"/>
         <image name="nextvideobutton" width="54" height="54"/>
+        <image name="pauseButton" width="58" height="58"/>
+        <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rMk-yN-dkD"/>
         <segue reference="0Er-HR-mOK"/>
-        <segue reference="R1j-RD-yfJ"/>
         <segue reference="PWM-wa-fpP"/>
+        <segue reference="R1j-RD-yfJ"/>
+        <segue reference="rMk-yN-dkD"/>
     </inferredMetricsTieBreakers>
 </document>
