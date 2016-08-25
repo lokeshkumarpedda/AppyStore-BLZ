@@ -637,25 +637,25 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xaD-6m-1Ig">
                                 <rect key="frame" x="200" y="460" width="200" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyU-LZ-HXn">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyU-LZ-HXn">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                         <state key="normal" image="previousvideobutton"/>
                                         <connections>
                                             <action selector="previousVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="yDJ-QM-1WV"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zT-wu-2JV">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zT-wu-2JV">
                                         <rect key="frame" x="75" y="0.0" width="50" height="40"/>
                                         <state key="normal" image="pauseButton"/>
                                         <connections>
                                             <action selector="playAndPauseAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="Ry6-u5-U2b"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqC-fe-oHG">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqC-fe-oHG">
                                         <rect key="frame" x="150" y="0.0" width="50" height="40"/>
                                         <state key="normal" image="nextvideobutton"/>
                                         <connections>
-                                            <action selector="previousVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="eut-pu-FDx"/>
+                                            <action selector="nextVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="Azs-rQ-hIc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -669,10 +669,12 @@
                                     <constraint firstItem="gqC-fe-oHG" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" id="QLE-8Q-98A"/>
                                     <constraint firstItem="gqC-fe-oHG" firstAttribute="centerY" secondItem="xaD-6m-1Ig" secondAttribute="centerY" id="QOE-rN-3j1"/>
                                     <constraint firstItem="gqC-fe-oHG" firstAttribute="leading" secondItem="8zT-wu-2JV" secondAttribute="trailing" constant="25" id="Utr-5r-VIa"/>
+                                    <constraint firstAttribute="width" constant="200" id="VlQ-T2-l0G"/>
                                     <constraint firstItem="gqC-fe-oHG" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" id="bh2-KW-dcu"/>
                                     <constraint firstItem="8zT-wu-2JV" firstAttribute="centerX" secondItem="xaD-6m-1Ig" secondAttribute="centerX" id="fUW-cW-THP"/>
                                     <constraint firstAttribute="trailing" secondItem="gqC-fe-oHG" secondAttribute="trailing" id="gBY-yj-fQq"/>
                                     <constraint firstAttribute="bottom" secondItem="gqC-fe-oHG" secondAttribute="bottom" id="jL2-f9-gkr"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="kYF-Hd-MhK"/>
                                     <constraint firstItem="DyU-LZ-HXn" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" id="lPI-ye-fZ2"/>
                                     <constraint firstAttribute="bottom" secondItem="DyU-LZ-HXn" secondAttribute="bottom" id="lb1-kt-Czh"/>
                                     <constraint firstItem="gqC-fe-oHG" firstAttribute="leading" secondItem="8zT-wu-2JV" secondAttribute="trailing" constant="25" id="n0A-pX-rjq"/>
@@ -681,6 +683,14 @@
                                     <constraint firstItem="8zT-wu-2JV" firstAttribute="top" secondItem="xaD-6m-1Ig" secondAttribute="top" id="tgT-dx-i2F"/>
                                     <constraint firstAttribute="bottom" secondItem="gqC-fe-oHG" secondAttribute="bottom" id="xPz-Vg-Oc7"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3aR-cw-l6p"/>
+                                        <exclude reference="Pih-Ca-iSf"/>
+                                        <exclude reference="Utr-5r-VIa"/>
+                                        <exclude reference="n0A-pX-rjq"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="du6-ML-H1a">
                                 <rect key="frame" x="100" y="40" width="400" height="420"/>
@@ -729,6 +739,8 @@
                                 <exclude reference="gjz-ps-D2c"/>
                                 <exclude reference="vlX-nU-F4r"/>
                                 <exclude reference="6Ws-Qg-bqX"/>
+                                <exclude reference="MeB-6s-M6Q"/>
+                                <exclude reference="eP6-ay-4C8"/>
                                 <exclude reference="j3x-FC-b7s"/>
                             </mask>
                         </variation>
@@ -1176,7 +1188,7 @@
     <resources>
         <image name="imagebutton" width="288" height="163"/>
         <image name="nextvideobutton" width="54" height="54"/>
-        <image name="pauseButton" width="58" height="58"/>
+        <image name="pauseButton" width="29" height="29"/>
         <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>

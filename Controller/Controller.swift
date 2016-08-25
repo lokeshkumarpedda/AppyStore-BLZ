@@ -29,10 +29,6 @@ class Controller : NSObject,PController{
         //observe notification for subcategory list updates
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateSubCategoryList(_:)), name: "ControllerSubCategoryUpdate", object: nil)
     }
-//    //init for subcategory
-//    init(subCategoryVMObj : SubCategoryViewModel) {
-//        mSubCategoryViewModelObj = subCategoryVMObj
-//    }
     //init for search
     init(searchViewMode : PSearchViewModel) {
         mSearchViewModelObj = searchViewMode
@@ -40,7 +36,6 @@ class Controller : NSObject,PController{
     //init for history
     init(historyVMObj : HistoryViewModel) {
         mHistoryViewModel = historyVMObj
-        //mLocalDataBaseObj = LocalDataBase()
     }
 
     //method to get category list from rest api
@@ -74,11 +69,6 @@ class Controller : NSObject,PController{
     }
     //method to update category view model
     func updateCategoryDetails(notification : NSNotification){
-//        for category in categortList {
-//            mLocalDataBaseObj.mInsertInToCategoryTable(category)
-//        }
-//        
-//        mCategoryViewModelObj.updateCategoryViewModel(categortList)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerCategoryUodate", object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerSubCategoryUpdate", object: nil)
         NSNotificationCenter.defaultCenter().postNotificationName("UpdateCategoryViewModel", object: self, userInfo: notification.userInfo)
@@ -86,7 +76,6 @@ class Controller : NSObject,PController{
     
     //method to update SubCategory View model
     func updateSubCategoryList(notification : NSNotification){
-        //mSubCategoryViewModelObj.updateSubCategoryViewModel(subCategoryList)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerSubCategoryUpdate", object: nil)
         NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewModel", object: self, userInfo: notification.userInfo)
         

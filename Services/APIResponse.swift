@@ -28,11 +28,9 @@ class APIResponse: NSObject {
             let pId = Int(response["Responsedetails"]!["category_id_array"]!![i]["parent_category_id"] as! String)
             let totalCount = response["Responsedetails"]!["category_count"] as! Int
             
-            //categories.append(categorylist(name: Observable(title), image: image, categoryId: cId!, parentId: pId!,totalCOunt: totalCount))
             categories.append(categorylist(name: title, image: image, cId: cId!, pId: pId!, totalCount: totalCount))
         }
-//        var dic : [String : AnyObject] = ["category" : categories]
-      //  controllerObj.updateCategoryDetails(categories)
+
         NSNotificationCenter.defaultCenter().postNotificationName("ControllerCategoryUpdate", object: self, userInfo: ["category" : categories])
     }
    
@@ -48,13 +46,10 @@ class APIResponse: NSObject {
             let imageUrl = response["Responsedetails"]!["data_array"]!![i]["image_path"] as! String
             let duration = response["Responsedetails"]!["data_array"]!![i]["content_duration"] as! String
             let downloadUrl = response["Responsedetails"]!["data_array"]!![i]["dnld_url"] as! String
-            
-//            subcategories.append(SubCategorylist(title: Observable(title), image: Utility().fetchImage(imageUrl).shareNext(), duration: Observable(duration), downloadUrl: Observable(downloadUrl),imageUrl: imageUrl,totalCount: Totalcount))
-            
-//            subcategories.append(SubCategorylist(title: Observable(title), duration: Observable(duration), downloadUrl: Observable(downloadUrl),imageUrl: imageUrl,totalCount: Totalcount))
+
             subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
         }
-        //controllerObj.updateSubCategoryList(subcategories)
+
         NSNotificationCenter.defaultCenter().postNotificationName("ControllerSubCategoryUpdate", object: self, userInfo: ["SubCategory" : subcategories])
     }
     
@@ -69,13 +64,10 @@ class APIResponse: NSObject {
             for i in 0..<count {
                 let title = response["Responsedetails"]![0]!["data_array"]!![i]["title"] as! String
                 let imageUrl = response["Responsedetails"]![0]!["data_array"]!![i]["image_path"] as! String
-                //let duration = response["Responsedetails"]![0]!["data_array"]!![i]["content_duration"] as! String
                 let downloadUrl = response["Responsedetails"]![0]!["data_array"]!![i]["dnld_url"] as! String
                 
                 
-//                subcategories.append(SubCategorylist(title: Observable(title), image: Utility().fetchImage(imageUrl).shareNext(), duration: Observable("00:00"), downloadUrl: Observable(downloadUrl),imageUrl: imageUrl, totalCount: Totalcount))
-                
-//                subcategories.append(SubCategorylist(title: Observable(title), duration: Observable("00:00"), downloadUrl: Observable(downloadUrl),imageUrl: imageUrl, totalCount: Totalcount))
+
                 subcategories.append(SubCategorylist(title: title, duration: "00.00", downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
                 
             }

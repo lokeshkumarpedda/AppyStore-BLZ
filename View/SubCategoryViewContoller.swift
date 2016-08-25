@@ -36,6 +36,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     var historyChecker = false
     
     var videoUrl : NSURL?
+    var currentIndexPath = NSIndexPath()
     
     var mSelectedCategoryCount = 0
     var offset = 0
@@ -64,8 +65,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
 
         
         mSubcategoryViewModelObj = SubCategoryViewModel(category: mCategory!)
-       // mSubcategoryViewModelObj.mFetchSubCategoryDetailsFromController(mCategory.categoryId,p_Id: mCategory.parentId,offSet: offset)
-        
+
         // setting background image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
         collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
@@ -93,9 +93,10 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
 
-        let subCategory : SubCategorylist? = mSubcategoryViewModelObj.mGetSubCategory(indexPath.row)
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
         
+        let subCategory : SubCategorylist? = mSubcategoryViewModelObj.mGetSubCategory(indexPath.row)
         Utility().mBindCollectionViewCell(cell, subCategory: subCategory!)
         
         return cell
@@ -104,7 +105,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         videoUrl = NSURL(string: mSubcategoryViewModelObj.mSubcategoryList[indexPath.row].downloadUrl.value)
-        
+        currentIndexPath = indexPath
         performSegueWithIdentifier("SubCategoryToVideoPlayer", sender: nil)
         
         let LocalDB = LocalDataBase()
@@ -116,6 +117,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         {
             let videoControllerObj = segue.destinationViewController as! VideoPlayerViewController
             videoControllerObj.url = videoUrl
+            videoControllerObj.currentVideoIndex = currentIndexPath.row
             videoControllerObj.category = mCategory
             
         }
@@ -171,7 +173,9 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     
     //method to update subcategory view controller
     func updataSubCategoryViewController(notification : NSNotification) {
+        self.collectionView.hidden = true
         collectionView.reloadData()
+        self.collectionView.hidden = false
     }
 
 }

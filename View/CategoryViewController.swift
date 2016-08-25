@@ -149,24 +149,7 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
             subCategoryViewControllerObj.mCategory = mSelectedCategory
         }
     }
-    //method to bind collection view cell and view model
-    func mBindTo(cell : CollectionViewCell , list : categorylist) {
-        list.name.bindTo(cell.VideoLabel)
-//        let image : ObservableBuffer<UIImage>? = Utility().fetchImage(list.image).shareNext()
-//        if image != nil {
-//            image?.bindTo(cell.VideoImageView)
-//        }
-        cell.activityIndicator.startAnimating()
-        Alamofire.request(.GET, NSURL(string: list.image)!).response { request, response, data, error in
-            if data != nil {
-                if cell.imgUrl == list.image{
-                    cell.VideoImageView.image = UIImage(data: data!)
-                }
-                cell.activityIndicator.hidden = true
-                cell.activityIndicator.stopAnimating()
-            }
-        }
-    }
+
     //method to update category view contrller
     func updateCategoryViewController(notification : NSNotification) {
         collectionView.reloadData()

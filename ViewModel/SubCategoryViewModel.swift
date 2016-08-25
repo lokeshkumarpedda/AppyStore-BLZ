@@ -16,15 +16,13 @@ import ReactiveKit
 class SubCategoryViewModel: NSObject {
     
     var mControllerObj : Controller!  //create controller object
-    var mSubcategoryList = [SubCategorylist]()  //variable hold list of sub categories details
+    var mSubcategoryList :[SubCategorylist] = []  //variable hold list of sub categories details
     var mTotalSubCategoryCount = 8    //varible to store total number of subCategories
     var mReceivedCategoryCount = 0 //variable to store number of recived categories
     var mCategory : categorylist! // varibale to store total selected category
-//    var mSubCategoryViewControllerObj : PSubCategoryViewController!
     
     init(category : categorylist) {
         super.init()
-//        mSubCategoryViewControllerObj = subCategory
         mCategory = category
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewModel.updateSubCategoryViewModel(_:)), name: "UpdateSubCategoryViewModel", object: nil)
@@ -72,11 +70,7 @@ class SubCategoryViewModel: NSObject {
             }
             mReceivedCategoryCount += 1
         }
-        if mSubcategoryList.count < 9 {
-            NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewController", object: nil)
-        }
-        if mTotalSubCategoryCount == mReceivedCategoryCount {
-            NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateSubCategoryViewModel", object: nil)
-        }
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewController", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("updataPlayList", object: nil)
     }
 }

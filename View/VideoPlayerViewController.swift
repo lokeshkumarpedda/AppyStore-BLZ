@@ -18,7 +18,7 @@ import ReactiveUIKit
 import AVKit
 import AVFoundation
 
-class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, UICollectionViewDelegate{
+class VideoPlayerViewController: UIViewController {
 
     //MARK: OUTLETS
     @IBOutlet weak var headerView: UIView!
@@ -42,7 +42,10 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
     
     var activityIndicator = UIActivityIndicatorView()
     var pause = true
+    var currentVideoIndex: Int = 0
+    
     let fullScreenView = UIView()
+    let activityIndicatorContainer = UIView()
     
     // Objects
     var subcategoryViewModelObj : SubCategoryViewModel!
@@ -73,6 +76,7 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
         
         subcategoryViewModelObj = SubCategoryViewModel(category: category!)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updataPlayList(_:)), name: "updataPlayList", object: nil)
         
     }
     
@@ -80,11 +84,12 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
         super.viewDidAppear(true)
 
         //Timer to update slider for each second
-        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(self.updateSlider) , userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(updateSlider) , userInfo: nil, repeats: true)
         
         //adding taget to the slider
         timeSlider.addTarget(self, action: #selector(changeInSlider),
                              forControlEvents: .ValueChanged)
+        
         playerValues(url!)
         
     }
@@ -92,14 +97,12 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //Going back to subcategory with the current category details
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "VideoPlayerToSubCategory"
-        {
-            
+        videoPlayer.replaceCurrentItemWithPlayerItem(nil)
+        if segue.identifier == "VideoPlayerToSubCategory"{
             let subCategoryViewControllerObj = segue.destinationViewController as! SubCategoryViewContoller
             subCategoryViewControllerObj.mCategory = category
             
@@ -116,14 +119,17 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
         if videoPlayerItem != nil{
             videoPlayer.pause()
         }
+        
         showActivityIndicator()
+        
         videoPlayerItem = AVPlayerItem(URL: url)
         videoPlayer = AVPlayer(playerItem: videoPlayerItem!)
         videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
-        
+
         videoView.layer.addSublayer(videoPlayerLayer!)
         videoPlayerLayer?.frame = videoView.bounds
         videoPlayer.play()
+
         
         //Adding observer for buffering
         videoPlayerItem!.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.New, context: nil)
@@ -133,16 +139,13 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
     }
     
     //For video loading and Buffering
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>)
-    {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>){
         
-        if keyPath == "status"
-        {
+        if keyPath == "status"{
             //checking the video is in playable status or not
-            if videoPlayer.status == .ReadyToPlay && videoPlayerItem!.status == .ReadyToPlay
-            {
+            if videoPlayer.status == .ReadyToPlay && videoPlayerItem!.status == .ReadyToPlay{
                 
-                activityIndicator.stopAnimating()
+                stopActivityIndicator()
                 
                 let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoPlayerViewController.tapToFullscreen(_:)))
                 videoView.addGestureRecognizer(gestureRecognizer)
@@ -151,39 +154,35 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
                 totalTimeLabel.text = convertingSeconds(Int(timeSlider.maximumValue))
                 
             }
-            else {
-                
-                //Showing network error message
-                let alertController = UIAlertController(title: "Network Error", message: "Please check your Internet connnection", preferredStyle: UIAlertControllerStyle.Alert)
-                
-                let okAction = UIAlertAction(title: "OK", style: .Default, handler: {(result : UIAlertAction) -> Void in
-                    self.performSegueWithIdentifier("VideoPlayerToSubCategory", sender: nil)
-                })
-                alertController.addAction(okAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-                
-            }
+//            else {
+//                
+//                //Showing network error message
+//                let alertController = UIAlertController(title: "Network Error", message: "Please check your Internet connnection", preferredStyle: UIAlertControllerStyle.Alert)
+//                
+//                let okAction = UIAlertAction(title: "OK", style: .Default, handler: {(result : UIAlertAction) -> Void in
+//                    self.performSegueWithIdentifier("VideoPlayerToSubCategory", sender: nil)
+//                })
+//                alertController.addAction(okAction)
+//                self.presentViewController(alertController, animated: true, completion: nil)
+//                
+//            }
         }
         
-        if keyPath == "playbackBufferEmpty"
-        {
+        if keyPath == "playbackBufferEmpty"{
             //checking for the buffer is empty or not
-            if ((videoPlayerItem?.playbackBufferEmpty) != nil)
-            {
+            if ((videoPlayerItem?.playbackBufferEmpty) != nil){
                 
                 showActivityIndicator()
                 videoPlayer.pause()
                 
             }
         }
-        else if keyPath == "playbackLikelyToKeepUp"
-        {
+        else if keyPath == "playbackLikelyToKeepUp"{
             
              //checking video is playable or not
-            if ((videoPlayerItem?.playbackLikelyToKeepUp) != nil)
-            {
+            if ((videoPlayerItem?.playbackLikelyToKeepUp) != nil){
                 
-                activityIndicator.stopAnimating()
+                stopActivityIndicator()
                 videoPlayer.play()
                 
             }
@@ -191,9 +190,9 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
     }
     
     //Video change with respective to the slider value change
-    func changeInSlider(sender:UISlider!)
-    {
+    func changeInSlider(sender:UISlider!){
         
+        stopActivityIndicator()
         let t = CMTimeMake(Int64( timeSlider.value), 1)
         videoPlayer.seekToTime(t)
         videoPlayer.play()
@@ -201,8 +200,7 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
     }
     
     //Slider change with respective to video
-    func updateSlider()
-    {
+    func updateSlider(){
         
         //adding player time to the slider
         timeSlider.value = Float(Int( videoPlayerItem!.currentTime().value) / Int(videoPlayerItem!.currentTime().timescale))
@@ -212,66 +210,74 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
         
     }
     
-    //For activity indicator display and animation
-    func showActivityIndicator()
-    {
-        
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
-        
-        //Adding activity indicator to particular view
-        view.addSubview(activityIndicator)
-        
-        //Staring the the animation
-        activityIndicator.startAnimating()
-        
-    }
-    
-    //method for converting seconds to HH:MM:SS times
-    func convertingSeconds(sec : Int) -> String
-    {
+    //method for converting seconds to MM:SS times
+    func convertingSeconds(sec : Int) -> String{
         
         let seconds = sec % 60
         let minutes = (sec / 60) % 60
-        if seconds < 10 && minutes < 10
-        {
+        if seconds < 10 && minutes < 10{
             return "0" + String(minutes) + ":" + "0" + String(seconds)
             
-        }else if seconds < 10
-        {
+        }else if seconds < 10{
             
             return String(minutes) + ":" + "0" + String(seconds)
             
-        }else if minutes < 10
-        {
+        }else if minutes < 10{
             
             return "0" + String(minutes) + ":" + String(seconds)
             
-        }else
-        {
+        }else{
             
             return String(minutes) + ":" + String(seconds)
             
         }
     }
     
+    //MARK: activity indicator methods
+    
+    //For activity indicator display and animation
+    func showActivityIndicator(){
+        
+        activityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicatorContainer.center = videoView.center
+        activityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
+        activityIndicatorContainer.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .White
+        activityIndicator.clipsToBounds = true
+        activityIndicator.hidesWhenStopped = true
+        
+        //Adding activity indicator to particular view
+        activityIndicatorContainer.addSubview(activityIndicator)
+        view.addSubview(activityIndicatorContainer)
+        
+        //Staring the the animation
+        activityIndicator.startAnimating()
+        
+    }
+    
+    //For stop displaying the activity indicator
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicatorContainer.removeFromSuperview()
+    }
+
+    
+    //MARK: gesture recognition methods
     
     //Playing video in fullscreen
-    func tapToFullscreen(sender: UITapGestureRecognizer)
-    {
+    func tapToFullscreen(sender: UITapGestureRecognizer){
+        //removing gesture recognizer from the fullscreen view
+        for recognizer in videoView.gestureRecognizers!{
+            videoView.removeGestureRecognizer(recognizer)
+        }
         
         fullScreenView.frame = self.view.bounds
         fullScreenView.backgroundColor = UIColor.blackColor()
         fullScreenView.layer.addSublayer(videoPlayerLayer!)
         videoPlayerLayer?.frame = fullScreenView.bounds
         self.view.addSubview(fullScreenView)
-        
-        //Adding observer for buffering
-        videoPlayerItem!.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.New, context: nil)
-        videoPlayerItem!.addObserver(self, forKeyPath: "playbackBufferEmpty", options: NSKeyValueObservingOptions.New, context: nil)
-        videoPlayerItem!.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: NSKeyValueObservingOptions.New, context: nil)
         
         //Adding gesture recognition to the fullscreen
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoPlayerViewController.cancelingFullScreen(_:)))
@@ -281,13 +287,19 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
 
     
     //cancelling the fullscreeen
-    func cancelingFullScreen(sender: UITapGestureRecognizer)
-    {
+    func cancelingFullScreen(sender: UITapGestureRecognizer){
         
+        //removing gesture recognizer from the fullscreen view
+        for recognizer in fullScreenView.gestureRecognizers!{
+            fullScreenView.removeGestureRecognizer(recognizer)
+        }
         fullScreenView.removeFromSuperview()
         videoView.layer.addSublayer(videoPlayerLayer!)
         videoPlayerLayer?.frame = videoView.bounds
-        
+  
+        //adding gesture recognizer
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoPlayerViewController.tapToFullscreen(_:)))
+        videoView.addGestureRecognizer(gestureRecognizer)
     }
     
     
@@ -297,15 +309,13 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
     @IBAction func playAndPauseAction(sender: AnyObject) {
         
         //checking for it paused or running and doing the opposite
-        if pause == true
-        {
+        if pause == true{
             
             videoPlayer.pause()
             pause = false
             
         }
-        else
-        {
+        else{
             
             videoPlayer.play()
             pause = true
@@ -313,25 +323,53 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
         }
     }
     
+    //For playing previous video
     @IBAction func previousVideoAction(sender: AnyObject) {
+        
+        //checking the video exists in subCategoryList
+        if currentVideoIndex > 0 && currentVideoIndex < subcategoryViewModelObj.mSubcategoryList.count{
+            
+            playerValues(NSURL(string: subcategoryViewModelObj.mSubcategoryList[currentVideoIndex - 1].downloadUrl.value)!)
+            currentVideoIndex -= 1
+        }
     }
+    
+    //For playing next video
     @IBAction func nextVideoAction(sender: AnyObject) {
+        
+        //checking the video exists in the subCategoryList
+        if currentVideoIndex+1 < subcategoryViewModelObj.mSubcategoryList.count {
+            
+            playerValues(NSURL(string: subcategoryViewModelObj.mSubcategoryList[currentVideoIndex + 1].downloadUrl.value)!)
+            currentVideoIndex += 1
+        }
     }
 
-    //MARK: - PlayList methods
+
+
+
+    
+    //For updating the playlist
+    func updataPlayList(notification : NSNotification){
+        
+        collectionView.reloadData()
+        
+    }
+}
+
+//MARK: - CollectionView Datasource
+extension VideoPlayerViewController: UICollectionViewDataSource{
     
     
     //method to return number of item in each section of collection view
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
         return subcategoryViewModelObj.mTotalSubCategoryCount
         
     }
     
     //method to create collection view cell
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
-    {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         
         let subCategory : SubCategorylist? = subcategoryViewModelObj.mGetSubCategory(indexPath.row)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
@@ -340,29 +378,22 @@ class VideoPlayerViewController: UIViewController ,UICollectionViewDataSource, U
         
         return cell
     }
-    
+}
+
+//MARK:- CollectionView Delegates
+extension VideoPlayerViewController : UICollectionViewDelegate{
     //Selected video
-    @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
-    {
+    @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         
         url = NSURL(string: subcategoryViewModelObj.mSubcategoryList[indexPath.row].downloadUrl.value)
+        currentVideoIndex = indexPath.row
         
         //playing the video with the url
-        self.playerValues(url!)
+        playerValues(url!)
         
         //Adding to the history
         let LocalDB = LocalDataBase()
         LocalDB.mInsertInToHistoryTabel(subcategoryViewModelObj.mSubcategoryList[indexPath.row])
         
-    }
-
-    
-    //For updating the playlist
-    func updataSubCategoryViewController(notification : NSNotification)
-    {
-        collectionView.reloadData()
-        dispatch_async(dispatch_get_main_queue(), {
-            self.collectionView.reloadData()
-        })
     }
 }
