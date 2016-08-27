@@ -105,7 +105,6 @@ class VideoPlayerViewController: UIViewController {
         if segue.identifier == "VideoPlayerToSubCategory"{
             let subCategoryViewControllerObj = segue.destinationViewController as! SubCategoryViewContoller
             subCategoryViewControllerObj.mCategory = category
-            
         }
     }
     
@@ -119,13 +118,14 @@ class VideoPlayerViewController: UIViewController {
         if videoPlayerItem != nil{
             videoPlayer.pause()
         }
-        
+        videoPlayerItem = nil
+        videoPlayerLayer = nil
         showActivityIndicator()
         
         videoPlayerItem = AVPlayerItem(URL: url)
         videoPlayer = AVPlayer(playerItem: videoPlayerItem!)
         videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
-
+        
         videoView.layer.addSublayer(videoPlayerLayer!)
         videoPlayerLayer?.frame = videoView.bounds
         videoPlayer.play()

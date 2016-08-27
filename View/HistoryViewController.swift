@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
 
@@ -22,6 +24,9 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     @IBOutlet weak var mCartButton: UIButton!
     
     let label = UILabel()
+    
+    var avPlayer = AVPlayer()
+    var avPlayerViewController = AVPlayerViewController()
     
     var mHistoryViewModelObj : HistoryViewModel! //object of history view model
     var collectionViewCell : CollectionViewCell! //object of collection view cell
@@ -78,21 +83,28 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
 
         return cell
     }
-    //method to Get data from history view model
-    func mGetContentFromViewModel() {
+    
+    
+    //For selected video
+    @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         
+        //getting the selected video url
+        let url = NSURL(string: mHistoryViewModelObj.mHistoryList[indexPath.row].downloadUrl.value)
+        
+        //creating a avplayer
+        avPlayer = AVPlayer(URL: url!)
+        avPlayerViewController.player = avPlayer
+        
+        //showing in the video in avplayerviewcontroller
+        self.presentViewController(avPlayerViewController, animated: true){
+            
+            //starting the video
+            self.avPlayerViewController.player?.play()
+        }
     }
+    
     //method to update history view controller
     func updateHistoryViewController() {
-//        if mHistoryViewModelObj.mHistoryList.count == 0 {
-//            label.hidden = false
-//            label.textAlignment = NSTextAlignment.Center
-//            label.text = "Records Not Found"
-//            label.textColor = UIColor.whiteColor()
-//            collectionView.backgroundView = label
-//        }else {
-//            collectionView.reloadData()
-//        }
         collectionView.reloadData()
     }
 
@@ -127,14 +139,21 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     //button to cleat history
     @IBAction func mClearHistory(sender: UIButton) {
-        let alertController = UIAlertController(title: "History CLeared", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         
+        let alertController = UIAlertController(title: "CLEAR", message: "It will Clear you whole History", preferredStyle: UIAlertControllerStyle.Alert)
+            
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
-
+            if self.mHistoryViewModelObj.deleteHistory(){
+                self.mHistoryViewModelObj.mGetHistoryDetails()
+            }
+            else{
+                print("-- Failed to Clear data --")
+            }
         }
         alertController.addAction(okAction)
         
         self.presentViewController(alertController, animated: true, completion: nil)
+
     }
     //method to change background image of buttons
     func mChangeButtonImage () {

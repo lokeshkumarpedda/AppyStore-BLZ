@@ -35,4 +35,10 @@ class HistoryViewModel: NSObject {
     func updateHistoryController() {
         mHistoryViewControllerObj.updateHistoryViewController()
     }
+    
+    //For deleting the data in history view
+    func deleteHistory() -> Bool {
+        let result = mControllerObj.clearHistory()
+        return result
+    }
 }

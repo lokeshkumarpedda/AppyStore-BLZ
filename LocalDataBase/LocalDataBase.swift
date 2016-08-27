@@ -19,7 +19,6 @@ class LocalDataBase: NSObject {
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         dataBasePath = dirPath[0] + "/AppyStoreDatabase.db"
         
-        print(dataBasePath)
         if(fileManager.fileExistsAtPath(dataBasePath)) {
             let AppyStoreDataBase = FMDatabase(path: dataBasePath )
             if (AppyStoreDataBase == nil) {
@@ -51,6 +50,8 @@ class LocalDataBase: NSObject {
             }
         }
     }
+
+    
     
     //method to insert into category table
     func mInsertInToCategoryTable(category : categorylist) {
@@ -82,7 +83,6 @@ class LocalDataBase: NSObject {
 
             //insert query
             let insertSql = "INSERT INTO HISTORY (title,content_duration,image_path,DwnLUrl) VALUES ('\(title)','\(duration)','\(imageUrl!)','\(dwldUrl)')"
-            print(insertSql)
             //execute insert statement
             if (AppyStoreDataBase.executeStatements(insertSql)) {
                 print("Data inserted")
@@ -127,13 +127,10 @@ class LocalDataBase: NSObject {
         if AppyStoreDataBase.open() {
             //fetch query for history
             let querySql = "SELECT * FROM HISTORY"
-            let count = AppyStoreDataBase.executeStatements("SELECT COUNT(*) FROM HISTORY")
             //execute query
             let result = AppyStoreDataBase.executeQuery(querySql, withArgumentsInArray: nil)
-            if (result != nil && result!.next() == true) {
-                print("Data fetched")
+            if (result != nil) {
                 while result.next() {
-//                    let category = SubCategorylist(title: Observable(result.stringForColumn("title")), duration: Observable(result.stringForColumn("content_duration")), downloadUrl: Observable(result.stringForColumn("DwnLUrl")), imageUrl: result.stringForColumn("image_path"), totalCount: 0)
                     
                     let category = SubCategorylist(title: result.stringForColumn("title"), duration: result.stringForColumn("content_duration"), downloadUrl: result.stringForColumn("DwnLUrl"), imageUrl: result.stringForColumn("image_path")!, totalCount: 0)
                     
@@ -146,8 +143,38 @@ class LocalDataBase: NSObject {
             
             AppyStoreDataBase.close()  //closing database
         }
-        print(history)
         return history
     }
 
+    //For clearing the data in the history table
+    func clearHistory() -> Bool{
+        var cleared = false
+        let AppyStoreDataBase = FMDatabase(path: dataBasePath)
+        if (AppyStoreDataBase == nil) {
+            print("Error : \(AppyStoreDataBase.lastErrorMessage())")
+        }
+        else{
+            if AppyStoreDataBase.open() {
+                //Deleting the whole table
+                let dropTable = "DELETE FROM HISTORY"
+                if AppyStoreDataBase.executeUpdate(dropTable, withArgumentsInArray: nil){
+                    cleared = true
+                }
+                //sql query to create history table
+                let sql_History = "CREATE TABLE IF NOT EXISTS HISTORY (title TEXT,content_duration TEXT,image_path TEXT PRIMARY KEY ,DwnLUrl TEXT)"
+                
+                //create category table table
+                if (!AppyStoreDataBase.executeStatements(sql_History)) {
+                    print("Error : \(AppyStoreDataBase.lastErrorMessage())")
+                }
+                //close Database
+                AppyStoreDataBase.close()
+            }
+            else {
+                print("failed to open db \(AppyStoreDataBase.lastErrorMessage())")
+            }
+        }
+        
+        return cleared
+    }
 }

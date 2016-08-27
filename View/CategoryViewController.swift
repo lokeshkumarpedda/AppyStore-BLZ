@@ -79,7 +79,6 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     }
     //method to return number of item in collection view section
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(mCategoryViewModelObj.mTotalCount)
         return mCategoryViewModelObj.mTotalCount
     }
     //method to return collection view cell

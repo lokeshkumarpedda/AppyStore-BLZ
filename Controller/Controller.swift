@@ -63,6 +63,11 @@ class Controller : NSObject,PController{
         return mLocalDataBaseObj.mFetchHistoryDetails()
     }
     
+    //method to clear history
+    func clearHistory() -> Bool {
+        return mLocalDataBaseObj.clearHistory()
+    }
+    
     //method to save played video in lacal database
     func mSaveVideoInHistory(subCategory : SubCategorylist) {
         mLocalDataBaseObj.mInsertInToHistoryTabel(subCategory)
