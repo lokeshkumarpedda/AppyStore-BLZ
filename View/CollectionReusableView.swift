@@ -6,7 +6,7 @@
 //  2. Header contail few buttons for easy search for user
 //  3. User can tab button for quick search
 //
-//  Created by BridgeIt on 26/07/16.
+//  Created by Shelly on 26/07/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

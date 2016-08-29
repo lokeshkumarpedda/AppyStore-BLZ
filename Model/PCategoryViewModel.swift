@@ -2,7 +2,7 @@
 //  PCategoryViewModel.swift
 //  AppyStoreBLZ
 //
-//  Created by BridgeIt on 07/08/16.
+//  Created by Shelly on 07/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

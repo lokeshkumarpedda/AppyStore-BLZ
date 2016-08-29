@@ -6,7 +6,7 @@
 //  2. This class will display video image and respective names
 //  2. This collection view cell is used but category,subcategory,search screen and history
 //
-//  Created by BridgeIt on 04/08/16.
+//  Created by Shelly on 04/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

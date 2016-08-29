@@ -2,7 +2,7 @@
 //  HistoryViewController.swift
 //  AppyStoreBLZ
 //
-//  Created by BridgeLabz on 10/08/16.
+//  Created by Shelly on 10/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

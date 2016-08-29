@@ -5,7 +5,8 @@
 //  1. This class display all videos of selected category
 //  2. And play video
 //
-//  Created by BridgeIt on 16/07/16.
+//  Created by Shelly on 16/07/16.
+
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

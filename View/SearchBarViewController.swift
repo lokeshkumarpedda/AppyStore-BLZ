@@ -6,7 +6,9 @@
 //  2. It provide few buttons of easy search
 //  3. This class will display all search result videos
 //
-//  Created by BridgeIt on 22/07/16.
+//  Created by Shelly on 22/07/16.
+
+
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
@@ -53,12 +55,8 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
         //to dismiss keyboard
         inputTextField.delegate = self
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard)))
     }
-    //method to dismiss keyboard
-    func  dismissKeyboard() {
-        inputTextField.resignFirstResponder()
-    }
+
     //method to dismiss keyboard when return button pressed
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         inputTextField.resignFirstResponder()
@@ -96,13 +94,14 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         self.mPlayerViewController.player?.play()
         }
         
-//        let LocalDB = LocalDataDase()
-//        LocalDB.mInsertValueInToHistoryTable(mSearchControllerObj.mSearchCategoryList[indexPath.row] as! [String : AnyObject])
+        //adding to history
+        let LocalDB = LocalDataBase()
+        LocalDB.mInsertInToHistoryTabel(mSearchViewModelObj.mSearchList[indexPath.row])
     }
     //method to display header in collection view for easy search buttons
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
 
-        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", forIndexPath: indexPath) as! CollectionReusableView
+        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView",forIndexPath: indexPath) as! CollectionReusableView
         cell.mSetBorder()
         return cell
     }
@@ -146,7 +145,6 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         Sview.hidden = true
         headerViewChecker = false
         if searchButtonShow {
-            
             if inputTextField.text == "" {
                 
             }
@@ -166,6 +164,7 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
             inputTextField.text = ""
         }
     }
+    
 
     @IBAction func CollectionReusableViewButton(sender: UIButton) {
         
@@ -174,31 +173,31 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
             inputTextField.text = "Rhymes"
             break
         case 2 :
-            inputTextField.text = "letters"
+            inputTextField.text = "Letters"
             break
         case 3 :
-            inputTextField.text = "counting"
+            inputTextField.text = "Counting"
             break
         case 4 :
-            inputTextField.text = "drawing"
+            inputTextField.text = "Drawing"
             break
         case 5 :
-            inputTextField.text = "science"
+            inputTextField.text = "Science"
             break
         case 6 :
-            inputTextField.text = "numbers"
+            inputTextField.text = "Numbers"
             break
         case 7 :
-            inputTextField.text = "puzzles"
+            inputTextField.text = "Puzzles"
             break
         case 8 :
             inputTextField.text = "ABC"
             break
         case 9 :
-            inputTextField.text = "reading"
+            inputTextField.text = "Reading"
             break
         case 10 :
-            inputTextField.text = "alphabet"
+            inputTextField.text = "Alphabet"
             break
         default : break
         }

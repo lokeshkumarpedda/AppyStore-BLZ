@@ -2,7 +2,7 @@
 //  CollectionReusableView.swift
 //  AppyStoreBLZ
 //
-//  Created by BridgeLabz on 09/08/16.
+//  Created by Shelly on 09/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

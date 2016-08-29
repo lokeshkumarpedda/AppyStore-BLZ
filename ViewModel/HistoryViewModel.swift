@@ -4,7 +4,7 @@
 //  Purpose
 //  1. This class will get history list from controller and update it to history view controller
 //
-//  Created by BridgeIt on 23/07/16.
+//  Created by Shelly on 23/07/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

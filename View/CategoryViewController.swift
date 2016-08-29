@@ -5,7 +5,9 @@
 //  1. This class will display all category
 //  2. Allow user to select any category
 //
-//  Created by BridgeIt on 04/08/16.
+//  Created by Shelly on 04/08/16.
+
+
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

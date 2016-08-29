@@ -2,7 +2,7 @@
 //  ApiRequest.swift
 //  AppyStoreBLZ
 //
-//  Created by BridgeIt on 01/08/16.
+//  Created by Shelly on 01/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
@@ -11,6 +11,9 @@ import Alamofire
 
 class ApiRequest: NSObject {
 
+    //Getting the info plist
+    let infoPlist = NSBundle.mainBundle().infoDictionary
+    
     let header = [
         "X_APPY_IMEI" : "353368070301951",
         "X_APPY_USERID" : "290903782",
@@ -25,7 +28,10 @@ class ApiRequest: NSObject {
         ]
     
     func mFetchCategoryList() {
-        Alamofire.request(.GET, "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getCategoryList&content_type=videos&limit_start=0&age=1.5&incl_age=5", headers: header)
+        //getting url from info.plist
+        let url = infoPlist!["Web_Url"] as! String
+        
+        Alamofire.request(.GET, "\(url)method=getCategoryList&content_type=videos&limit_start=0&age=1.5&incl_age=5", headers: header)
             .responseJSON { response in
 
                 let APIresponseObj = APIResponse()
@@ -35,8 +41,10 @@ class ApiRequest: NSObject {
     
     //method to fetch sub category list
     func mFetchSubCategoryList(c_Id : Int,p_Id : Int,offset : Int) {
-      
-        Alamofire.request(.GET, "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getContentList&content_type=videos&limit=8&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)&age=1.5&incl_age=5", headers: header)
+        //getting url from info.plist
+        let url = infoPlist!["Web_Url"] as! String
+        
+        Alamofire.request(.GET, "\(url)method=getContentList&content_type=videos&limit=8&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)&age=1.5&incl_age=5", headers: header)
             .responseJSON { response in
                 if(response.result.value != nil)
                 
@@ -53,17 +61,16 @@ class ApiRequest: NSObject {
     
     //method to fetch search details list
     func mFetchSearchDetails(controllerObj : PController,keyword : String)  {
+        //getting url from info.plist
+        let url = infoPlist!["Web_Url"] as! String
         
-        Alamofire.request(.GET, "http://beta.appystore.in/appy_app/appyApi_handler.php?method=search&keyword=\(keyword)&content_type=appsgames&limit=8&offset=0&age=1&incl_age=6", headers: header)
+        Alamofire.request(.GET, "\(url)method=search&keyword=\(keyword)&content_type=appsgames&limit=8&offset=0&age=1&incl_age=6", headers: header)
             .responseJSON { response in
-                if(response.result.value != nil)
-                    
-                {
+                if(response.result.value != nil){
                     let APIresponseObj = APIResponse()
                     APIresponseObj.mParseSearchCategoryList(controllerObj,response: response.result.value as! [String : AnyObject])
                 }
-                else
-                {
+                else{
                     print("Error")
                 }
         }

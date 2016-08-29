@@ -2,7 +2,7 @@
 //  Utility.swift
 //  AppyStoreBLZ
 //
-//  Created by BridgeIt on 06/08/16.
+//  Created by Shelly on 06/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
@@ -55,10 +55,12 @@ class Utility: NSObject {
         //setting video duration
         if subCategory.duration.value != ""{
             let duration = Int(subCategory.duration.value)
-            let sec = duration!%60 < 10 ? "0\(duration!%60)" : "\(duration!%60)"
-            let min = duration!/60 < 10 ? "0\(duration!/60)" : "\(duration!/60)"
-            cell.VideoDurationLabel.text = "\(min) : \(sec)"
-            cell.VideoDurationLabel.backgroundColor = UIColor(patternImage: UIImage(named: "videos_categories_play__tranparent_box")!)
+            if duration != nil{
+                let sec = duration!%60 < 10 ? "0\(duration!%60)" : "\(duration!%60)"
+                let min = duration!/60 < 10 ? "0\(duration!/60)" : "\(duration!/60)"
+                cell.VideoDurationLabel.text = "\(min) : \(sec)"
+                cell.VideoDurationLabel.backgroundColor = UIColor(patternImage: UIImage(named: "videos_categories_play__tranparent_box")!)
+            }
         }
 
         //activity indicator

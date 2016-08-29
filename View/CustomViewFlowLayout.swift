@@ -5,7 +5,7 @@
 //  1. This class is responsible for display layout of collection view for all view controllers
 //  2. This class set collection view cell height, width and all layout related to collection view cell
 //
-//  Created by BridgeIt on 26/07/16.
+//  Created by Shelly on 26/07/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

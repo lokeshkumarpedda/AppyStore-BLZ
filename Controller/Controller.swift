@@ -6,7 +6,7 @@
 //  2. All view models getting data from controller
 //  3. Controller have method to update viewmodes
 //  
-//  Created by BridgeIt on 04/08/16.
+//  Created by Shelly on 04/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

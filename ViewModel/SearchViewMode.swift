@@ -5,7 +5,7 @@
 //  1. This class get search key word from search view controller 
 //  2. And get search reasults from controller and update it to search view controller
 //
-//  Created by BridgeIt on 23/07/16.
+//  Created by Shelly on 23/07/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 

@@ -5,8 +5,8 @@
 
 //purpose : Video player for playing video and playlist to select the video from.
 
+//  Created by Lokesh Kumar on 18/08/16.
 
-//  Created by BridgeLabz on 18/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
@@ -154,18 +154,6 @@ class VideoPlayerViewController: UIViewController {
                 totalTimeLabel.text = convertingSeconds(Int(timeSlider.maximumValue))
                 
             }
-//            else {
-//                
-//                //Showing network error message
-//                let alertController = UIAlertController(title: "Network Error", message: "Please check your Internet connnection", preferredStyle: UIAlertControllerStyle.Alert)
-//                
-//                let okAction = UIAlertAction(title: "OK", style: .Default, handler: {(result : UIAlertAction) -> Void in
-//                    self.performSegueWithIdentifier("VideoPlayerToSubCategory", sender: nil)
-//                })
-//                alertController.addAction(okAction)
-//                self.presentViewController(alertController, animated: true, completion: nil)
-//                
-//            }
         }
         
         if keyPath == "playbackBufferEmpty"{
