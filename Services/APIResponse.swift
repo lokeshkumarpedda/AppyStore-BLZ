@@ -65,10 +65,9 @@ class APIResponse: NSObject {
                 let title = response["Responsedetails"]![0]!["data_array"]!![i]["title"] as! String
                 let imageUrl = response["Responsedetails"]![0]!["data_array"]!![i]["image_path"] as! String
                 let downloadUrl = response["Responsedetails"]![0]!["data_array"]!![i]["dnld_url"] as! String
-                
-                
+                let duration = response["Responsedetails"]![0]!["data_array"]!![i]["content_duration"] as! String
 
-                subcategories.append(SubCategorylist(title: title, duration: "00.00", downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
+                subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
                 
             }
             

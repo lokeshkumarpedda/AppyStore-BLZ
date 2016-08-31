@@ -20,25 +20,29 @@ import AVFoundation
 
 class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate,PSearchViewController,UITextFieldDelegate {
     
+    //MARK:- IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var backButtonLabel: UIButton!
     @IBOutlet weak var searchButtonLabel: UIButton!
     @IBOutlet weak var inputTextField: UITextField!
     
-    var collectionViewCell : CollectionViewCell?
     
+    //MARK:- Class Variables
+    var collectionViewCell : CollectionViewCell?
     var mSearchViewModelObj : SearchViewMode!
     var mVideoPlayer : AVPlayer!
     var mPlayerViewController : AVPlayerViewController!
     let label = UILabel()
-    var searchButtonShow : Bool = true
     var Sview = UIView(frame: CGRect(x: 0, y: 0, width: 540, height: 60))
     var sViewButton : UIButton!
     var headerViewChecker : Bool = true
     var ListCount = 0
-    var searchKeyword = ""
+    var searchKeyword : String?
+    let activityIndicator = UIActivityIndicatorView()
+    let activityIndicatorContainer = UIView()
     
+    //MARK:- View methods
     override func viewDidLoad() {
         super.viewDidLoad()
         mSearchViewModelObj = SearchViewMode(searchVCObj: self) //create object of serach view model
@@ -59,110 +63,58 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
 
     //method to dismiss keyboard when return button pressed
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        searching(inputTextField.text!)
         inputTextField.resignFirstResponder()
         return true
     }
 
+    //called when memory overloaded
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
      }
-    //method will return number of sections in colleciton view
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    //method will return number of rows in each collection view section
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mSearchViewModelObj.mTotalSearchCategory
-    }
-    //method will return collection view cell
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let searchCategory : SubCategorylist? = mSearchViewModelObj.mGetSearchCategory(indexPath.row)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
-        
-        Utility().mBindCollectionViewCell(cell, subCategory: searchCategory!)
 
-        return cell
-    }
-    //method get called any item in collection view is pressed
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let url = NSURL(string: mSearchViewModelObj.mSearchList[indexPath.row].downloadUrl.value)
-        mVideoPlayer = AVPlayer(URL: url!)
-        mPlayerViewController = AVPlayerViewController()
-        
-        mPlayerViewController.player = mVideoPlayer
-        self.presentViewController(mPlayerViewController, animated: true ){
-        self.mPlayerViewController.player?.play()
-        }
-        
-        //adding to history
-        let LocalDB = LocalDataBase()
-        LocalDB.mInsertInToHistoryTabel(mSearchViewModelObj.mSearchList[indexPath.row])
-    }
-    //method to display header in collection view for easy search buttons
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-
-        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView",forIndexPath: indexPath) as! CollectionReusableView
-        cell.mSetBorder()
-        return cell
-    }
-    //mehtod will return size of collection view header
-    func collectionView(collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-            if (headerViewChecker != true ){
-                return CGSizeZero
-            }
-            else {
-                   return CGSize(width: (view.frame.size.width), height: 90)
-            }
-    }
-    
-    //method to update search view controller
-    func updateSearchViewController() {
-        if mSearchViewModelObj.mTotalSearchCategory > 0 {
-            collectionView.reloadData()
-        }
-        else {
-            label.hidden = false
-            label.textAlignment = NSTextAlignment.Center
-            label.text = "Records Not Found"
-            label.textColor = UIColor.whiteColor()
-            collectionView.backgroundView = label
-        }
-    }
     
     //method to create subview to display when search not found
     func mCreateSubVIew() {
         Sview.backgroundColor = UIColor.blackColor()
         collectionView.addSubview(Sview)
     }
+    
+    //sending the keyword
+    func searching(keyword : String) {
+        //clearing the data in the view model
+        mSearchViewModelObj.mSearchList.removeAll()
+        mSearchViewModelObj.mTotalSearchCategory = 0
+        mSearchViewModelObj.mReceivedCategoryCount = 0
+        
+        collectionView.reloadData()
+        showActivityIndicator()
+        Sview.hidden = true
+        headerViewChecker = false
+        
+        //checking the entered text is not empty
+        if keyword.characters.count > 0{
+            let tempKeyword = keyword.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            searchKeyword = tempKeyword.stringByReplacingOccurrencesOfString(" ", withString: "-")
+            label.hidden = true
+            mSearchViewModelObj.mGetSearchCategory(searchKeyword!,index: 0)
+        }
+    }
+    
+    
+    //MARK:- IBACTION methods
+    
     //button actions
     @IBAction func backButtonPressed(sender: UIButton) {
         performSegueWithIdentifier("SearchToCategory", sender: nil)
     }
     
+    //if search button pressed
     @IBAction func searchButtonPressed(sender: UIButton) {
-        searchKeyword = inputTextField.text!
-        Sview.hidden = true
-        headerViewChecker = false
-        if searchButtonShow {
-            if inputTextField.text == "" {
-                
-            }
-            else {
-                searchButtonShow = false
-                collectionView.reloadData()
-                label.hidden = true
-                print(searchKeyword)
-                mSearchViewModelObj.mFetchSearchCategoryDetailsFromController(searchKeyword)
-                searchButtonLabel.setImage(UIImage(named: "close"), forState: UIControlState.Normal)
-                searchButtonLabel.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20);
-            }
+        if inputTextField.text != ""{
+            searching(inputTextField.text!)
         }
-        else {
-            searchButtonLabel.setImage(UIImage(named: "searchimage.png"), forState: UIControlState.Normal)
-            searchButtonShow = true
-            inputTextField.text = ""
-        }
+ 
     }
     
 
@@ -201,6 +153,105 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
             break
         default : break
         }
+        searchKeyword = inputTextField.text!
         searchButtonPressed(sender)
     }
+    
+    //MARK:- Collection View Methods
+    
+    //method will return number of sections in colleciton view
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    //method will return number of rows in each collection view section
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return mSearchViewModelObj.mTotalSearchCategory
+    }
+    //method will return collection view cell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let searchCategory : SubCategorylist? = mSearchViewModelObj.mGetSearchCategory(searchKeyword! , index: indexPath.row)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+        
+        Utility().mBindCollectionViewCell(cell, subCategory: searchCategory!)
+        
+        return cell
+    }
+    //method get called any item in collection view is pressed
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let url = NSURL(string: mSearchViewModelObj.mSearchList[indexPath.row].downloadUrl.value)
+        mVideoPlayer = AVPlayer(URL: url!)
+        mPlayerViewController = AVPlayerViewController()
+        
+        mPlayerViewController.player = mVideoPlayer
+        self.presentViewController(mPlayerViewController, animated: true ){
+            self.mPlayerViewController.player?.play()
+        }
+        
+        //adding to history
+        let LocalDB = LocalDataBase()
+        LocalDB.mInsertInToHistoryTabel(mSearchViewModelObj.mSearchList[indexPath.row])
+    }
+    //method to display header in collection view for easy search buttons
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView",forIndexPath: indexPath) as! CollectionReusableView
+        cell.mSetBorder()
+        return cell
+    }
+    //mehtod will return size of collection view header
+    func collectionView(collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if (headerViewChecker != true ){
+            return CGSizeZero
+        }
+        else {
+            return CGSize(width: (view.frame.size.width), height: 90)
+        }
+    }
+    
+    //method to update search view controller
+    func updateSearchViewController() {
+        stopActivityIndicator()
+        if mSearchViewModelObj.mTotalSearchCategory > 0 {
+            collectionView.reloadData()
+        }
+        else {
+            label.hidden = false
+            label.textAlignment = NSTextAlignment.Center
+            label.text = "Records Not Found"
+            label.textColor = UIColor.whiteColor()
+            collectionView.backgroundView = label
+        }
+    }
+    
+    //MARK: activity indicator methods
+    
+    //For activity indicator display and animation
+    func showActivityIndicator(){
+        
+        activityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicatorContainer.center = view.center
+        activityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
+        activityIndicatorContainer.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .White
+        activityIndicator.clipsToBounds = true
+        activityIndicator.hidesWhenStopped = true
+        
+        //Adding activity indicator to particular view
+        activityIndicatorContainer.addSubview(activityIndicator)
+        view.addSubview(activityIndicatorContainer)
+        
+        //Staring the the animation
+        activityIndicator.startAnimating()
+        
+    }
+    
+    //For stop displaying the activity indicator
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicatorContainer.removeFromSuperview()
+    }
+
 }

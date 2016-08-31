@@ -140,7 +140,7 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     //button to cleat history
     @IBAction func mClearHistory(sender: UIButton) {
         
-        let alertController = UIAlertController(title: "CLEAR", message: "It will Clear you whole History", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(title: "CLEAR", message: "It's Clear Your Whole History", preferredStyle: UIAlertControllerStyle.Alert)
             
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
             if self.mHistoryViewModelObj.deleteHistory(){

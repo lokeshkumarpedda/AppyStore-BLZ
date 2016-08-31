@@ -54,8 +54,8 @@ class Controller : NSObject,PController{
     }
     
     //medthod to get SearchDetails from api
-    func mGetSearchCategory(keyword : String) {
-        ApiRequesrObj.mFetchSearchDetails(self,keyword: keyword)
+    func mGetSearchCategory(keyword : String , index : Int) {
+        ApiRequesrObj.mFetchSearchDetails(self,keyword: keyword, offset: index)
     }
     
     //method to get history details

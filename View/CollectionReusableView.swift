@@ -29,7 +29,6 @@ class CollectionReusableView: UICollectionReusableView {
 
     @IBAction func buttonPressed(sender: UIButton) {
         searchViewObj = SearchBarViewController()
-        print(tag)
 
     }
     //setting border for buttons

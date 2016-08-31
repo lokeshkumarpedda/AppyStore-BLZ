@@ -28,22 +28,17 @@ class SearchViewMode: PSearchViewModel {
         mControllerObj = Controller(searchViewMode: self)
     }
     
-    //method to fetch search category from controller
-    func mFetchSearchCategoryDetailsFromController (keyWord : String) {
-        //calling controller to get search category
-        mControllerObj.mGetSearchCategory(keyWord)
-    }
     
     //method to give search category
-    func mGetSearchCategory(index : Int) -> SubCategorylist? {
+    func mGetSearchCategory(keyWord : String , index : Int) -> SubCategorylist? {
         //if index is available in searchlist
         if index < mSearchList.count {
             return mSearchList[index]
         }
         //index is not available in searchlist
         else {
-            if index%8 == 0 {
-                //mFetchSubCategoryDetailsFromController(mCategory.categoryId, p_Id: mCategory.parentId, offSet: index)
+            if index%8 == 0{
+                mControllerObj.mGetSearchCategory(keyWord,index: index)
             }
             //creating dummy data
             let category = SubCategorylist(title: "", duration: "", downloadUrl: "", imageUrl: "", totalCount: index)

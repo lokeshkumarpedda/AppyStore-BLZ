@@ -25,6 +25,7 @@ class ApiRequest: NSObject {
         "X_APPY_DEVICE_WIDTH" : "1794",
         "X_APPY_DEVICE_HEIGHT" : "1080",
         "X_APPY_CAMPAIGN_ID" : "8700441600",
+        "X_APPY_PCP_ID" : "999"
         ]
     
     func mFetchCategoryList() {
@@ -60,11 +61,11 @@ class ApiRequest: NSObject {
     }
     
     //method to fetch search details list
-    func mFetchSearchDetails(controllerObj : PController,keyword : String)  {
+    func mFetchSearchDetails(controllerObj : PController,keyword : String , offset : Int)  {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
         
-        Alamofire.request(.GET, "\(url)method=search&keyword=\(keyword)&content_type=appsgames&limit=8&offset=0&age=1&incl_age=6", headers: header)
+        Alamofire.request(.GET, "\(url)method=search&keyword=\(keyword)&content_type=videos&limit=8&offset=\(offset)&age=1&incl_age=6", headers: header)
             .responseJSON { response in
                 if(response.result.value != nil){
                     let APIresponseObj = APIResponse()

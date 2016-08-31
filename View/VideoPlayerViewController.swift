@@ -34,18 +34,19 @@ class VideoPlayerViewController: UIViewController {
     @IBOutlet weak var nextVideoButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    //MARK: - Variables
+    //MARK: - Class Variables
     var url : NSURL?
     var videoPlayer = AVPlayer()
     var videoPlayerLayer : AVPlayerLayer?
     var videoPlayerItem : AVPlayerItem?
     
     var activityIndicator = UIActivityIndicatorView()
+    let activityIndicatorContainer = UIView()
+    
     var pause = true
     var currentVideoIndex: Int = 0
     
     let fullScreenView = UIView()
-    let activityIndicatorContainer = UIView()
     
     // Objects
     var subcategoryViewModelObj : SubCategoryViewModel!

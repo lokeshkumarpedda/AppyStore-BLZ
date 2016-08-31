@@ -1192,9 +1192,9 @@
         <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lZl-6j-Uaj"/>
-        <segue reference="PWM-wa-fpP"/>
         <segue reference="0Er-HR-mOK"/>
+        <segue reference="PWM-wa-fpP"/>
         <segue reference="agE-rU-ZUI"/>
+        <segue reference="Vnk-rj-NgP"/>
     </inferredMetricsTieBreakers>
 </document>
