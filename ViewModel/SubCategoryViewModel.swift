@@ -70,7 +70,13 @@ class SubCategoryViewModel: NSObject {
             }
             mReceivedCategoryCount += 1
         }
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewController", object: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("updataPlayList", object: nil)
+        
+        if mReceivedCategoryCount < 9{
+            NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewController", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("updatePlayList", object: nil)
+        }
+        else{NSNotificationCenter.defaultCenter().postNotificationName("UpdateEachCellInSubCategoryVC", object: nil)
+        }
+        
     }
 }

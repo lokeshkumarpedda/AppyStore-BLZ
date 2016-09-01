@@ -38,6 +38,7 @@ class Controller : NSObject,PController{
         mHistoryViewModel = historyVMObj
     }
 
+    //MARK:- Fetch details methods
     //method to get category list from rest api
     func mGetCategoryDetailsFromRest() {
         ApiRequesrObj.mFetchCategoryList()
@@ -68,6 +69,7 @@ class Controller : NSObject,PController{
         return mLocalDataBaseObj.clearHistory()
     }
     
+    //MARK:- Updating methods
     //method to save played video in lacal database
     func mSaveVideoInHistory(subCategory : SubCategorylist) {
         mLocalDataBaseObj.mInsertInToHistoryTabel(subCategory)

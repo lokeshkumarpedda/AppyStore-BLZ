@@ -17,9 +17,8 @@ import ReactiveKit
 import ReactiveUIKit
 
 class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
-    
+    //MARK:- Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var mBackButtonLabel: UIButton!
     @IBOutlet weak var mVideoButtonLabel: UIButton!
     @IBOutlet weak var mHistoryButtonLabel: UIButton!
@@ -29,6 +28,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerLabel: UILabel!
     
+    //MARK:- Local variables
     var mSubcategoryViewModelObj : SubCategoryViewModel!
     var collectionViewCell : CollectionViewCell? 
     var mCategory : categorylist!   //to store selected category from category view
@@ -43,6 +43,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     var offset = 0
     //------------------------------
     
+    //MARK:- View methods
     override func viewDidLoad() {
         
         //setting background for buttons
@@ -75,12 +76,15 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         headerLabel.text = mCategory.name.value
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateSubCategoryViewController", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataEachCellInSubCategoryVC(_:)), name: "UpdateEachCellInSubCategoryVC", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateSubCategoryViewController", object: nil)
         super.didReceiveMemoryWarning()
     }
+    //MARK:- Collection View methods
+    
     //method to return number of section in collection view
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -112,18 +116,19 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         let LocalDB = LocalDataBase()
         LocalDB.mInsertInToHistoryTabel(mSubcategoryViewModelObj.mSubcategoryList[indexPath.row])
     }
-    //mehtod will be called before performing segue
+    //method will be called before performing segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SubCategoryToVideoPlayer"
         {
             let videoControllerObj = segue.destinationViewController as! VideoPlayerViewController
-            videoControllerObj.url = videoUrl
-            videoControllerObj.currentVideoIndex = currentIndexPath.row
-            videoControllerObj.category = mCategory
+            videoControllerObj.murl = videoUrl
+            videoControllerObj.mcurrentVideoIndex = currentIndexPath.row
+            videoControllerObj.mcategory = mCategory
             
         }
     }
 
+    //MARK:- IBActions
     //buttons actions
     @IBAction func mBackButtonPressed(sender: UIButton) {
         mChangeButtonImage()
@@ -174,9 +179,21 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     
     //method to update subcategory view controller
     func updataSubCategoryViewController(notification : NSNotification) {
-        self.collectionView.hidden = true
+        
         collectionView.reloadData()
-        self.collectionView.hidden = false
+        
+    }
+    func updataEachCellInSubCategoryVC(notification : NSNotification){
+        //Rotating on visible cells
+        for visibleCell in collectionView.visibleCells(){
+            let currentCell = visibleCell as! CollectionViewCell
+            //Checking if it contains the dummy data
+            if currentCell.VideoLabel.text?.characters.count < 2 {
+                var indexPaths = [NSIndexPath]()
+                indexPaths.append(collectionView.indexPathForCell(currentCell)!)
+                collectionView.reloadItemsAtIndexPaths(indexPaths)
+            }
+        }
     }
 
 }

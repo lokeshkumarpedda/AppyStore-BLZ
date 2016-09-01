@@ -19,7 +19,7 @@ import AlamofireImage
 
 
 class CategoryViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
-    //buttons
+    //MARK:- Outlets
     @IBOutlet weak var mHomeButton: UIButton!
     @IBOutlet weak var mVideoButton: UIButton!
     @IBOutlet weak var mHistoryButton: UIButton!
@@ -74,6 +74,8 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK:- Collection View methods
 
     //method to return number of sections in collection view
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -130,14 +132,6 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         return cell
     }
 
-    //method to set image for buttons
-    func mChangeButtonImage() {
-        mHomeButton.setImage(UIImage(named: "ladyimage"), forState: UIControlState.Normal)
-        mVideoButton.setImage(UIImage(named: "videoimage"), forState: UIControlState.Normal)
-        mHistoryButton.setImage(UIImage(named: "historyimage"), forState: UIControlState.Normal)
-        mSearchButton.setImage(UIImage(named: "searchimage"), forState: UIControlState.Normal)
-        mCartButton.setImage(UIImage(named: "carimage"), forState: UIControlState.Normal)
-    }
     //method will be called when category is selected
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         mSelectedCategory = mCategoryViewModelObj.mCategoryList[indexPath.row]
@@ -155,7 +149,15 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     func updateCategoryViewController(notification : NSNotification) {
         collectionView.reloadData()
     }
-    //Buttons
+    //method to set image for buttons
+    func mChangeButtonImage() {
+        mHomeButton.setImage(UIImage(named: "ladyimage"), forState: UIControlState.Normal)
+        mVideoButton.setImage(UIImage(named: "videoimage"), forState: UIControlState.Normal)
+        mHistoryButton.setImage(UIImage(named: "historyimage"), forState: UIControlState.Normal)
+        mSearchButton.setImage(UIImage(named: "searchimage"), forState: UIControlState.Normal)
+        mCartButton.setImage(UIImage(named: "carimage"), forState: UIControlState.Normal)
+    }
+    //MARK:- IBActions
     @IBAction func mHomeButtonPressed(sender: UIButton) {
         performSegueWithIdentifier("CategoryToHome", sender: nil)
     }

@@ -39,7 +39,7 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
         scrollDirection = .Vertical
         
     }
-    
+    //For video player play list
     func playListSetUpLayout(w: CGFloat, h: CGFloat){
         minimumInteritemSpacing = 3
         minimumLineSpacing = 20

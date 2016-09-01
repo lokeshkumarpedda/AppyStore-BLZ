@@ -11,8 +11,7 @@ import AVKit
 import AVFoundation
 
 class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
-
-
+    //MARK:- Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mheaderView: UIView!
     @IBOutlet weak var mHeaderLabel: UILabel!
@@ -23,14 +22,15 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     @IBOutlet weak var mSearchButton: UIButton!
     @IBOutlet weak var mCartButton: UIButton!
     
+    //MARK:Class variables
     let label = UILabel()
-    
-    var avPlayer = AVPlayer()
-    var avPlayerViewController = AVPlayerViewController()
+    var mavPlayer = AVPlayer()
+    var mavPlayerViewController = AVPlayerViewController()
     
     var mHistoryViewModelObj : HistoryViewModel! //object of history view model
     var collectionViewCell : CollectionViewCell! //object of collection view cell
     
+    //MARK:- View methods
     override func viewDidLoad() {
         
         //setting background for button
@@ -65,6 +65,8 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK:- Collection view methods
     //method will return number of section in collectionview
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -92,14 +94,14 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
         let url = NSURL(string: mHistoryViewModelObj.mHistoryList[indexPath.row].downloadUrl.value)
         
         //creating a avplayer
-        avPlayer = AVPlayer(URL: url!)
-        avPlayerViewController.player = avPlayer
+        mavPlayer = AVPlayer(URL: url!)
+        mavPlayerViewController.player = mavPlayer
         
         //showing in the video in avplayerviewcontroller
-        self.presentViewController(avPlayerViewController, animated: true){
+        self.presentViewController(mavPlayerViewController, animated: true){
             
             //starting the video
-            self.avPlayerViewController.player?.play()
+            self.mavPlayerViewController.player?.play()
         }
     }
     
@@ -108,6 +110,7 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
         collectionView.reloadData()
     }
 
+    //MARK:- IBActions
     @IBAction func mBackButtonPressed(sender: UIButton) {
         performSegueWithIdentifier("HistoryToCategory", sender: nil)
     }

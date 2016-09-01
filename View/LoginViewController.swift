@@ -16,6 +16,7 @@ import UIKit
 
 class LoginViewController: UIViewController,UITextFieldDelegate {
 
+    var mLocalDataBaseObj = LocalDataBase() //object of local database
     @IBOutlet weak var MobileNoTextField: UITextField!
     
     override func viewDidLoad() {

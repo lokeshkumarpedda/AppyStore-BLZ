@@ -224,6 +224,21 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         }
     }
     
+    
+    //For reloading particular cell
+    func cellReloading()  {
+        //Rotating on visible cells
+        for visibleCell in collectionView.visibleCells(){
+            let currentCell = visibleCell as! CollectionViewCell
+            //Checking if it contains the dummy data
+            if currentCell.VideoLabel.text?.characters.count < 2 {
+                var indexPaths = [NSIndexPath]()
+                indexPaths.append(collectionView.indexPathForCell(currentCell)!)
+                collectionView.reloadItemsAtIndexPaths(indexPaths)
+            }
+        }
+    }
+    
     //MARK: activity indicator methods
     
     //For activity indicator display and animation

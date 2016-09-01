@@ -13,10 +13,7 @@ import UIKit
 import ReactiveKit
 import ReactiveUIKit
 
-
-
 class SearchViewMode: PSearchViewModel {
-    
     var mControllerObj : Controller!
     var mSearchList = [SubCategorylist]()
     var mTotalSearchCategory = 0 //varibale to store total number of categories
@@ -27,7 +24,6 @@ class SearchViewMode: PSearchViewModel {
         mSearchViewControllerObj = searchVCObj
         mControllerObj = Controller(searchViewMode: self)
     }
-    
     
     //method to give search category
     func mGetSearchCategory(keyWord : String , index : Int) -> SubCategorylist? {
@@ -64,10 +60,11 @@ class SearchViewMode: PSearchViewModel {
             }
             mReceivedCategoryCount += 1
         }
-
-        mSearchViewControllerObj.updateSearchViewController()
+        if mReceivedCategoryCount < 9{
+            mSearchViewControllerObj.updateSearchViewController()
+        }
+        else{
+            mSearchViewControllerObj.cellReloading()
+        }
     }
-    
-    
-
 }

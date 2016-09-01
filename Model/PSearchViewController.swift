@@ -8,4 +8,5 @@
 
 protocol PSearchViewController {
     func updateSearchViewController()
+    func cellReloading()
 }
