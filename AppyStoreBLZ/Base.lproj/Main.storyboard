@@ -553,7 +553,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z4e-Sc-Off">
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="z4e-Sc-Off">
                                         <rect key="frame" x="160" y="5" width="385" height="31"/>
                                         <color key="thumbTintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </slider>
@@ -1195,6 +1195,6 @@
         <segue reference="0Er-HR-mOK"/>
         <segue reference="PWM-wa-fpP"/>
         <segue reference="agE-rU-ZUI"/>
-        <segue reference="Vnk-rj-NgP"/>
+        <segue reference="rMk-yN-dkD"/>
     </inferredMetricsTieBreakers>
 </document>

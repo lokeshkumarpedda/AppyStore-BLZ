@@ -193,7 +193,6 @@ class VideoPlayerViewController: UIViewController {
         
         //adding player time to the slider
         timeSlider.value = Float(Int( mvideoPlayerItem!.currentTime().value) / Int(mvideoPlayerItem!.currentTime().timescale))
-        
         //adding time to the label
         currentTimeLabel.text = convertingSeconds(Int(timeSlider.value))
         

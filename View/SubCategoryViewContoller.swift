@@ -80,8 +80,8 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     }
 
     override func didReceiveMemoryWarning() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateSubCategoryViewController", object: nil)
         super.didReceiveMemoryWarning()
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateSubCategoryViewController", object: nil)
     }
     //MARK:- Collection View methods
     
@@ -183,8 +183,12 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         collectionView.reloadData()
         
     }
+    
+    //For loading each cell in the sub category
     func updataEachCellInSubCategoryVC(notification : NSNotification){
-        //Rotating on visible cells
+        
+        
+        //looping on visible cells
         for visibleCell in collectionView.visibleCells(){
             let currentCell = visibleCell as! CollectionViewCell
             //Checking if it contains the dummy data
@@ -194,6 +198,6 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
                 collectionView.reloadItemsAtIndexPaths(indexPaths)
             }
         }
+        
     }
-
 }

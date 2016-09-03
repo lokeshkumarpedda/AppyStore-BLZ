@@ -63,7 +63,9 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
 
     //method to dismiss keyboard when return button pressed
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        searching(inputTextField.text!)
+        if inputTextField.text?.characters.count != 0{
+            searching(inputTextField.text!)
+        }
         inputTextField.resignFirstResponder()
         return true
     }
@@ -111,9 +113,7 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     
     //if search button pressed
     @IBAction func searchButtonPressed(sender: UIButton) {
-        if inputTextField.text != ""{
-            searching(inputTextField.text!)
-        }
+        textFieldShouldReturn(inputTextField)
  
     }
     
@@ -122,34 +122,34 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         
         switch(sender.tag) {
         case 1 :
-            inputTextField.text = "Rhymes"
+            inputTextField.text = "rhymes"
             break
         case 2 :
-            inputTextField.text = "Letters"
+            inputTextField.text = "letters"
             break
         case 3 :
-            inputTextField.text = "Counting"
+            inputTextField.text = "counting"
             break
         case 4 :
-            inputTextField.text = "Drawing"
+            inputTextField.text = "drawing"
             break
         case 5 :
-            inputTextField.text = "Science"
+            inputTextField.text = "science"
             break
         case 6 :
-            inputTextField.text = "Numbers"
+            inputTextField.text = "numbers"
             break
         case 7 :
-            inputTextField.text = "Puzzles"
+            inputTextField.text = "puzzles"
             break
         case 8 :
             inputTextField.text = "ABC"
             break
         case 9 :
-            inputTextField.text = "Reading"
+            inputTextField.text = "reading"
             break
         case 10 :
-            inputTextField.text = "Alphabet"
+            inputTextField.text = "alphabet"
             break
         default : break
         }
@@ -227,7 +227,7 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     
     //For reloading particular cell
     func cellReloading()  {
-        //Rotating on visible cells
+        //looping on visible cells
         for visibleCell in collectionView.visibleCells(){
             let currentCell = visibleCell as! CollectionViewCell
             //Checking if it contains the dummy data

@@ -24,7 +24,6 @@ class SubCategoryViewModel: NSObject {
     init(category : categorylist) {
         super.init()
         mCategory = category
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewModel.updateSubCategoryViewModel(_:)), name: "UpdateSubCategoryViewModel", object: nil)
     }
     
@@ -72,11 +71,11 @@ class SubCategoryViewModel: NSObject {
         }
         
         if mReceivedCategoryCount < 9{
-            NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewController", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewController", object: nil)
             NSNotificationCenter.defaultCenter().postNotificationName("updatePlayList", object: nil)
         }
-        else{NSNotificationCenter.defaultCenter().postNotificationName("UpdateEachCellInSubCategoryVC", object: nil)
-        }
+        
+    NSNotificationCenter.defaultCenter().postNotificationName("UpdateEachCellInSubCategoryVC", object: nil)
         
     }
 }

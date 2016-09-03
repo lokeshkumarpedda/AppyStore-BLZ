@@ -65,7 +65,7 @@ class ApiRequest: NSObject {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
         
-        Alamofire.request(.GET, "\(url)method=search&keyword=\(keyword)&content_type=videos&limit=8&offset=\(offset)&age=1&incl_age=6", headers: header)
+        Alamofire.request(.GET, "\(url)method=search&keyword=\(keyword)&content_type=videos&limit=12&offset=\(offset)&age=1&incl_age=6", headers: header)
             .responseJSON { response in
                 if(response.result.value != nil){
                     let APIresponseObj = APIResponse()

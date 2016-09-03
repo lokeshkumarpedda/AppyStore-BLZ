@@ -33,7 +33,7 @@ class SearchViewMode: PSearchViewModel {
         }
         //index is not available in searchlist
         else {
-            if index%8 == 0{
+            if index%12 == 0{
                 mControllerObj.mGetSearchCategory(keyWord,index: index)
             }
             //creating dummy data
@@ -60,7 +60,7 @@ class SearchViewMode: PSearchViewModel {
             }
             mReceivedCategoryCount += 1
         }
-        if mReceivedCategoryCount < 9{
+        if mReceivedCategoryCount < 13{
             mSearchViewControllerObj.updateSearchViewController()
         }
         else{
