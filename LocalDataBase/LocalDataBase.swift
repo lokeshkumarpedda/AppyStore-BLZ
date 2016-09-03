@@ -11,7 +11,6 @@
 
 import UIKit
 import FMDB
-import ReactiveKit
 
 class LocalDataBase: NSObject {
     var dataBasePath = String()  //to store database file path
@@ -57,7 +56,7 @@ class LocalDataBase: NSObject {
     
     
     //method to insert into category table
-    func mInsertInToCategoryTable(category : categorylist) {
+    func mInsertInToCategoryTable(category : Categorylist) {
         let AppyStoreDataBase = FMDatabase(path: dataBasePath)
         //opening database
         if AppyStoreDataBase.open() {
@@ -98,8 +97,8 @@ class LocalDataBase: NSObject {
     }
     
     //mehtod to fetch category list
-    func mFetchCategoryDetails() -> [categorylist] {
-        var categories = [categorylist]()
+    func mFetchCategoryDetails() -> [Categorylist] {
+        var categories = [Categorylist]()
         let AppyStoreDataBase = FMDatabase(path: dataBasePath)
         //opening database
         if AppyStoreDataBase.open() {
@@ -108,10 +107,7 @@ class LocalDataBase: NSObject {
             let result : FMResultSet? = AppyStoreDataBase.executeQuery(querySql, withArgumentsInArray: nil)
             if (result?.next() == true) {
                 while result!.next() {
-//                    let category = categorylist(name: Observable(result!.stringForColumn("category_name")),image: result!.stringForColumn("image_path"), cId: Int((result?.stringForColumn("category_id"))!)!, pId: Int((result?.intForColumn("parent_category_id"))!), totalCount: Int((result?.intForColumn("TotalCount"))!))
-//                    categories.append(category)
-                    
-                    let category = categorylist(name: result!.stringForColumn("category_name"), image: result!.stringForColumn("image_path"), cId: Int((result?.stringForColumn("category_id"))!)!, pId: Int((result?.intForColumn("parent_category_id"))!), totalCount: Int((result?.intForColumn("TotalCount"))!))
+                    let category = Categorylist(name: result!.stringForColumn("category_name"), image: result!.stringForColumn("image_path"), cId: Int((result?.stringForColumn("category_id"))!)!, pId: Int((result?.intForColumn("parent_category_id"))!), totalCount: Int((result?.intForColumn("TotalCount"))!))
                     categories.append(category)
                 }
             }
@@ -150,13 +146,16 @@ class LocalDataBase: NSObject {
     }
 
     //For clearing the data in the history table
+    //returns tru if clear fase if not
     func clearHistory() -> Bool{
         var cleared = false
         let AppyStoreDataBase = FMDatabase(path: dataBasePath)
+        //checking if database exists or not
         if (AppyStoreDataBase == nil) {
             print("Error : \(AppyStoreDataBase.lastErrorMessage())")
         }
         else{
+            //Opening the database
             if AppyStoreDataBase.open() {
                 //Deleting the whole table
                 let dropTable = "DELETE FROM HISTORY"

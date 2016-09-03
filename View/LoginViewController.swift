@@ -1,6 +1,7 @@
 //
 //  LoginViewController.swift
 //  AppyStoreBLZ
+//
 //  Purpose
 //  1 . This is login page
 //  2 . User can enter their registered mobile no for login
@@ -16,25 +17,25 @@ import UIKit
 
 class LoginViewController: UIViewController,UITextFieldDelegate {
 
-    var mLocalDataBaseObj = LocalDataBase() //object of local database
-    @IBOutlet weak var MobileNoTextField: UITextField!
+    var mlocalDataBaseObj = LocalDataBase() //object of local database
+    @IBOutlet weak var mobileNoTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
         //to dismiss keyboard 
-        MobileNoTextField.delegate = self
+        mobileNoTextField.delegate = self
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard)))
     }
     
     func  dismissKeyboard() {
-        MobileNoTextField.resignFirstResponder()
+        mobileNoTextField.resignFirstResponder()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        MobileNoTextField.resignFirstResponder()
+        mobileNoTextField.resignFirstResponder()
         return true
     }
 
@@ -43,10 +44,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func LoginInWithMobileNoButton(sender: UIButton) {
+    @IBAction func loginInWithMobileNoButton(sender: UIButton) {
     }
 
-    @IBAction func LoginInWithOutMobileNoButton(sender: UIButton) {
+    @IBAction func loginInWithOutMobileNoButton(sender: UIButton) {
         performSegueWithIdentifier("LoginToCategory", sender: nil)
     }
 

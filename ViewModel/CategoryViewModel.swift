@@ -14,7 +14,7 @@ import UIKit
 class CategoryViewModel : NSObject {
     
     var mControllerObj : Controller!
-    var mCategoryList = [categorylist]()
+    var mCategoryList = [Categorylist]()
     var mTotalCount = 0
 
     override init(){
@@ -25,7 +25,7 @@ class CategoryViewModel : NSObject {
     }
     
     //mehtod to send category details
-    func mGetCategoryDetails(index : Int) -> categorylist {
+    func mGetCategoryDetails(index : Int) -> Categorylist {
         return mCategoryList[index]
     }
     
@@ -36,7 +36,7 @@ class CategoryViewModel : NSObject {
     
     //method to update category view model
     func updateCategoryViewModel(notification : NSNotification) {
-        mCategoryList = notification.userInfo!["category"] as! [categorylist]
+        mCategoryList = notification.userInfo!["category"] as! [Categorylist]
         mTotalCount = mCategoryList.count
         NSNotificationCenter.defaultCenter().postNotificationName("updateCategoryViewController", object: nil)
     }

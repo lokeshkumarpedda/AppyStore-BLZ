@@ -11,7 +11,7 @@ import ReactiveKit
 
 
 //structure to store category details
-class categorylist {
+class Categorylist {
     var name : Observable<String>
     var image : String
     var categoryId : Int

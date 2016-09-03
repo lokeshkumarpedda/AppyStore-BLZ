@@ -1,6 +1,7 @@
 //
 //  CategoryViewController.swift
 //  AppyStoreBLZ
+//
 //  Purpose
 //  1. This class will display all category
 //  2. Allow user to select any category
@@ -34,7 +35,7 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     var mCategoryViewModelObj : CategoryViewModel!
     var collectionViewCell : CollectionViewCell?
     //variable to to store selected category
-    var mSelectedCategory : categorylist!
+    var mselectedCategory : Categorylist!
     var cache = NSCache()
     
     override func viewDidLoad() {
@@ -88,7 +89,7 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     //method to return collection view cell
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         //fetch category details
-        let category : categorylist? = mCategoryViewModelObj.mGetCategoryDetails(indexPath.row)
+        let category : Categorylist? = mCategoryViewModelObj.mGetCategoryDetails(indexPath.row)
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
         
@@ -134,14 +135,14 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
 
     //method will be called when category is selected
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        mSelectedCategory = mCategoryViewModelObj.mCategoryList[indexPath.row]
+        mselectedCategory = mCategoryViewModelObj.mCategoryList[indexPath.row]
         performSegueWithIdentifier("CategoryToSubCategory", sender: nil)
     }
     //method will be called before performing segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "CategoryToSubCategory" {
             let subCategoryViewControllerObj = segue.destinationViewController as! SubCategoryViewContoller
-            subCategoryViewControllerObj.mCategory = mSelectedCategory
+            subCategoryViewControllerObj.mCategory = mselectedCategory
         }
     }
 

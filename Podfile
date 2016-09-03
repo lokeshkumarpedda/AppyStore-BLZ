@@ -6,11 +6,15 @@ target 'AppyStoreBLZ' do
   use_frameworks!
   
   #
+  #used for handling local database
+  pod 'FMDB'
+  
+  #used for fetch data from rest services
   pod 'Alamofire'
   
-  pod 'FMDB' #used for handling local database
-  pod 'Alamofire' #used for fetch data from rest services
-  pod 'AlamofireImage' #used for fetching image from rest services
+   #used for fetching image from rest services
+  pod 'AlamofireImage'
+  
   pod 'ReactiveKit', '~> 1.0'
   pod 'ReactiveUIKit', '~> 1.0'
   pod 'ReactiveFoundation', '~> 1.0'

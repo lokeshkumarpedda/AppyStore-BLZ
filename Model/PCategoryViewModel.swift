@@ -7,6 +7,6 @@
 //
 
 protocol PCategoryViewModel {
-    func updateCategoryViewModel(categortList : [categorylist])
+    func updateCategoryViewModel(categortList : [Categorylist])
 
 }

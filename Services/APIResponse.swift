@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import ReactiveKit
-import ReactiveUIKit
 
 class APIResponse: NSObject {
 
@@ -19,7 +17,7 @@ class APIResponse: NSObject {
     //method to parse category list
     func mParseCategoryDetails(response : [String : AnyObject]) {     //response : [String : AnyObject]
 
-        var categories = [categorylist]()
+        var categories = [Categorylist]()
         let count = response["Responsedetails"]!["category_count"] as! Int
         for i in 0..<count {
             let title = response["Responsedetails"]!["category_id_array"]!![i]["category_name"] as! String
@@ -28,7 +26,7 @@ class APIResponse: NSObject {
             let pId = Int(response["Responsedetails"]!["category_id_array"]!![i]["parent_category_id"] as! String)
             let totalCount = response["Responsedetails"]!["category_count"] as! Int
             
-            categories.append(categorylist(name: title, image: image, cId: cId!, pId: pId!, totalCount: totalCount))
+            categories.append(Categorylist(name: title, image: image, cId: cId!, pId: pId!, totalCount: totalCount))
         }
 
         NSNotificationCenter.defaultCenter().postNotificationName("ControllerCategoryUpdate", object: self, userInfo: ["category" : categories])

@@ -35,10 +35,8 @@
 		7007F07E1D570BFF00A3C543 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F07C1D570BFF00A3C543 /* ApiRequest.swift */; };
 		7007F07F1D570BFF00A3C543 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F07D1D570BFF00A3C543 /* APIResponse.swift */; };
 		7007F0821D570C0800A3C543 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0811D570C0800A3C543 /* Utility.swift */; };
-		7007F0841D573C2600A3C543 /* PCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0831D573C2600A3C543 /* PCategoryViewController.swift */; };
 		7007F0861D573D4A00A3C543 /* PCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0851D573D4A00A3C543 /* PCategoryViewModel.swift */; };
 		7007F0881D573DBD00A3C543 /* PController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0871D573DBD00A3C543 /* PController.swift */; };
-		7007F08A1D57471E00A3C543 /* PSubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0891D57471E00A3C543 /* PSubCategoryViewController.swift */; };
 		7007F08C1D57474C00A3C543 /* PSubCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F08B1D57474C00A3C543 /* PSubCategoryViewModel.swift */; };
 		70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA12521D4F04390086ECEC /* AppDelegate.swift */; };
 		70DA12581D4F04390086ECEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70DA12561D4F04390086ECEC /* Main.storyboard */; };
@@ -78,10 +76,8 @@
 		7007F07C1D570BFF00A3C543 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		7007F07D1D570BFF00A3C543 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		7007F0811D570C0800A3C543 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		7007F0831D573C2600A3C543 /* PCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PCategoryViewController.swift; path = ../View/PCategoryViewController.swift; sourceTree = "<group>"; };
 		7007F0851D573D4A00A3C543 /* PCategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCategoryViewModel.swift; sourceTree = "<group>"; };
 		7007F0871D573DBD00A3C543 /* PController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PController.swift; sourceTree = "<group>"; };
-		7007F0891D57471E00A3C543 /* PSubCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSubCategoryViewController.swift; sourceTree = "<group>"; };
 		7007F08B1D57474C00A3C543 /* PSubCategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSubCategoryViewModel.swift; sourceTree = "<group>"; };
 		70DA124F1D4F04390086ECEC /* AppyStoreBLZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppyStoreBLZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70DA12521D4F04390086ECEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,10 +161,8 @@
 		7007F0781D570BF200A3C543 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7007F0831D573C2600A3C543 /* PCategoryViewController.swift */,
 				7007F0851D573D4A00A3C543 /* PCategoryViewModel.swift */,
 				7007F0871D573DBD00A3C543 /* PController.swift */,
-				7007F0891D57471E00A3C543 /* PSubCategoryViewController.swift */,
 				7007F08B1D57474C00A3C543 /* PSubCategoryViewModel.swift */,
 				0A8183A01D5895280030204B /* PSearchViewController.swift */,
 				0A81839E1D5895190030204B /* PSearchViewModel.swift */,
@@ -385,12 +379,10 @@
 				0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */,
 				7007F07A1D570BF200A3C543 /* CategoryDetails.swift in Sources */,
 				7007F0861D573D4A00A3C543 /* PCategoryViewModel.swift in Sources */,
-				7007F08A1D57471E00A3C543 /* PSubCategoryViewController.swift in Sources */,
 				0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */,
 				7007F0721D570BE100A3C543 /* HistoryViewModel.swift in Sources */,
 				7007F0711D570BE100A3C543 /* CategoryViewModel.swift in Sources */,
 				7007F0771D570BEA00A3C543 /* Controller.swift in Sources */,
-				7007F0841D573C2600A3C543 /* PCategoryViewController.swift in Sources */,
 				7007F0821D570C0800A3C543 /* Utility.swift in Sources */,
 				7007F0731D570BE100A3C543 /* SearchViewMode.swift in Sources */,
 				0A81839F1D5895190030204B /* PSearchViewModel.swift in Sources */,

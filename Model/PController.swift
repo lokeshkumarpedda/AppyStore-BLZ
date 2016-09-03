@@ -10,7 +10,5 @@
 
 
 protocol PController {
-    //func updateCategoryDetails(categortList : [categorylist])
-    //func updateSubCategoryList(subCategoryList : [SubCategorylist])
     func updateSearchCategoryList(subCategoryList : [SubCategorylist])
 }

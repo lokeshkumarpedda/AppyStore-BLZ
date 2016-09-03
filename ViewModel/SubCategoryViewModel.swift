@@ -11,7 +11,6 @@
 //
 
 import UIKit
-import ReactiveKit
 
 class SubCategoryViewModel: NSObject {
     
@@ -19,9 +18,9 @@ class SubCategoryViewModel: NSObject {
     var mSubcategoryList :[SubCategorylist] = []  //variable hold list of sub categories details
     var mTotalSubCategoryCount = 8    //varible to store total number of subCategories
     var mReceivedCategoryCount = 0 //variable to store number of recived categories
-    var mCategory : categorylist! // varibale to store total selected category
+    var mCategory : Categorylist! // varibale to store total selected category
     
-    init(category : categorylist) {
+    init(category : Categorylist) {
         super.init()
         mCategory = category
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewModel.updateSubCategoryViewModel(_:)), name: "UpdateSubCategoryViewModel", object: nil)
@@ -76,6 +75,6 @@ class SubCategoryViewModel: NSObject {
         }
         
     NSNotificationCenter.defaultCenter().postNotificationName("UpdateEachCellInSubCategoryVC", object: nil)
-        
+     
     }
 }

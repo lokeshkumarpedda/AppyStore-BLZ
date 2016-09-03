@@ -538,11 +538,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAA-K6-6Bo">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjS-Bp-Ggi">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjS-Bp-Ggi">
+                                        <rect key="frame" x="36" y="5" width="29" height="29"/>
+                                        <state key="normal" image="backarrow"/>
                                         <connections>
                                             <segue destination="Cjd-cg-aNP" kind="presentation" identifier="VideoPlayerToSubCategory" id="0Er-HR-mOK"/>
                                         </connections>
@@ -641,21 +639,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                         <state key="normal" image="previousvideobutton"/>
                                         <connections>
-                                            <action selector="previousVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="yDJ-QM-1WV"/>
+                                            <action selector="previousVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="Qnz-Pb-63t"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zT-wu-2JV">
                                         <rect key="frame" x="75" y="0.0" width="50" height="40"/>
                                         <state key="normal" image="pauseButton"/>
                                         <connections>
-                                            <action selector="playAndPauseAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="Ry6-u5-U2b"/>
+                                            <action selector="playAndPauseAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="a8T-T9-yRP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqC-fe-oHG">
                                         <rect key="frame" x="150" y="0.0" width="50" height="40"/>
                                         <state key="normal" image="nextvideobutton"/>
                                         <connections>
-                                            <action selector="nextVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="Azs-rQ-hIc"/>
+                                            <action selector="nextVideoAction:" destination="Ram-qm-fEW" eventType="touchUpInside" id="Jfa-rN-8mD"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -746,18 +744,18 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="buttonsView" destination="xaD-6m-1Ig" id="eAb-4b-7iY"/>
-                        <outlet property="collectionView" destination="LLo-0s-b6z" id="7fB-FX-3hB"/>
-                        <outlet property="currentTimeLabel" destination="NJ2-uk-gh9" id="DHe-RN-sCO"/>
-                        <outlet property="doneButton" destination="hjS-Bp-Ggi" id="iLN-T6-gBQ"/>
-                        <outlet property="headerView" destination="cAA-K6-6Bo" id="Cd4-gS-fha"/>
-                        <outlet property="nextVideoButton" destination="gqC-fe-oHG" id="FK7-B9-Tlf"/>
-                        <outlet property="playAndPauseButton" destination="8zT-wu-2JV" id="dII-7I-x0X"/>
-                        <outlet property="playListView" destination="bih-LU-kmR" id="44c-dK-aiP"/>
-                        <outlet property="previousVideoButton" destination="DyU-LZ-HXn" id="THl-Pt-DXZ"/>
-                        <outlet property="timeSlider" destination="z4e-Sc-Off" id="gxr-mq-sgO"/>
-                        <outlet property="totalTimeLabel" destination="vQr-DC-fha" id="3MJ-5X-Gda"/>
-                        <outlet property="videoView" destination="du6-ML-H1a" id="Dit-aH-ICN"/>
+                        <outlet property="mButtonsView" destination="xaD-6m-1Ig" id="qco-uc-evB"/>
+                        <outlet property="mCollectionView" destination="LLo-0s-b6z" id="8ln-rp-aCG"/>
+                        <outlet property="mCurrentTimeLabel" destination="NJ2-uk-gh9" id="JVl-qe-spk"/>
+                        <outlet property="mDoneButton" destination="hjS-Bp-Ggi" id="IJG-Qi-ghK"/>
+                        <outlet property="mHeaderView" destination="cAA-K6-6Bo" id="xoD-Ve-EUA"/>
+                        <outlet property="mNextVideoButton" destination="gqC-fe-oHG" id="2gV-pg-lGx"/>
+                        <outlet property="mPlayAndPauseButton" destination="8zT-wu-2JV" id="eT0-LY-g2o"/>
+                        <outlet property="mPlayListView" destination="bih-LU-kmR" id="ZfO-ob-pch"/>
+                        <outlet property="mPreviousVideoButton" destination="DyU-LZ-HXn" id="oRL-rL-rgi"/>
+                        <outlet property="mTimeSlider" destination="z4e-Sc-Off" id="GSt-Ga-HQ2"/>
+                        <outlet property="mTotalTimeLabel" destination="vQr-DC-fha" id="LF7-YK-7Uu"/>
+                        <outlet property="mVideoView" destination="du6-ML-H1a" id="k3j-pQ-8qV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPT-tM-REk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1126,7 +1124,7 @@
                                             <color key="titleColor" red="0.98382182070000002" green="1" blue="0.99879549170000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="LoginInWithOutMobileNoButton:" destination="5o2-ac-eOv" eventType="touchUpInside" id="Pps-81-Rga"/>
+                                            <action selector="loginInWithOutMobileNoButton:" destination="5o2-ac-eOv" eventType="touchUpInside" id="mgK-xK-epi"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Appystore" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3r-ty-R04">
@@ -1147,7 +1145,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <state key="normal" title="Enter" backgroundImage="imagebutton"/>
                                         <connections>
-                                            <action selector="LoginInWithMobileNoButton:" destination="5o2-ac-eOv" eventType="touchUpInside" id="BHC-ZV-b84"/>
+                                            <action selector="loginInWithMobileNoButton:" destination="5o2-ac-eOv" eventType="touchUpInside" id="AGN-mZ-xVF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1186,6 +1184,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="backarrow" width="30" height="36"/>
         <image name="imagebutton" width="288" height="163"/>
         <image name="nextvideobutton" width="54" height="54"/>
         <image name="pauseButton" width="29" height="29"/>

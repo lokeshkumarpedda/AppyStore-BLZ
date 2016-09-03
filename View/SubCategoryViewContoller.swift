@@ -31,7 +31,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     //MARK:- Local variables
     var mSubcategoryViewModelObj : SubCategoryViewModel!
     var collectionViewCell : CollectionViewCell? 
-    var mCategory : categorylist!   //to store selected category from category view
+    var mCategory : Categorylist!   //to store selected category from category view
     //------------------------------
     var index : Int!
     var historyChecker = false
@@ -121,15 +121,16 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         if segue.identifier == "SubCategoryToVideoPlayer"
         {
             let videoControllerObj = segue.destinationViewController as! VideoPlayerViewController
-            videoControllerObj.murl = videoUrl
-            videoControllerObj.mcurrentVideoIndex = currentIndexPath.row
-            videoControllerObj.mcategory = mCategory
+            videoControllerObj.mUrl = videoUrl
+            videoControllerObj.mCurrentVideoIndexPath = currentIndexPath
+            videoControllerObj.mCategory = mCategory
+            videoControllerObj.mSubcategoryViewModelObj = self.mSubcategoryViewModelObj
             
         }
     }
 
     //MARK:- IBActions
-    //buttons actions
+    
     @IBAction func mBackButtonPressed(sender: UIButton) {
         mChangeButtonImage()
         mBackButtonLabel.setImage(UIImage(named: "backY.png"), forState: UIControlState.Normal)
@@ -187,7 +188,6 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     //For loading each cell in the sub category
     func updataEachCellInSubCategoryVC(notification : NSNotification){
         
-        
         //looping on visible cells
         for visibleCell in collectionView.visibleCells(){
             let currentCell = visibleCell as! CollectionViewCell
@@ -198,6 +198,5 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
                 collectionView.reloadItemsAtIndexPaths(indexPaths)
             }
         }
-        
     }
 }
