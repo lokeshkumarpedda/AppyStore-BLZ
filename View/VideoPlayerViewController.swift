@@ -71,7 +71,7 @@ class VideoPlayerViewController: UIViewController {
         mCollectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
         
         //creating layout for cell in collection view
-        mCollectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(mPlayListView.frame),height : CGRectGetHeight(mPlayListView.frame), view: "VideoPlayer")
+        mCollectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(mPlayListView.frame), view: "VideoPlayer")
         
         //adding observers for loading the collection view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updataPlayList(_:)), name: "updatePlayList", object: nil)
@@ -129,7 +129,6 @@ class VideoPlayerViewController: UIViewController {
         if mVideoPlayerItem != nil{
             mVideoPlayer.pause()
         }
-        
         mVideoPlayerItem = nil
         mVideoPlayerLayer = nil
         
@@ -139,10 +138,11 @@ class VideoPlayerViewController: UIViewController {
         //loading the video player
         mVideoPlayerItem = AVPlayerItem(URL: url)
         mVideoPlayer = AVPlayer(playerItem: mVideoPlayerItem!)
-        mVideoPlayerLayer = AVPlayerLayer(player: mVideoPlayer)
         
-        //add the layer to the video view
+            
+        mVideoPlayerLayer = AVPlayerLayer(player: mVideoPlayer)
         mVideoView.layer.addSublayer(mVideoPlayerLayer!)
+        
         mVideoPlayerLayer?.frame = mVideoView.bounds
         
         //video player will play

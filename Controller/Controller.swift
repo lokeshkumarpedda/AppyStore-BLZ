@@ -39,6 +39,7 @@ class Controller : NSObject,PController{
     init(historyVMObj : HistoryViewModel) {
         mHistoryViewModel = historyVMObj
     }
+    //init for parent categories
     init(parentCategoryVMobj : ParentingCategoriesViewModel) {
         mParentCategoryVMobj = parentCategoryVMobj
     }

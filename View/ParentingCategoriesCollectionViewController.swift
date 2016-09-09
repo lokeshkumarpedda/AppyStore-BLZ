@@ -2,41 +2,49 @@
 //  ParentingCategoriesCollectionViewController.swift
 //  AppyStoreBLZ
 //
-//  Created by BridgeLabz on 08/09/16.
+//  purpose :
+//  For displaying parent categories
+//
+//  Created by Lokesh Kumar on 08/09/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
 import UIKit
-
+//reusing the identifier in this particular class
 private let reuseIdentifier = "CollectionViewCell"
 
 class ParentingCategoriesCollectionViewController: UICollectionViewController {
 
-    var mParentCategoryVMobj : ParentingCategoriesViewModel!
-    var cache = NSCache()
+    var mParentCategoryVMobj : ParentingCategoriesViewModel! //model object reference
+    var cache = NSCache()                                    //cache for storing images
     
+    //When the view loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-        mParentCategoryVMobj = ParentingCategoriesViewModel(parentCategoryVCobj: self)
-        self.clearsSelectionOnViewWillAppear = false
-
-        collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        collectionView!.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
         
+        //creating model object
+        mParentCategoryVMobj = ParentingCategoriesViewModel(parentCategoryVCobj: self)
+
+        //setting the background
+        collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
+        
+        // Register cell classes
+        collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        
+        //setting the layout for cells
         collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame) , height : CGRectGetHeight(self.view.frame))
-        // Do any additional setup after loading the view.
     }
 
+    //when memory exceeded
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    //reload the collection view
     func updateVC() {
+        
         collectionView?.reloadData()
+        
     }
 
     /*
@@ -51,17 +59,19 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
+    //for number of sections
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
-
+    //for number of cells
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return mParentCategoryVMobj.getCellsCount()
         
     }
 
+    //for each cell
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let parentCategory: Categorylist? = mParentCategoryVMobj.getCellValues(indexPath.row)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell

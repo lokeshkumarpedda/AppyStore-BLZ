@@ -69,6 +69,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="parents_area_box" width="224" height="113"/>
+        <image name="parents_area_box" width="76" height="76"/>
     </resources>
 </document>

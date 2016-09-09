@@ -53,6 +53,7 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
         scrollDirection = .Horizontal
     }
     
+    //For parents area
     func parentAreaLayout(w: CGFloat, h: CGFloat){
         minimumInteritemSpacing = 3
         minimumLineSpacing = 20
