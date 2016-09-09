@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqW-8c-Suy">
-                                <rect key="frame" x="120" y="560" width="120" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqW-8c-Suy">
+                                <rect key="frame" x="128" y="600" width="128" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5M8-0d-wAv"/>
                                     <constraint firstAttribute="width" secondItem="wqW-8c-Suy" secondAttribute="height" multiplier="12:5" id="9ad-Xf-OFQ"/>
@@ -36,8 +36,8 @@
                                     <action selector="mVideoButtonPressed:" destination="UT2-6F-FPL" eventType="touchUpInside" id="PRy-rV-Jqv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HbY-4G-q76">
-                                <rect key="frame" x="240" y="560" width="120" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HbY-4G-q76">
+                                <rect key="frame" x="256" y="600" width="128" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1xL-yd-mA4"/>
                                     <constraint firstAttribute="width" secondItem="HbY-4G-q76" secondAttribute="height" multiplier="12:5" id="bH2-Jb-Umm"/>
@@ -53,8 +53,8 @@
                                     <action selector="mHistoryButtonPressed:" destination="UT2-6F-FPL" eventType="touchUpInside" id="6NV-2W-mXn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRm-IN-AT2">
-                                <rect key="frame" x="360" y="560" width="120" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRm-IN-AT2">
+                                <rect key="frame" x="384" y="600" width="128" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="iEj-ky-imA"/>
                                 </constraints>
@@ -62,8 +62,8 @@
                                     <action selector="mSearchButtonPressed:" destination="UT2-6F-FPL" eventType="touchUpInside" id="LSf-36-Q0d"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNe-gG-P3s">
-                                <rect key="frame" x="480" y="560" width="120" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNe-gG-P3s">
+                                <rect key="frame" x="512" y="600" width="128" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="41T-cf-y7E"/>
                                 </constraints>
@@ -71,11 +71,11 @@
                                     <action selector="mCartButtonPressed:" destination="UT2-6F-FPL" eventType="touchUpInside" id="00r-Ew-19V"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPi-mc-AKZ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rPi-mc-AKZ">
+                                <rect key="frame" x="0.0" y="0.0" width="640" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk4-Ym-YAf">
-                                        <rect key="frame" x="64" y="8" width="473" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk4-Ym-YAf">
+                                        <rect key="frame" x="64" y="8" width="513" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -90,8 +90,8 @@
                                     <constraint firstItem="bk4-Ym-YAf" firstAttribute="top" secondItem="rPi-mc-AKZ" secondAttribute="topMargin" id="wzJ-rC-fTn"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="phv-Dg-zJs">
-                                <rect key="frame" x="0.0" y="40" width="600" height="520"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="phv-Dg-zJs">
+                                <rect key="frame" x="0.0" y="40" width="640" height="560"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RN1-ZW-Zc7">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -114,8 +114,8 @@
                                     <outlet property="delegate" destination="UT2-6F-FPL" id="SWH-ce-msx"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16x-Zd-RVr">
-                                <rect key="frame" x="0.0" y="560" width="120" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16x-Zd-RVr">
+                                <rect key="frame" x="0.0" y="600" width="128" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="16x-Zd-RVr" secondAttribute="height" multiplier="12:5" id="CuD-jW-gE8"/>
                                     <constraint firstAttribute="height" constant="40" id="OMf-nh-Ki0"/>
@@ -171,8 +171,8 @@
                         <outlet property="mVideoButton" destination="wqW-8c-Suy" id="uio-xm-Msr"/>
                         <segue destination="Cjd-cg-aNP" kind="show" identifier="CategoryToSubCategory" id="Kp3-yl-Wet"/>
                         <segue destination="wlN-P6-74Y" kind="show" identifier="CategoryToSearch" id="UDj-z8-HTj"/>
-                        <segue destination="5o2-ac-eOv" kind="show" identifier="CategoryToHome" id="eAV-Mn-JwJ"/>
                         <segue destination="WSE-Ch-P3e" kind="show" identifier="CategoryToHistory" id="rzI-H6-4xl"/>
+                        <segue destination="qp3-Do-ODr" kind="show" identifier="CategoryToHome" id="47f-Jy-5u9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V30-1E-RL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -369,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRz-mw-DQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="663" y="599"/>
+            <point key="canvasLocation" x="3099" y="599"/>
         </scene>
         <!--Sub Category View Contoller-->
         <scene sceneID="IPo-r7-i4N">
@@ -1182,6 +1182,120 @@
             </objects>
             <point key="canvasLocation" x="-582" y="-150"/>
         </scene>
+        <!--Parent's Area-->
+        <scene sceneID="54i-bc-yor">
+            <objects>
+                <collectionViewController id="ojM-3p-8bZ" customClass="ParentsAreaCollectionviewController" customModule="AppyStoreBLZ" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9JU-qG-LL1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lof-or-8Mo">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="hNe-Yj-Prz" customClass="parentsAreaCell" customModule="AppyStoreBLZ" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iw0-ic-rcl">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="iw0-ic-rcl" secondAttribute="bottom" id="df2-tX-Thf"/>
+                                    <constraint firstAttribute="trailing" secondItem="iw0-ic-rcl" secondAttribute="trailing" id="mZQ-0M-lf5"/>
+                                    <constraint firstItem="iw0-ic-rcl" firstAttribute="top" secondItem="hNe-Yj-Prz" secondAttribute="top" id="n1i-NN-SLc"/>
+                                    <constraint firstItem="iw0-ic-rcl" firstAttribute="leading" secondItem="hNe-Yj-Prz" secondAttribute="leading" id="x16-o8-ajN"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="textLabel" destination="iw0-ic-rcl" id="B2k-GM-0gg"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ojM-3p-8bZ" id="yvB-BM-BSR"/>
+                            <outlet property="delegate" destination="ojM-3p-8bZ" id="Egn-9M-HqL"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Parent's Area" id="CIp-py-OOd">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="VCl-C4-ZGZ">
+                            <connections>
+                                <segue destination="TGT-he-LA6" kind="unwind" unwindAction="backToCategoryVC:" id="R2K-Yu-vS2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="AVd-5g-UAt" kind="show" identifier="ParentAreaToCategories" id="cNY-H5-zJw"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yd3-zk-QpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TGT-he-LA6" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="950" y="665"/>
+        </scene>
+        <!--Parenting Videos-->
+        <scene sceneID="nGB-3M-iBg">
+            <objects>
+                <collectionViewController id="AVd-5g-UAt" customClass="ParentingCategoriesCollectionViewController" customModule="AppyStoreBLZ" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MRf-d8-fKX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5sS-L5-yPo">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="fB7-m9-qaI" customClass="CollectionViewCell" customModule="AppyStoreBLZ" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="AVd-5g-UAt" id="jU3-gS-lMt"/>
+                            <outlet property="delegate" destination="AVd-5g-UAt" id="fPK-Uf-QW7"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Parenting Videos" id="mTB-Ow-cUi"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CfJ-3y-S0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1609" y="665"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="h6s-RX-g56">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qp3-Do-ODr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9cr-uZ-EIz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ojM-3p-8bZ" kind="relationship" relationship="rootViewController" id="wu1-ii-B9p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OsP-Hu-XVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="282" y="665"/>
+        </scene>
     </scenes>
     <resources>
         <image name="backarrow" width="30" height="36"/>
@@ -1191,9 +1305,9 @@
         <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Er-HR-mOK"/>
-        <segue reference="PWM-wa-fpP"/>
-        <segue reference="agE-rU-ZUI"/>
-        <segue reference="rMk-yN-dkD"/>
+        <segue reference="UDj-z8-HTj"/>
+        <segue reference="Vnk-rj-NgP"/>
+        <segue reference="rzI-H6-4xl"/>
+        <segue reference="Kp3-yl-Wet"/>
     </inferredMetricsTieBreakers>
 </document>

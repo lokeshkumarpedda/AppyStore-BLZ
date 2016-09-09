@@ -41,7 +41,7 @@ class ApiRequest: NSObject {
     }
     
     //method to fetch sub category list
-    func mFetchSubCategoryList(c_Id : Int,p_Id : Int,offset : Int) {
+    func mFetchSubCategoryList(controllerObj: Controller ,c_Id : Int,p_Id : Int,offset : Int) {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
         
@@ -51,7 +51,7 @@ class ApiRequest: NSObject {
                 
                 {
                     let APIresponseObj = APIResponse()
-                    APIresponseObj.mParseSubCategoryDetails(response.result.value as! [String : AnyObject])
+                    APIresponseObj.mParseSubCategoryDetails(controllerObj, response: response.result.value as! [String : AnyObject])
                 }
                 else
                 {
@@ -74,6 +74,18 @@ class ApiRequest: NSObject {
                 else{
                     print("Error")
                 }
+        }
+    }
+    //method to fetch parent categories
+    func mFetchParentCategories(controllerObj : Controller) {
+        //getting url from info.plist
+        let url = infoPlist!["Web_Url"] as! String
+        
+        Alamofire.request(.GET, "\(url)method=getParentingCategories", headers: header)
+            .responseJSON { response in
+                
+                let APIresponseObj = APIResponse()
+                APIresponseObj.mParseParentCategories(controllerObj, response :response.result.value as! [String : AnyObject])
         }
     }
     

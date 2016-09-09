@@ -36,8 +36,8 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     var index : Int!
     var historyChecker = false
     
-    var videoUrl : NSURL?
-    var currentIndexPath = NSIndexPath()
+    var mVideoUrl : NSURL?
+    var mCurrentIndexPath = NSIndexPath()
     
     var mSelectedCategoryCount = 0
     var offset = 0
@@ -66,22 +66,20 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame))
 
         
-        mSubcategoryViewModelObj = SubCategoryViewModel(category: mCategory!)
-
+        mSubcategoryViewModelObj = SubCategoryViewModel(subCategoryVCobj: self ,category: mCategory!)
+        mSubcategoryViewModelObj.mReceivedCategoryCount = 0
+        mSubcategoryViewModelObj.mSubcategoryList = []
+        
         // setting background image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
         collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
         headerView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         
         headerLabel.text = mCategory.name.value
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateSubCategoryViewController", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataEachCellInSubCategoryVC(_:)), name: "UpdateEachCellInSubCategoryVC", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateSubCategoryViewController", object: nil)
     }
     //MARK:- Collection View methods
     
@@ -97,8 +95,6 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     //method to create collection view cell
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-
-        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
         
         let subCategory : SubCategorylist? = mSubcategoryViewModelObj.mGetSubCategory(indexPath.row)
@@ -109,23 +105,25 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     //method wil be called when item in collection view is selected
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        videoUrl = NSURL(string: mSubcategoryViewModelObj.mSubcategoryList[indexPath.row].downloadUrl.value)
-        currentIndexPath = indexPath
-        performSegueWithIdentifier("SubCategoryToVideoPlayer", sender: nil)
+        mVideoUrl = NSURL(string: mSubcategoryViewModelObj.mSubcategoryList[indexPath.row].downloadUrl.value)
+        mCurrentIndexPath = indexPath
         
         let LocalDB = LocalDataBase()
         LocalDB.mInsertInToHistoryTabel(mSubcategoryViewModelObj.mSubcategoryList[indexPath.row])
+        
+        performSegueWithIdentifier("SubCategoryToVideoPlayer", sender: nil)
+        
+        
     }
     //method will be called before performing segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SubCategoryToVideoPlayer"
         {
             let videoControllerObj = segue.destinationViewController as! VideoPlayerViewController
-            videoControllerObj.mUrl = videoUrl
-            videoControllerObj.mCurrentVideoIndexPath = currentIndexPath
+            videoControllerObj.mUrl = mVideoUrl
+            videoControllerObj.mCurrentVideoIndexPath = mCurrentIndexPath
             videoControllerObj.mCategory = mCategory
             videoControllerObj.mSubcategoryViewModelObj = self.mSubcategoryViewModelObj
-            
         }
     }
 
@@ -133,23 +131,27 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     
     @IBAction func mBackButtonPressed(sender: UIButton) {
         mChangeButtonImage()
+        mEmptytheVewModel()
         mBackButtonLabel.setImage(UIImage(named: "backY.png"), forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToCategory", sender: nil)
     }
     
     @IBAction func mVideoButtonPressed(sender: UIButton) {
         mChangeButtonImage()
+        mEmptytheVewModel()
         mVideoButtonLabel.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
     }
     
     @IBAction func mHistoryButtonPressed(sender: UIButton) {
         mChangeButtonImage()
+        mEmptytheVewModel()
         mHistoryButtonLabel.setImage(UIImage(named: "historybackground.png"), forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToHistory", sender: nil)
     }
     
     @IBAction func mSearchButtonPressed(sender: UIButton) {
         mChangeButtonImage()
+        mEmptytheVewModel()
         mSearchButtonLabel.setImage(UIImage(named: "searchbackground.png"), forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToSearch", sender: nil)
     }
@@ -178,25 +180,36 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         mCartButtonLabel.setImage(UIImage(named: "carimage.png"), forState: UIControlState.Normal)
     }
     
+    //to empty the view model when changing to the another view controller
+    func mEmptytheVewModel()  {
+        mSubcategoryViewModelObj.mTotalSubCategoryCount = 0
+        mSubcategoryViewModelObj.mReceivedCategoryCount = 0
+        mSubcategoryViewModelObj.mSubcategoryList = []
+    }
+    
     //method to update subcategory view controller
-    func updataSubCategoryViewController(notification : NSNotification) {
+    func updataSubCategoryViewController() {
         
         collectionView.reloadData()
         
     }
     
     //For loading each cell in the sub category
-    func updataEachCellInSubCategoryVC(notification : NSNotification){
-        
+    func updataEachCellInSubCategoryVC(){
         //looping on visible cells
         for visibleCell in collectionView.visibleCells(){
             let currentCell = visibleCell as! CollectionViewCell
+            
             //Checking if it contains the dummy data
             if currentCell.VideoLabel.text?.characters.count < 2 {
-                var indexPaths = [NSIndexPath]()
-                indexPaths.append(collectionView.indexPathForCell(currentCell)!)
-                collectionView.reloadItemsAtIndexPaths(indexPaths)
+                let currentIndexPath = collectionView.indexPathForCell(currentCell)!
+                if mSubcategoryViewModelObj.mSubcategoryList.count >= currentIndexPath.row && currentIndexPath.row > 7{
+                    var indexPaths = [NSIndexPath]()
+                    indexPaths.append(currentIndexPath)
+                    if collectionView != nil{
+                        collectionView.reloadItemsAtIndexPaths(indexPaths)
+                    }
+                }
             }
-        }
-    }
+        }    }
 }

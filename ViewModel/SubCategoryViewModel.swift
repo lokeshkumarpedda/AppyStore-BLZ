@@ -19,18 +19,18 @@ class SubCategoryViewModel: NSObject {
     var mTotalSubCategoryCount = 8    //varible to store total number of subCategories
     var mReceivedCategoryCount = 0 //variable to store number of recived categories
     var mCategory : Categorylist! // varibale to store total selected category
-    
-    init(category : Categorylist) {
+    var mSubCategoryVCobj : SubCategoryViewContoller!
+    init(subCategoryVCobj: SubCategoryViewContoller, category : Categorylist) {
         super.init()
         mCategory = category
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewModel.updateSubCategoryViewModel(_:)), name: "UpdateSubCategoryViewModel", object: nil)
+        mSubCategoryVCobj = subCategoryVCobj
+        mControllerObj = Controller(subCategoryVMobj: self)
     }
     
     //method to fetch subcategory details from controller
     func mFetchSubCategoryDetailsFromController (c_Id : Int,p_Id : Int,offSet : Int) {
-    
-        mControllerObj = Controller()
-        mControllerObj.mGetSubCategoryDetails(c_Id,pId : p_Id,offSet: offSet)
+        
+        mControllerObj.mGetSubCategoryDetails(c_Id, pId: p_Id, offSet: offSet)
     }
     
     //method to send sub category details 
@@ -46,14 +46,16 @@ class SubCategoryViewModel: NSObject {
             }
             //creating dummy data
             let category = SubCategorylist(title: "", duration: "", downloadUrl: "", imageUrl: "", totalCount: index)
-            mSubcategoryList.insert(category, atIndex: index)
-            return mSubcategoryList[index]
+            mSubcategoryList.append(category)
+            //mSubcategoryList.insert(category, atIndex: index)
+            //return mSubcategoryList[index]
+            return category
         }
     }
     
     //mehtod to update subcategory list in sub category view controller
-    @objc func updateSubCategoryViewModel(notification : NSNotification){
-        var subCategoryList = notification.userInfo!["SubCategory"] as! [SubCategorylist]
+    func updateSubCategoryViewModel(subCatList : [SubCategorylist]){
+        var subCategoryList = subCatList
         
         mTotalSubCategoryCount = subCategoryList[0].totalCount
         //adding content to list
@@ -70,11 +72,10 @@ class SubCategoryViewModel: NSObject {
         }
         
         if mReceivedCategoryCount < 9{
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewController", object: nil)
+            mSubCategoryVCobj.updataSubCategoryViewController()
             NSNotificationCenter.defaultCenter().postNotificationName("updatePlayList", object: nil)
         }
-        
-    NSNotificationCenter.defaultCenter().postNotificationName("UpdateEachCellInSubCategoryVC", object: nil)
-     
+        mSubCategoryVCobj.updataEachCellInSubCategoryVC()
+        NSNotificationCenter.defaultCenter().postNotificationName("updateCellInPlayList", object: nil)
     }
 }

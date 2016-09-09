@@ -33,7 +33,7 @@ class APIResponse: NSObject {
     }
    
     //method to parse subcategory list
-    func mParseSubCategoryDetails(response : [String : AnyObject]) {
+    func mParseSubCategoryDetails(controllerObj : Controller ,response : [String : AnyObject]) {
         var subcategories = [SubCategorylist]()
         
         let Totalcount = response["Responsedetails"]!["total_count"] as! Int
@@ -47,8 +47,7 @@ class APIResponse: NSObject {
 
             subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
         }
-
-        NSNotificationCenter.defaultCenter().postNotificationName("ControllerSubCategoryUpdate", object: self, userInfo: ["SubCategory" : subcategories])
+        controllerObj.updateSubCategoryList(subcategories)
     }
     
     //method to parse Search category list 
@@ -75,5 +74,21 @@ class APIResponse: NSObject {
         else {
             controllerObj.updateSearchCategoryList(subcategories)
         }
+    }
+    
+    //method to parse parent categories
+    func mParseParentCategories(controllerObj : Controller, response : [String : AnyObject]) {
+        var parentCategories = [Categorylist]()
+        let count = response["Responsedetails"]!["category_count"] as! Int
+        for i in 0..<count {
+            let title = response["Responsedetails"]!["category_id_array"]!![i]["category_name"] as! String
+            let image = response["Responsedetails"]!["category_id_array"]!![i]["image_path"]!!["50x50"] as! String
+            let cId = Int(response["Responsedetails"]!["category_id_array"]!![i]["category_id"] as! String)
+            let pId = Int(response["Responsedetails"]!["category_id_array"]!![i]["parent_category_id"] as! String)
+            let totalCount = response["Responsedetails"]!["category_count"] as! Int
+            
+            parentCategories.append(Categorylist(name: title, image: image, cId: cId!, pId: pId!, totalCount: totalCount))
+        }
+        controllerObj.updateParentCategoryList(parentCategories)
     }
 }

@@ -190,5 +190,7 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
-    
+    @IBAction func backToCategoryVC(unwindSegue : UIStoryboardSegue){
+        
+    }
 }

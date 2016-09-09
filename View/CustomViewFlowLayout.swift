@@ -24,7 +24,12 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
     
     init(width : CGFloat, height : CGFloat, view : String) {
         super.init()
-        playListSetUpLayout(width, h: height)
+        
+        if view == "parentArea"{
+            parentAreaLayout(width, h: height)
+        }else{
+            playListSetUpLayout(width, h: height)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,5 +51,13 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
         itemSize = CGSize(width: (w-65)/4, height: h)
         sectionInset = UIEdgeInsetsMake(20,10,10,10)
         scrollDirection = .Horizontal
+    }
+    
+    func parentAreaLayout(w: CGFloat, h: CGFloat){
+        minimumInteritemSpacing = 3
+        minimumLineSpacing = 20
+        itemSize = CGSize(width: (w-65)/3, height: (h-130)/2)
+        sectionInset = UIEdgeInsetsMake(20,10,10,10)
+        scrollDirection = .Vertical
     }
 }

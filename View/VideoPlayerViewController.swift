@@ -75,6 +75,7 @@ class VideoPlayerViewController: UIViewController {
         
         //adding observers for loading the collection view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updataPlayList(_:)), name: "updatePlayList", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cellReloading(_:)), name: "updateCellInPlayList", object: nil)
     }
     
     //After appearing the view
@@ -402,6 +403,19 @@ class VideoPlayerViewController: UIViewController {
         
         mCollectionView.reloadData()
         
+    }
+    //For reloading particular cell
+    func cellReloading(notification : NSNotification)  {
+        //looping on visible cells
+        for visibleCell in mCollectionView.visibleCells(){
+            let currentCell = visibleCell as! CollectionViewCell
+            //Checking if it contains the dummy data
+            if currentCell.VideoLabel.text?.characters.count < 2 {
+                var indexPaths = [NSIndexPath]()
+                indexPaths.append(mCollectionView.indexPathForCell(currentCell)!)
+                mCollectionView.reloadItemsAtIndexPaths(indexPaths)
+            }
+        }
     }
 }
 
