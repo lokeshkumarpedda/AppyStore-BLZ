@@ -90,8 +90,8 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
             
             //sharing the app
             let shareText = "AppYStore Address"
-            let vc = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
-            presentViewController(vc, animated: true, completion: nil)
+            let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
+            presentViewController(activityViewController, animated: true, completion: nil)
             
         }
         else{

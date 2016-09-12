@@ -1273,10 +1273,60 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Parenting Videos" id="mTB-Ow-cUi"/>
+                    <connections>
+                        <segue destination="6jW-kV-yKL" kind="show" identifier="ParentCategoryToSubCategory" id="x5k-Hg-Fpg"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CfJ-3y-S0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1609" y="665"/>
+        </scene>
+        <!--Parenting Sub Category Collection View Controller-->
+        <scene sceneID="lv1-G8-d7g">
+            <objects>
+                <collectionViewController id="6jW-kV-yKL" customClass="ParentingSubCategoryCollectionViewController" customModule="AppyStoreBLZ" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="xEI-K2-Xug">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nR9-YI-xkY">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="50" height="50"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ewZ-Bp-A3E">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ParentingSubCategoryFooter" id="Xi1-wP-avf">
+                            <rect key="frame" x="0.0" y="50" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="zup-pV-DlV">
+                                    <rect key="frame" x="290" y="15" width="20" height="20"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="zup-pV-DlV" firstAttribute="centerX" secondItem="Xi1-wP-avf" secondAttribute="centerX" id="1dT-xA-Nk2"/>
+                                <constraint firstItem="zup-pV-DlV" firstAttribute="centerY" secondItem="Xi1-wP-avf" secondAttribute="centerY" id="htX-HK-FBN"/>
+                            </constraints>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="6jW-kV-yKL" id="i5L-jU-e4B"/>
+                            <outlet property="delegate" destination="6jW-kV-yKL" id="kFh-le-aOn"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bkL-yC-mXy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2287" y="665"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h6s-RX-g56">

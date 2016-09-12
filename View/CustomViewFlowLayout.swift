@@ -26,14 +26,26 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
         super.init()
         
         if view == "parentArea"{
+            
             parentAreaLayout(width, h: height)
-        }else{
+            
+        }else if view == "VideoPlayer"{
+            
             playListSetUpLayout(width, h: height)
+            
+        }else {
+            
+            parentSubCategoryLayout(width, h: height, view: view)
+            
         }
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+        return true
     }
     
     func setUpLayout (w : CGFloat ,h : CGFloat) {
@@ -60,5 +72,20 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
         itemSize = CGSize(width: (w-65)/3, height: (h-130)/2)
         sectionInset = UIEdgeInsetsMake(20,10,10,10)
         scrollDirection = .Vertical
+    }
+    
+    func parentSubCategoryLayout (w : CGFloat ,h : CGFloat ,view : String) {
+        minimumInteritemSpacing = 3
+        minimumLineSpacing = 20
+        itemSize = CGSize(width: (w-65)/4, height: (h-130)/2)
+        sectionInset = UIEdgeInsetsMake(20,10,10,10)
+        scrollDirection = .Vertical
+        if view == "parentSubCategoryFooter"{
+            footerReferenceSize = CGSize(width: w, height: (h-130)/3)
+        }else{
+            footerReferenceSize = CGSize(width: 0, height: 0)
+        }
+        
+        
     }
 }

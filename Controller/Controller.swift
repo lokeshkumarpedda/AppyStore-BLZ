@@ -17,7 +17,7 @@ class Controller : NSObject,PController{
     var ApiRequesrObj = ApiRequest() //create object to make rest call
     var mLocalDataBaseObj = LocalDataBase() //object of local database
     var mCategoryViewModelObj : PCategoryViewModel! //object od category view model
-    var mSubCategoryViewModelObj : SubCategoryViewModel! //object of sub category view model
+    var mSubCategoryViewModelObj : PSubCategoryViewModel! //object of sub category view model
     var mSearchViewModelObj : PSearchViewModel! //object od search view model
     var mHistoryViewModel : HistoryViewModel! //object of history view model
     var mParentCategoryVMobj : ParentingCategoriesViewModel!
@@ -27,9 +27,11 @@ class Controller : NSObject,PController{
         super.init()
         //observe notification for category list updates
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateCategoryDetails(_:)), name:"ControllerCategoryUpdate", object: nil)
-    }
-    init(subCategoryVMobj : SubCategoryViewModel) {
-        mSubCategoryViewModelObj = subCategoryVMobj
+        //observe notification for subcategory list updates
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateSubCategoryList(_:)), name: "ControllerSubCategoryUpdate", object: nil)
+        //observe notification for parent sub category list updates
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateParentSubCategoryList(_:)), name: "ControllerParentSubCategoryUpdate", object: nil)
+        
     }
     //init for search
     init(searchViewMode : PSearchViewModel) {
@@ -56,7 +58,7 @@ class Controller : NSObject,PController{
     
     //method to get subcategory from rest api
     func mGetSubCategoryDetails(cId : Int,pId : Int,offSet : Int) {
-        ApiRequesrObj.mFetchSubCategoryList(self, c_Id: cId,p_Id : pId,offset: offSet)
+        ApiRequesrObj.mFetchSubCategoryList(cId,p_Id : pId,offset: offSet)
     }
     
     //medthod to get SearchDetails from api
@@ -79,6 +81,11 @@ class Controller : NSObject,PController{
         ApiRequesrObj.mFetchParentCategories(self)
     }
     
+    //method to get parent subcategories
+    func mGetParentSubCategoryDetails(cId : Int,pId : Int,offSet : Int) {
+        ApiRequesrObj.mFetchSubParentingCategories(cId,p_Id : pId,offset: offSet)
+    }
+    
     //MARK:- Updating methods
     //method to save played video in lacal database
     func mSaveVideoInHistory(subCategory : SubCategorylist) {
@@ -92,9 +99,10 @@ class Controller : NSObject,PController{
     }
     
     //method to update SubCategory View model
-    func updateSubCategoryList(subCategoryList : [SubCategorylist]){
+    func updateSubCategoryList(notification : NSNotification){
         
-        mSubCategoryViewModelObj.updateSubCategoryViewModel(subCategoryList)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerSubCategoryUpdate", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewModel", object: self, userInfo: notification.userInfo)
         
     }
     
@@ -106,5 +114,12 @@ class Controller : NSObject,PController{
     //method to update parent categories
     func updateParentCategoryList(categoryList : [Categorylist]) {
         mParentCategoryVMobj.mUpdateViewModel(categoryList)
+    }
+    
+    func updateParentSubCategoryList(notification : NSNotification){
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerParentSubCategoryUpdate", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateParentSubCategoryViewModel", object: self, userInfo: notification.userInfo)
+        
     }
 }

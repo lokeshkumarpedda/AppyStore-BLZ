@@ -95,6 +95,10 @@ class VideoPlayerViewController: UIViewController {
         
     }
     
+    //After disappearing
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
 
     override func didReceiveMemoryWarning() {

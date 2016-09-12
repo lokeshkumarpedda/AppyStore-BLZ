@@ -130,5 +130,4 @@ class Utility: NSObject {
         
         return isReachable && !needsConnection
     }
-    
-}
+  }

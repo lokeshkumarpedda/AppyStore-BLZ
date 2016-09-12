@@ -17,6 +17,9 @@
 		0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8183A01D5895280030204B /* PSearchViewController.swift */; };
 		0A8183A31D58B1C60030204B /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8183A21D58B1C60030204B /* CollectionReusableView.swift */; };
 		0A8ECBD31D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */; };
+		0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A937AA41D82F28400740CD0 /* Social.framework */; };
+		0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */; };
+		0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */; };
 		0AEC45AF1D65F09E007E06F1 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */; };
 		0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */; };
 		0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */; };
@@ -62,6 +65,9 @@
 		0A8183A01D5895280030204B /* PSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSearchViewController.swift; sourceTree = "<group>"; };
 		0A8183A21D58B1C60030204B /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentsAreaCollectionviewController.swift; sourceTree = "<group>"; };
+		0A937AA41D82F28400740CD0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubCategoryCollectionViewController.swift; sourceTree = "<group>"; };
+		0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubcategoryViewModel.swift; sourceTree = "<group>"; };
 		0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderReusableView.swift; sourceTree = "<group>"; };
@@ -105,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */,
 				0A3694D21D59E5450005EA82 /* libsqlite3.0.tbd in Frameworks */,
 				0A3694CF1D59E53E0005EA82 /* FMDB.framework in Frameworks */,
 				0A3694D01D59E53E0005EA82 /* ReactiveFoundation.framework in Frameworks */,
@@ -124,6 +131,7 @@
 			children = (
 				0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */,
 				0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */,
+				0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */,
 			);
 			name = "Parent's Area";
 			sourceTree = "<group>";
@@ -163,6 +171,7 @@
 				7007F06F1D570BE100A3C543 /* SearchViewMode.swift */,
 				7007F06E1D570BE100A3C543 /* HistoryViewModel.swift */,
 				0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */,
+				0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -246,6 +255,7 @@
 		9CD4375F000622D092536B47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A937AA41D82F28400740CD0 /* Social.framework */,
 				0A3694D11D59E5450005EA82 /* libsqlite3.0.tbd */,
 				0A3694CD1D59E53E0005EA82 /* FMDB.framework */,
 				0A3694CE1D59E53E0005EA82 /* ReactiveFoundation.framework */,
@@ -396,6 +406,7 @@
 				0A8ECBD31D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift in Sources */,
 				0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */,
 				7007F07A1D570BF200A3C543 /* CategoryDetails.swift in Sources */,
+				0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */,
 				7007F0861D573D4A00A3C543 /* PCategoryViewModel.swift in Sources */,
 				0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */,
 				7007F0721D570BE100A3C543 /* HistoryViewModel.swift in Sources */,
@@ -415,6 +426,7 @@
 				7007F06B1D570BD000A3C543 /* SubCategoryViewContoller.swift in Sources */,
 				7007F0691D570BD000A3C543 /* CustomViewFlowLayout.swift in Sources */,
 				70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */,
+				0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */,
 				7007F0881D573DBD00A3C543 /* PController.swift in Sources */,
 				0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */,
 				7007F08C1D57474C00A3C543 /* PSubCategoryViewModel.swift in Sources */,

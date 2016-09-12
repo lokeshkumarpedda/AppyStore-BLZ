@@ -66,9 +66,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame))
 
         
-        mSubcategoryViewModelObj = SubCategoryViewModel(subCategoryVCobj: self ,category: mCategory!)
-        mSubcategoryViewModelObj.mReceivedCategoryCount = 0
-        mSubcategoryViewModelObj.mSubcategoryList = []
+        mSubcategoryViewModelObj = SubCategoryViewModel(category: mCategory!)
         
         // setting background image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
@@ -76,8 +74,14 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         headerView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         
         headerLabel.text = mCategory.name.value
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateSubCategoryViewController", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataEachCellInSubCategoryVC(_:)), name: "UpdateEachCellInSubCategoryVC", object: nil)
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -131,27 +135,23 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     
     @IBAction func mBackButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mEmptytheVewModel()
         mBackButtonLabel.setImage(UIImage(named: "backY.png"), forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToCategory", sender: nil)
     }
     
     @IBAction func mVideoButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mEmptytheVewModel()
         mVideoButtonLabel.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
     }
     
     @IBAction func mHistoryButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mEmptytheVewModel()
         mHistoryButtonLabel.setImage(UIImage(named: "historybackground.png"), forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToHistory", sender: nil)
     }
     
     @IBAction func mSearchButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mEmptytheVewModel()
         mSearchButtonLabel.setImage(UIImage(named: "searchbackground.png"), forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToSearch", sender: nil)
     }
@@ -179,23 +179,16 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         mSearchButtonLabel.setImage(UIImage(named: "searchimage.png"), forState: UIControlState.Normal)
         mCartButtonLabel.setImage(UIImage(named: "carimage.png"), forState: UIControlState.Normal)
     }
-    
-    //to empty the view model when changing to the another view controller
-    func mEmptytheVewModel()  {
-        mSubcategoryViewModelObj.mTotalSubCategoryCount = 0
-        mSubcategoryViewModelObj.mReceivedCategoryCount = 0
-        mSubcategoryViewModelObj.mSubcategoryList = []
-    }
-    
+
     //method to update subcategory view controller
-    func updataSubCategoryViewController() {
+    func updataSubCategoryViewController(notification : NSNotification) {
         
         collectionView.reloadData()
         
     }
     
     //For loading each cell in the sub category
-    func updataEachCellInSubCategoryVC(){
+    func updataEachCellInSubCategoryVC(notification : NSNotification){
         //looping on visible cells
         for visibleCell in collectionView.visibleCells(){
             let currentCell = visibleCell as! CollectionViewCell
@@ -211,5 +204,8 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
                     }
                 }
             }
-        }    }
+        }
+    }
+    
+    
 }

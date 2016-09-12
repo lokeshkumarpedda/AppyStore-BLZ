@@ -71,6 +71,10 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CategoryViewController.updateCategoryViewController(_:)), name: "updateCategoryViewController", object: nil)
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning(){
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

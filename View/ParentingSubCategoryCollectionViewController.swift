@@ -1,133 +1,109 @@
 //
-//  ParentingCategoriesCollectionViewController.swift
+//  ParentingSubCategoryCollectionViewController.swift
 //  AppyStoreBLZ
 //
-//  purpose :
-//  For displaying parent categories
+//  Purpose:
+//  For Displaying parenting sub categories videos
 //
-//  Created by Lokesh Kumar on 08/09/16.
+//  Created by Lokesh Kumar on 10/09/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
 import UIKit
-//reusing the identifier in this particular class
+
 private let reuseIdentifier = "CollectionViewCell"
 
-class ParentingCategoriesCollectionViewController: UICollectionViewController {
+class ParentingSubCategoryCollectionViewController: UICollectionViewController {
 
-    var mParentCategoryVMobj : ParentingCategoriesViewModel! //model object reference
-    var cache = NSCache()                                    //cache for storing images
-    var mSelectedCategory : Categorylist!
+    var mParentSubcategoryViewModelObj : ParentingSubcategoryViewModel!
+    var collectionViewCell : CollectionViewCell?
+    var mParentCategory : Categorylist!   //to store selected category from category view
     
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
     let mActivityIndicatorContainer = UIView()          //For activity indicator display
     
-    //When the view loaded
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         showActivityIndicator()
-        //creating model object
-        mParentCategoryVMobj = ParentingCategoriesViewModel(parentCategoryVCobj: self)
-
+        
+        mParentSubcategoryViewModelObj = ParentingSubcategoryViewModel(parentingSubCategory: mParentCategory!)
+        
         //setting the background
         collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
-        // Register cell classes
+        //CollectionViewCell class registeration
         collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
-        //setting the layout for cells
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame) , height : CGRectGetHeight(self.view.frame))
-    }
-
-    //when memory exceeded
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        layOutWithOutFooter()
+        //creating layout for cell in collection view
+        //collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategory")
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateParentSubCategoryViewController", object: nil)
     }
     
-    //reload the collection view
-    func updateVC() {
-        
-        collectionView?.reloadData()
-        
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
+    /*
     // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ParentCategoryToSubCategory" {
-            let parentSubCategoryViewControllerObj = segue.destinationViewController as! ParentingSubCategoryCollectionViewController
-            parentSubCategoryViewControllerObj.mParentCategory = mSelectedCategory
-        }
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
     }
+    */
 
     // MARK: UICollectionViewDataSource
 
-    //for number of sections
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    //for number of cells
+
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return mParentCategoryVMobj.getCellsCount()
-        
+        return mParentSubcategoryViewModelObj.mParentSubcategoryList.count
     }
 
-    //for each cell
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let parentCategory: Categorylist? = mParentCategoryVMobj.getCellValues(indexPath.row)
-        stopActivityIndicator()
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
-        let image = parentCategory?.image
-        
-        //setting layout for image view inside cell
-        cell.VideoImageView.image = UIImage(named: "angry_birds_space_image_rectangular_box")
-        cell.VideoImageView.layer.cornerRadius = 8
-        cell.VideoImageView.clipsToBounds = true
-        cell.VideoImageView.layer.borderWidth = 2
-        cell.VideoImageView.layer.borderColor = UIColor.whiteColor().CGColor
-        cell.VideoDurationLabel.hidden = true
-        
-        //activity indicator
-        cell.activityIndicator.startAnimating()
-        cell.activityIndicator.color = UIColor.whiteColor()
-        
-        cell.VideoLabel.text = parentCategory?.name.value
-        cell.imgUrl = image
-        
-        //checking image is in cache or not
-        if let cachedImage = cache.objectForKey(image!) as? UIImage {
-            cell.VideoImageView.image = cachedImage
-        }
-        else {
-            let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: image!)!) {(data, response, error) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if data != nil {
-                        if let img = UIImage(data: data!) {
-                            self.cache.setObject(img, forKey: image!)
-                            if cell.imgUrl == image {
-                                cell.VideoImageView.image = img
-                                cell.activityIndicator.stopAnimating()
-                                cell.activityIndicator.hidden = true
-                            }
-                        }
-                    }
-                })
-            }
-            task.resume()
-        }
+        let parentSubCategory : SubCategorylist? = mParentSubcategoryViewModelObj.mGetParentSubCategory(indexPath.row)
+        Utility().mBindCollectionViewCell(cell, subCategory: parentSubCategory!)
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-    
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
-        mSelectedCategory = mParentCategoryVMobj.mParentCategoryList[indexPath.row]
-        performSegueWithIdentifier("ParentCategoryToSubCategory", sender: mParentCategoryVMobj.getCellValues(indexPath.row))
+    @objc override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
+        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ParentingSubCategoryFooter", forIndexPath: indexPath)
+        return footerView
     }
     
+    //method to update subcategory view controller
+    func updataSubCategoryViewController(notification : NSNotification) {
+        stopActivityIndicator()
+        collectionView!.reloadData()
+        
+    }
+    func layOutWithFooter() {
+        
+        //creating layout for cell in collection view
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategoryFooter")
+    }
+    func layOutWithOutFooter() {
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategory")
+    }
+    // MARK: UICollectionViewDelegate
+
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+        layOutWithFooter()
+    }
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -156,8 +132,7 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
     
     }
     */
-    //MARK: activity indicator methods
-    
+
     //For activity indicator display and animation
     func showActivityIndicator(){
         
