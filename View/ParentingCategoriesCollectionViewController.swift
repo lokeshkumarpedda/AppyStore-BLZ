@@ -17,7 +17,7 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
 
     var mParentCategoryVMobj : ParentingCategoriesViewModel! //model object reference
     var cache = NSCache()                                    //cache for storing images
-    var mSelectedCategory : Categorylist!
+    var mSelectedCategory : Categorylist!                    //selected category
     
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
     let mActivityIndicatorContainer = UIView()          //For activity indicator display
@@ -25,6 +25,7 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
     //When the view loaded
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         showActivityIndicator()
         //creating model object
         mParentCategoryVMobj = ParentingCategoriesViewModel(parentCategoryVCobj: self)
@@ -123,39 +124,14 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDelegate
     
+    //when collection view cell selected
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+        
+        //storing the selected category
         mSelectedCategory = mParentCategoryVMobj.mParentCategoryList[indexPath.row]
         performSegueWithIdentifier("ParentCategoryToSubCategory", sender: mParentCategoryVMobj.getCellValues(indexPath.row))
     }
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
 
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
     //MARK: activity indicator methods
     
     //For activity indicator display and animation

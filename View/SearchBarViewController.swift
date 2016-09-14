@@ -30,22 +30,21 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     
     //MARK:- Class Variables
     var collectionViewCell : CollectionViewCell?
-    var mSearchViewModelObj : SearchViewMode!
+    var mSearchViewModelObj : SearchViewModel!
     var mVideoPlayer : AVPlayer!
     var mPlayerViewController : AVPlayerViewController!
     let label = UILabel()
     var Sview = UIView(frame: CGRect(x: 0, y: 0, width: 540, height: 60))
     var sViewButton : UIButton!
     var headerViewChecker : Bool = true
-    var ListCount = 0
     var searchKeyword : String?
-    let activityIndicator = UIActivityIndicatorView()
-    let activityIndicatorContainer = UIView()
+    let mActivityIndicator = UIActivityIndicatorView()
+    let mActivityIndicatorContainer = UIView()
     
     //MARK:- View methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        mSearchViewModelObj = SearchViewMode(searchVCObj: self) //create object of serach view model
+        mSearchViewModelObj = SearchViewModel(searchVCObj: self) //create object of serach view model
         //creating layout for cell in collection view
         collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame))
         
@@ -244,29 +243,29 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     //For activity indicator display and animation
     func showActivityIndicator(){
         
-        activityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicatorContainer.center = view.center
-        activityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
-        activityIndicatorContainer.layer.cornerRadius = 10
+        mActivityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
+        mActivityIndicatorContainer.center = view.center
+        mActivityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
+        mActivityIndicatorContainer.layer.cornerRadius = 10
         
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .White
-        activityIndicator.clipsToBounds = true
-        activityIndicator.hidesWhenStopped = true
+        mActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        mActivityIndicator.activityIndicatorViewStyle = .White
+        mActivityIndicator.clipsToBounds = true
+        mActivityIndicator.hidesWhenStopped = true
         
         //Adding activity indicator to particular view
-        activityIndicatorContainer.addSubview(activityIndicator)
-        view.addSubview(activityIndicatorContainer)
+        mActivityIndicatorContainer.addSubview(mActivityIndicator)
+        view.addSubview(mActivityIndicatorContainer)
         
         //Staring the the animation
-        activityIndicator.startAnimating()
+        mActivityIndicator.startAnimating()
         
     }
     
     //For stop displaying the activity indicator
     func stopActivityIndicator() {
-        activityIndicator.stopAnimating()
-        activityIndicatorContainer.removeFromSuperview()
+        mActivityIndicator.stopAnimating()
+        mActivityIndicatorContainer.removeFromSuperview()
     }
 
 }

@@ -10,14 +10,18 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 private let reuseIdentifier = "CollectionViewCell"
 
 class ParentingSubCategoryCollectionViewController: UICollectionViewController {
 
-    var mParentSubcategoryViewModelObj : ParentingSubcategoryViewModel!
-    var collectionViewCell : CollectionViewCell?
+    var mParentSubcategoryViewModelObj : ParentingSubcategoryViewModel!//viewmodel object
     var mParentCategory : Categorylist!   //to store selected category from category view
+    
+    var mAvPlayer = AVPlayer()
+    var mAvPlayerViewController = AVPlayerViewController()
     
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
     let mActivityIndicatorContainer = UIView()          //For activity indicator display
@@ -25,9 +29,9 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //for displaying the activity indicator
         showActivityIndicator()
-        
+        self.navigationItem.title = mParentCategory.name.value
         mParentSubcategoryViewModelObj = ParentingSubcategoryViewModel(parentingSubCategory: mParentCategory!)
         
         //setting the background
@@ -36,21 +40,16 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         //CollectionViewCell class registeration
         collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
-        layOutWithOutFooter()
         //creating layout for cell in collection view
-        //collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategory")
+        layOutWithOutFooter()
         
-        
+        //observer relaoding the collection view when data came
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateParentSubCategoryViewController", object: nil)
     }
     
+    //when view will disappear
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateParentSubCategoryViewController", object: nil)
     }
 
     /*
@@ -64,22 +63,26 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
     */
 
     // MARK: UICollectionViewDataSource
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-
+    
+    //number of cells in the collection view
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mParentSubcategoryViewModelObj.mParentSubcategoryList.count
     }
 
+    //for each cell
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
+        
+        //getting sub category
         let parentSubCategory : SubCategorylist? = mParentSubcategoryViewModelObj.mGetParentSubCategory(indexPath.row)
+        
+        //binding sub category to cell
         Utility().mBindCollectionViewCell(cell, subCategory: parentSubCategory!)
+        
         return cell
     }
+    
+    //setting the sub category view
     @objc override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
         let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ParentingSubCategoryFooter", forIndexPath: indexPath)
         return footerView
@@ -88,51 +91,56 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
     //method to update subcategory view controller
     func updataSubCategoryViewController(notification : NSNotification) {
         stopActivityIndicator()
-        collectionView!.reloadData()
+        let recievedCategories = mParentSubcategoryViewModelObj.mParentSubcategoryList.count
+        let totalCategories = mParentSubcategoryViewModelObj.mTotalParentSubCategoryCount
         
+        //for first cells in the collection view
+        if recievedCategories < 21{
+            collectionView?.reloadData()
+        }
+        //adding footer with activity indicator
+        if recievedCategories < totalCategories{
+            layOutWithFooter()
+        }
+        else{
+            layOutWithOutFooter()
+        }
     }
+    
+    //adding footer with Activity indicator
     func layOutWithFooter() {
         
         //creating layout for cell in collection view
         collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategoryFooter")
     }
+    
+    //removing footer from the collection view
     func layOutWithOutFooter() {
         collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategory")
     }
-    // MARK: UICollectionViewDelegate
-
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
-        layOutWithFooter()
-    }
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
+    // MARK: UICollectionViewDelegate
+    
+    //for selected video
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+        
+        //getting the selected video url
+        let url = NSURL(string: mParentSubcategoryViewModelObj.mParentSubcategoryList[indexPath.row].downloadUrl.value)
+        
+        //creating a avplayer
+        mAvPlayer = AVPlayer(URL: url!)
+        mAvPlayerViewController.player = mAvPlayer
+        
+        //showing in the video in avplayerviewcontroller
+        self.presentViewController(mAvPlayerViewController, animated: true){
+            
+            //starting the video
+            self.mAvPlayerViewController.player?.play()
+        }
     }
-    */
 
+    //MARK: Activity indicator methods
+    
     //For activity indicator display and animation
     func showActivityIndicator(){
         

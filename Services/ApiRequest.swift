@@ -93,7 +93,7 @@ class ApiRequest: NSObject {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
         
-        Alamofire.request(.GET, "\(url)method=getParentingVideos&content_type=videos&limit=6&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)", headers: header)
+        Alamofire.request(.GET, "\(url)method=getParentingVideos&content_type=videos&limit=20&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)", headers: header)
             .responseJSON { response in
                 if(response.result.value != nil)
                     

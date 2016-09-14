@@ -3,7 +3,7 @@
 //  AppyStoreBLZ
 //
 //  Purpose:
-//  For getting the data from controller and giving it to the view controller
+//  For getting the parent categories from controller and giving it to the parenting category view controller
 //
 //  Created by Lokesh Kumar on 08/09/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.

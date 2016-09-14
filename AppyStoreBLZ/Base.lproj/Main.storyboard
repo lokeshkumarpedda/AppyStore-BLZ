@@ -1228,7 +1228,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Parent's Area" id="CIp-py-OOd">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="VCl-C4-ZGZ">
+                        <barButtonItem key="leftBarButtonItem" image="backY" id="VCl-C4-ZGZ">
                             <connections>
                                 <segue destination="TGT-he-LA6" kind="unwind" unwindAction="backToCategoryVC:" id="R2K-Yu-vS2"/>
                             </connections>
@@ -1272,7 +1272,9 @@
                             <outlet property="delegate" destination="AVd-5g-UAt" id="fPK-Uf-QW7"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Parenting Videos" id="mTB-Ow-cUi"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="6jW-kV-yKL" kind="show" identifier="ParentCategoryToSubCategory" id="x5k-Hg-Fpg"/>
                     </connections>
@@ -1348,6 +1350,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="backY" width="29" height="29"/>
         <image name="backarrow" width="30" height="36"/>
         <image name="imagebutton" width="288" height="163"/>
         <image name="nextvideobutton" width="54" height="54"/>
@@ -1355,9 +1358,9 @@
         <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UDj-z8-HTj"/>
         <segue reference="Vnk-rj-NgP"/>
+        <segue reference="UDj-z8-HTj"/>
         <segue reference="rzI-H6-4xl"/>
-        <segue reference="Kp3-yl-Wet"/>
+        <segue reference="0Er-HR-mOK"/>
     </inferredMetricsTieBreakers>
 </document>

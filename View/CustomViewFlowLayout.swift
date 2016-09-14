@@ -81,7 +81,7 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
         sectionInset = UIEdgeInsetsMake(20,10,10,10)
         scrollDirection = .Vertical
         if view == "parentSubCategoryFooter"{
-            footerReferenceSize = CGSize(width: w, height: (h-130)/3)
+            footerReferenceSize = CGSize(width: w, height: (h-130)/2)
         }else{
             footerReferenceSize = CGSize(width: 0, height: 0)
         }

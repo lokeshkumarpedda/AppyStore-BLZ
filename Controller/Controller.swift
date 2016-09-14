@@ -111,15 +111,15 @@ class Controller : NSObject,PController{
         mSearchViewModelObj.updateSearchViewModel(subCategoryList)
     }
 
-    //method to update parent categories
+    //method to update parent categories view model
     func updateParentCategoryList(categoryList : [Categorylist]) {
         mParentCategoryVMobj.mUpdateViewModel(categoryList)
     }
     
+    //method to update Parent sub category view model
     func updateParentSubCategoryList(notification : NSNotification){
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerParentSubCategoryUpdate", object: nil)
         NSNotificationCenter.defaultCenter().postNotificationName("UpdateParentSubCategoryViewModel", object: self, userInfo: notification.userInfo)
+         NSNotificationCenter.defaultCenter().removeObserver(self)
         
     }
 }
