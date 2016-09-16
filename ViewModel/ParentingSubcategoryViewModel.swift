@@ -30,7 +30,8 @@ class ParentingSubcategoryViewModel: NSObject {
     
     //method to fetch subcategory details from controller
     func mFetchParentSubCategoryDetailsFromController (offSet : Int) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateParentSubCategoryViewModel(_:)), name: "UpdateParentSubCategoryViewModel", object: nil)
+        NSNotificationCenter.defaultCenter()
+            .addObserver(self, selector: #selector(updateParentSubCategoryViewModel(_:)), name: "UpdateParentSubCategoryViewModel", object: nil)
         mControllerObj = Controller()
         
         //Asking controller for data
@@ -60,9 +61,11 @@ class ParentingSubcategoryViewModel: NSObject {
         }
         
         //removing the observer for this view model
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateParentSubCategoryViewModel", object: nil)
+        NSNotificationCenter.defaultCenter()
+            .removeObserver(self, name: "UpdateParentSubCategoryViewModel", object: nil)
         
         //posting a notification to update view controller
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateParentSubCategoryViewController", object: nil)
+        NSNotificationCenter.defaultCenter()
+            .postNotificationName("UpdateParentSubCategoryViewController", object: nil)
     }
 }

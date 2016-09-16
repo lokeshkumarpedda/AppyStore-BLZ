@@ -17,6 +17,8 @@
 		0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8183A01D5895280030204B /* PSearchViewController.swift */; };
 		0A8183A31D58B1C60030204B /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8183A21D58B1C60030204B /* CollectionReusableView.swift */; };
 		0A8ECBD31D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */; };
+		0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */; };
+		0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */; };
 		0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A937AA41D82F28400740CD0 /* Social.framework */; };
 		0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */; };
 		0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */; };
@@ -65,6 +67,8 @@
 		0A8183A01D5895280030204B /* PSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSearchViewController.swift; sourceTree = "<group>"; };
 		0A8183A21D58B1C60030204B /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentsAreaCollectionviewController.swift; sourceTree = "<group>"; };
+		0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music.mp3; sourceTree = "<group>"; };
 		0A937AA41D82F28400740CD0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubCategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubcategoryViewModel.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */,
 				0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */,
 				0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */,
+				0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */,
 			);
 			name = "Parent's Area";
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				70DD5B9A1D5314E600A016B9 /* Assets.xcassets */,
 				70DA125B1D4F04390086ECEC /* LaunchScreen.storyboard */,
 				70DA125E1D4F04390086ECEC /* Info.plist */,
+				0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */,
 				0AFBDF3B1D5C52E30043AA98 /* angry_birds_space_image_rectangular_box.png */,
 			);
 			path = AppyStoreBLZ;
@@ -313,6 +319,11 @@
 					70DA124E1D4F04390086ECEC = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = C4JYUFMR7M;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -341,6 +352,7 @@
 			files = (
 				70DA125D1D4F04390086ECEC /* LaunchScreen.storyboard in Resources */,
 				70DA12581D4F04390086ECEC /* Main.storyboard in Resources */,
+				0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */,
 				0AFBDF3C1D5C52E30043AA98 /* angry_birds_space_image_rectangular_box.png in Resources */,
 				70DD5B9B1D5314E600A016B9 /* Assets.xcassets in Resources */,
 				7007F0681D570BD000A3C543 /* CollectionViewCell.xib in Resources */,
@@ -427,6 +439,7 @@
 				7007F0691D570BD000A3C543 /* CustomViewFlowLayout.swift in Sources */,
 				70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */,
 				0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */,
+				0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */,
 				7007F0881D573DBD00A3C543 /* PController.swift in Sources */,
 				0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */,
 				7007F08C1D57474C00A3C543 /* PSubCategoryViewModel.swift in Sources */,

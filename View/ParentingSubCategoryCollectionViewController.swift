@@ -32,24 +32,27 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         //for displaying the activity indicator
         showActivityIndicator()
         self.navigationItem.title = mParentCategory.name.value
+        
         mParentSubcategoryViewModelObj = ParentingSubcategoryViewModel(parentingSubCategory: mParentCategory!)
         
         //setting the background
         collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
-        //CollectionViewCell class registeration
+        //CollectionViewCell class registration
         collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
         //creating layout for cell in collection view
         layOutWithOutFooter()
         
         //observer relaoding the collection view when data came
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateParentSubCategoryViewController", object: nil)
+        NSNotificationCenter.defaultCenter()
+            .addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateParentSubCategoryViewController", object: nil)
     }
     
     //when view will disappear
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateParentSubCategoryViewController", object: nil)
+        NSNotificationCenter.defaultCenter()
+            .removeObserver(self, name: "UpdateParentSubCategoryViewController", object: nil)
     }
 
     /*
@@ -111,12 +114,12 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
     func layOutWithFooter() {
         
         //creating layout for cell in collection view
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategoryFooter")
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategory")
     }
     
     //removing footer from the collection view
     func layOutWithOutFooter() {
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategory")
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategorywithoutFooter")
     }
     
     // MARK: UICollectionViewDelegate
@@ -139,6 +142,10 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         }
     }
 
+    @IBAction func backButton(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     //MARK: Activity indicator methods
     
     //For activity indicator display and animation
@@ -162,7 +169,6 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         
         //Starting the the animation
         mActivityIndicator.startAnimating()
-        
     }
     
     //For stop displaying the activity indicator

@@ -16,7 +16,6 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
 
     //when view is loaded
     override func viewDidLoad() {
-        
         //setting the collection view back ground
         collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
@@ -81,15 +80,14 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
             performSegueWithIdentifier("ParentAreaToCategories", sender: nil)
             
         }
-        else if indexPath.row == 4{
+        else if indexPath.row == 4 || indexPath.row == 3{
             
-            //for rating the app
-            appRating()
+            //for going to appy store
+            performSegueWithIdentifier("ParentAreaToRating", sender: nil)
         }
         else if indexPath.row == 5{
-            
             //sharing the app
-            let shareText = "AppYStore Address"
+            let shareText = "Give the right start to your child's learning, check out Appystore's latest app at https://play.google.com/store/apps/details?id=com.appy.store.lite"
             let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
             presentViewController(activityViewController, animated: true, completion: nil)
             
@@ -123,10 +121,8 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
             (result : UIAlertAction) -> Void in
             self.underContructionMessage()
         })
-        let cancelAction = UIAlertAction(title: "cancel", style: .Cancel, handler: {
-            (result : UIAlertAction) -> Void in
-            self.underContructionMessage()
-        })
+        let cancelAction = UIAlertAction(title: "cancel", style: .Cancel, handler:nil)
+        
         menu.addAction(one)
         menu.addAction(two)
         menu.addAction(three)

@@ -87,7 +87,7 @@ class Controller : NSObject,PController{
     }
     
     //MARK:- Updating methods
-    //method to save played video in lacal database
+    //method to save played video in local database
     func mSaveVideoInHistory(subCategory : SubCategorylist) {
         mLocalDataBaseObj.mInsertInToHistoryTabel(subCategory)
     }

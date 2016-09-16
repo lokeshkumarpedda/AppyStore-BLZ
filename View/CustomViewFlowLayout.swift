@@ -29,13 +29,27 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
             
             parentAreaLayout(width, h: height)
             
-        }else if view == "VideoPlayer"{
+        }else if view == "videoPlayer"{
             
-            playListSetUpLayout(width, h: height)
+            playListSetUpLayout(width, h: height,view: view)
             
-        }else {
+        }else if view == "videoPlayerWithFooter"{
             
-            parentSubCategoryLayout(width, h: height, view: view)
+            playListSetUpLayout(width, h: height,view: view)
+            
+        }
+        else if view == "subCategory"{
+            
+            subCategoryLayoutWithFooter(width,h: height)
+            
+        }else if view == "parentSubCategory"{
+            
+            subCategoryLayoutWithFooter(width, h: height)
+            
+        }
+        else {
+            
+            subCategoryLayOutWithOutFooter(width, h: height)
             
         }
     }
@@ -54,15 +68,22 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
         itemSize = CGSize(width: (w-65)/4, height: (h-130)/2)
         sectionInset = UIEdgeInsetsMake(20,10,10,10)
         scrollDirection = .Vertical
+        footerReferenceSize = CGSize(width: 0, height: 0)
         
     }
     //For video player play list
-    func playListSetUpLayout(w: CGFloat, h: CGFloat){
+    func playListSetUpLayout(w: CGFloat, h: CGFloat, view: String){
         minimumInteritemSpacing = 3
         minimumLineSpacing = 20
         itemSize = CGSize(width: (w-65)/4, height: h)
         sectionInset = UIEdgeInsetsMake(20,10,10,10)
         scrollDirection = .Horizontal
+        if view == "videoPlayer"{
+            footerReferenceSize = CGSize(width: 0, height: 0)
+        }
+        else{
+            footerReferenceSize = CGSize(width: (w-65)/3, height: h)
+        }
     }
     
     //For parents area
@@ -74,18 +95,24 @@ class CustomViewFlowLayout: UICollectionViewFlowLayout {
         scrollDirection = .Vertical
     }
     
-    func parentSubCategoryLayout (w : CGFloat ,h : CGFloat ,view : String) {
+    //with footer
+    func subCategoryLayoutWithFooter (w : CGFloat ,h : CGFloat) {
         minimumInteritemSpacing = 3
         minimumLineSpacing = 20
         itemSize = CGSize(width: (w-65)/4, height: (h-130)/2)
         sectionInset = UIEdgeInsetsMake(20,10,10,10)
         scrollDirection = .Vertical
-        if view == "parentSubCategoryFooter"{
-            footerReferenceSize = CGSize(width: w, height: (h-130)/2)
-        }else{
-            footerReferenceSize = CGSize(width: 0, height: 0)
-        }
-        
+        footerReferenceSize = CGSize(width: w, height: (h-130)/2)
+    }
+    
+    //without footer
+    func subCategoryLayOutWithOutFooter(w : CGFloat ,h : CGFloat){
+        minimumInteritemSpacing = 3
+        minimumLineSpacing = 20
+        itemSize = CGSize(width: (w-65)/4, height: (h-130)/2)
+        sectionInset = UIEdgeInsetsMake(20,10,10,10)
+        scrollDirection = .Vertical
+        footerReferenceSize = CGSize(width: 0, height: 0)
         
     }
 }

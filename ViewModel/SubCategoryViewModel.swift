@@ -16,38 +16,31 @@ class SubCategoryViewModel: NSObject {
     
     var mControllerObj : Controller!  //create controller object
     var mSubcategoryList :[SubCategorylist] = []  //variable hold list of sub categories details
-    var mTotalSubCategoryCount = 8    //varible to store total number of subCategories
-    var mReceivedCategoryCount = 0 //variable to store number of recived categories
+    var mTotalSubCategoryCount = 0    //varible to store total number of subCategories
+    
     var mCategory : Categorylist! // varibale to store total selected category
     init(category : Categorylist) {
         super.init()
         mCategory = category
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewModel.updateSubCategoryViewModel(_:)), name: "UpdateSubCategoryViewModel", object: nil)
+        mFetchSubCategoryDetailsFromController (0)
     }
     
     //method to fetch subcategory details from controller
-    func mFetchSubCategoryDetailsFromController (c_Id : Int,p_Id : Int,offSet : Int) {
+    func mFetchSubCategoryDetailsFromController (offSet : Int) {
         
+        NSNotificationCenter.defaultCenter()
+            .addObserver(self, selector: #selector(SubCategoryViewModel.updateSubCategoryViewModel(_:)), name: "UpdateSubCategoryViewModel", object: nil)
         mControllerObj = Controller()
-        mControllerObj.mGetSubCategoryDetails(c_Id, pId: p_Id, offSet: offSet)
+        mControllerObj.mGetSubCategoryDetails(mCategory.categoryId, pId: mCategory.parentId, offSet: offSet)
+        
     }
     
     //method to send sub category details 
     func mGetSubCategory(index : Int) -> SubCategorylist? {
-        if index < mSubcategoryList.count {
-            return mSubcategoryList[index]
+        if (index+4) > mSubcategoryList.count && index+1 < mTotalSubCategoryCount && index > 0 {
+            self.mFetchSubCategoryDetailsFromController(index+1)
         }
-        else {
-            //every eigth index it will call method to fetch data from rest
-            if index%8 == 0 {
-                //method calling to fetch data 
-                mFetchSubCategoryDetailsFromController(mCategory.categoryId, p_Id: mCategory.parentId, offSet: index)
-            }
-            //creating dummy data
-            let category = SubCategorylist(title: "", duration: "", downloadUrl: "", imageUrl: "", totalCount: index)
-            mSubcategoryList.append(category)
-            return category
-        }
+        return mSubcategoryList[index]
     }
     
     //mehtod to update subcategory list in sub category view controller
@@ -57,22 +50,14 @@ class SubCategoryViewModel: NSObject {
         mTotalSubCategoryCount = subCategoryList[0].totalCount
         //adding content to list
         for category in subCategoryList {
-            //if search result don't have dummy value
-            if mReceivedCategoryCount < mSubcategoryList.count {
-                mSubcategoryList[mReceivedCategoryCount] = category
-            }
-                //if search list contain dummy value
-            else {
-                mSubcategoryList.insert(category, atIndex: mReceivedCategoryCount)
-            }
-            mReceivedCategoryCount += 1
+            mSubcategoryList.append(category)
         }
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateSubCategoryViewModel", object: nil)
         
-        if mReceivedCategoryCount < 9{
-            NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewController", object: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName("updatePlayList", object: nil)
-        }
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateEachCellInSubCategoryVC", object: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("updateCellInPlayList", object: nil)
-    }
+        
+            NSNotificationCenter.defaultCenter()
+                .postNotificationName("UpdateSubCategoryViewController", object: nil)
+            NSNotificationCenter.defaultCenter()
+                .postNotificationName("updatePlayList", object: nil)
+      }
 }

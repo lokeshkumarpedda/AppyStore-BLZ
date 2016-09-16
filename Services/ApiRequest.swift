@@ -45,16 +45,14 @@ class ApiRequest: NSObject {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
         
-        Alamofire.request(.GET, "\(url)method=getContentList&content_type=videos&limit=8&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)&age=1.5&incl_age=5", headers: header)
+        Alamofire.request(.GET, "\(url)method=getContentList&content_type=videos&limit=20&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)&age=1.5&incl_age=5", headers: header)
             .responseJSON { response in
-                if(response.result.value != nil)
-                
-                {
+                if(response.result.value != nil){
+                    
                     let APIresponseObj = APIResponse()
                     APIresponseObj.mParseSubCategoryDetails(response.result.value as! [String : AnyObject])
                 }
-                else
-                {
+                else{
                     print("Error")
                 }
         }
@@ -95,14 +93,12 @@ class ApiRequest: NSObject {
         
         Alamofire.request(.GET, "\(url)method=getParentingVideos&content_type=videos&limit=20&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)", headers: header)
             .responseJSON { response in
-                if(response.result.value != nil)
-                    
-                {
+                if(response.result.value != nil){
                     let APIresponseObj = APIResponse()
                     APIresponseObj.mParseParentSubCategoryDetails(response.result.value as! [String : AnyObject])
                 }
-                else
-                {
+                else{
+                    
                     print("Error")
                 }
         }

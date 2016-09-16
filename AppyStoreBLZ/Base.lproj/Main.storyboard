@@ -451,7 +451,7 @@
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z1S-a4-fFb">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
@@ -468,6 +468,19 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="subCategoryFooter" id="EBP-jq-H7Q">
+                                    <rect key="frame" x="0.0" y="50" width="600" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="6Fa-4t-Kyl">
+                                            <rect key="frame" x="290" y="15" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6Fa-4t-Kyl" firstAttribute="centerY" secondItem="EBP-jq-H7Q" secondAttribute="centerY" id="gR5-a6-Yax"/>
+                                        <constraint firstItem="6Fa-4t-Kyl" firstAttribute="centerX" secondItem="EBP-jq-H7Q" secondAttribute="centerX" id="yOi-XP-l7d"/>
+                                    </constraints>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="Cjd-cg-aNP" id="C9p-pQ-mqT"/>
                                     <outlet property="delegate" destination="Cjd-cg-aNP" id="AAm-fD-pOv"/>
@@ -597,7 +610,7 @@
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fah-jf-2aN">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="50" height="50"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
@@ -611,6 +624,19 @@
                                                 </view>
                                             </collectionViewCell>
                                         </cells>
+                                        <collectionReusableView key="sectionFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playlistFooter" id="LQM-5T-5TD">
+                                            <rect key="frame" x="0.0" y="50" width="600" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="QEO-IO-QM1">
+                                                    <rect key="frame" x="290" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QEO-IO-QM1" firstAttribute="centerX" secondItem="LQM-5T-5TD" secondAttribute="centerX" id="aNW-45-eE8"/>
+                                                <constraint firstItem="QEO-IO-QM1" firstAttribute="centerY" secondItem="LQM-5T-5TD" secondAttribute="centerY" id="gxD-A1-c0U"/>
+                                            </constraints>
+                                        </collectionReusableView>
                                         <connections>
                                             <outlet property="dataSource" destination="Ram-qm-fEW" id="0uh-it-0aL"/>
                                             <outlet property="delegate" destination="Ram-qm-fEW" id="YFa-wa-W26"/>
@@ -1236,12 +1262,38 @@
                     </navigationItem>
                     <connections>
                         <segue destination="AVd-5g-UAt" kind="show" identifier="ParentAreaToCategories" id="cNY-H5-zJw"/>
+                        <segue destination="XKg-vB-eUy" kind="show" identifier="ParentAreaToRating" id="HfN-qe-byl"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yd3-zk-QpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="TGT-he-LA6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="950" y="665"/>
+        </scene>
+        <!--Appy Store-->
+        <scene sceneID="2Fu-5t-5zW">
+            <objects>
+                <viewController id="XKg-vB-eUy" customClass="RatingViewController" customModule="AppyStoreBLZ" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EV9-ec-iWI"/>
+                        <viewControllerLayoutGuide type="bottom" id="5I8-Nl-AqD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7EW-rw-XYi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Appy Store" id="I8O-KG-uhg">
+                        <barButtonItem key="leftBarButtonItem" image="backY" id="awp-1m-vsM">
+                            <connections>
+                                <action selector="backButton:" destination="XKg-vB-eUy" id="ubN-th-N0R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BKe-gc-bEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950" y="1401"/>
         </scene>
         <!--Parenting Videos-->
         <scene sceneID="nGB-3M-iBg">
@@ -1273,7 +1325,13 @@
                         </connections>
                     </collectionView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Parenting Videos" id="mTB-Ow-cUi"/>
+                    <navigationItem key="navigationItem" title="Parenting Videos" id="lgQ-eF-254">
+                        <barButtonItem key="leftBarButtonItem" image="backY" id="vco-SL-Rst">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="AVd-5g-UAt" id="bQY-tH-Hqq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="6jW-kV-yKL" kind="show" identifier="ParentCategoryToSubCategory" id="x5k-Hg-Fpg"/>
@@ -1325,6 +1383,15 @@
                             <outlet property="delegate" destination="6jW-kV-yKL" id="kFh-le-aOn"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dH0-ef-cMK">
+                        <barButtonItem key="leftBarButtonItem" image="backY" id="n7w-tY-Hjx">
+                            <connections>
+                                <action selector="backButton:" destination="6jW-kV-yKL" id="eWD-PH-QRq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkL-yC-mXy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1358,9 +1425,9 @@
         <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vnk-rj-NgP"/>
-        <segue reference="UDj-z8-HTj"/>
-        <segue reference="rzI-H6-4xl"/>
+        <segue reference="R1j-RD-yfJ"/>
         <segue reference="0Er-HR-mOK"/>
+        <segue reference="U3x-Hw-KJU"/>
+        <segue reference="PWM-wa-fpP"/>
     </inferredMetricsTieBreakers>
 </document>

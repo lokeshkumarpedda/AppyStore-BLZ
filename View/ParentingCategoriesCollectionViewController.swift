@@ -132,6 +132,11 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
         performSegueWithIdentifier("ParentCategoryToSubCategory", sender: mParentCategoryVMobj.getCellValues(indexPath.row))
     }
 
+    
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     //MARK: activity indicator methods
     
     //For activity indicator display and animation
