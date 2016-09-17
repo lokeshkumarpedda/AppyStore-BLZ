@@ -70,8 +70,7 @@ class VideoPlayerViewController: UIViewController {
         //CollectionViewCell class registration
         mCollectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
         
-        //creating layout for cell in collection view
-        mCollectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(mPlayListView.frame),height : CGRectGetHeight(mPlayListView.frame), view: "VideoPlayer")
+        layOutWithOutFooter()
         
         //adding observers for loading the collection view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updataPlayList(_:)), name: "updatePlayList", object: nil)
@@ -94,6 +93,10 @@ class VideoPlayerViewController: UIViewController {
         
     }
     
+    //After disappearing
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
 
     override func didReceiveMemoryWarning() {
@@ -128,7 +131,6 @@ class VideoPlayerViewController: UIViewController {
         if mVideoPlayerItem != nil{
             mVideoPlayer.pause()
         }
-        
         mVideoPlayerItem = nil
         mVideoPlayerLayer = nil
         
@@ -138,10 +140,11 @@ class VideoPlayerViewController: UIViewController {
         //loading the video player
         mVideoPlayerItem = AVPlayerItem(URL: url)
         mVideoPlayer = AVPlayer(playerItem: mVideoPlayerItem!)
-        mVideoPlayerLayer = AVPlayerLayer(player: mVideoPlayer)
         
-        //add the layer to the video view
+            
+        mVideoPlayerLayer = AVPlayerLayer(player: mVideoPlayer)
         mVideoView.layer.addSublayer(mVideoPlayerLayer!)
+        
         mVideoPlayerLayer?.frame = mVideoView.bounds
         
         //video player will play
@@ -399,9 +402,30 @@ class VideoPlayerViewController: UIViewController {
 
     //For updating the playlist
     func updataPlayList(notification : NSNotification){
+        let recievedCategories = mSubcategoryViewModelObj.mSubcategoryList.count
+        let totalCategories = mSubcategoryViewModelObj.mTotalSubCategoryCount
         
-        mCollectionView.reloadData()
+        //for first cells in the collection view
+        if recievedCategories < 21{
+            mCollectionView.reloadData()
+        }
+        //adding footer with activity indicator
+        if recievedCategories < totalCategories{
+            layOutWithFooter()
+        }
+        else{
+            layOutWithOutFooter()
+        }
         
+    }
+    
+    func layOutWithFooter(){
+    
+        mCollectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(mPlayListView.frame), view: "videoPlayerWithFooter")
+    }
+    func layOutWithOutFooter(){
+        
+        mCollectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(mPlayListView.frame), view: "videoPlayer")
     }
 }
 
@@ -411,7 +435,7 @@ extension VideoPlayerViewController: UICollectionViewDataSource{
     //method to return number of item in each section of collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
-        return mSubcategoryViewModelObj.mTotalSubCategoryCount
+        return mSubcategoryViewModelObj.mSubcategoryList.count
         
     }
     
@@ -448,4 +472,10 @@ extension VideoPlayerViewController : UICollectionViewDelegate{
         let LocalDB = LocalDataBase()
         LocalDB.mInsertInToHistoryTabel(mSubcategoryViewModelObj.mSubcategoryList[indexPath.row])
     }
+    
+    @objc func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
+        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "playlistFooter", forIndexPath: indexPath)
+        return footerView
+    }
+    
 }

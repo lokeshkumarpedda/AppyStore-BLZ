@@ -11,7 +11,7 @@
 
 import UIKit
 
-class SearchViewMode: PSearchViewModel {
+class SearchViewModel: PSearchViewModel {
     var mControllerObj : Controller!
     var mSearchList = [SubCategorylist]()
     var mTotalSearchCategory = 0 //varibale to store total number of categories

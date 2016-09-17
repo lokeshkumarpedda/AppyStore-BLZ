@@ -24,8 +24,8 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     //MARK:Class variables
     let label = UILabel()
-    var mavPlayer = AVPlayer()
-    var mavPlayerViewController = AVPlayerViewController()
+    var mAvPlayer = AVPlayer()
+    var mAvPlayerViewController = AVPlayerViewController()
     
     var mHistoryViewModelObj : HistoryViewModel! //object of history view model
     var collectionViewCell : CollectionViewCell! //object of collection view cell
@@ -94,14 +94,14 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
         let url = NSURL(string: mHistoryViewModelObj.mHistoryList[indexPath.row].downloadUrl.value)
         
         //creating a avplayer
-        mavPlayer = AVPlayer(URL: url!)
-        mavPlayerViewController.player = mavPlayer
+        mAvPlayer = AVPlayer(URL: url!)
+        mAvPlayerViewController.player = mAvPlayer
         
         //showing in the video in avplayerviewcontroller
-        self.presentViewController(mavPlayerViewController, animated: true){
+        self.presentViewController(mAvPlayerViewController, animated: true){
             
             //starting the video
-            self.mavPlayerViewController.player?.play()
+            self.mAvPlayerViewController.player?.play()
         }
     }
     

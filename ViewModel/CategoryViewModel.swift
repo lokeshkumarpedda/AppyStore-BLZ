@@ -21,7 +21,8 @@ class CategoryViewModel : NSObject {
         super.init()
         mControllerObj = Controller()
         mFetchCategoryDetailsFromController()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CategoryViewModel.updateCategoryViewModel(_:)), name: "UpdateCategoryViewModel", object: nil)
+        NSNotificationCenter.defaultCenter()
+            .addObserver(self, selector: #selector(CategoryViewModel.updateCategoryViewModel(_:)), name: "UpdateCategoryViewModel", object: nil)
     }
     
     //mehtod to send category details
@@ -38,6 +39,7 @@ class CategoryViewModel : NSObject {
     func updateCategoryViewModel(notification : NSNotification) {
         mCategoryList = notification.userInfo!["category"] as! [Categorylist]
         mTotalCount = mCategoryList.count
-        NSNotificationCenter.defaultCenter().postNotificationName("updateCategoryViewController", object: nil)
+        NSNotificationCenter.defaultCenter()
+            .postNotificationName("updateCategoryViewController", object: nil)
     }
 }

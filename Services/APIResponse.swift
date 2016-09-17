@@ -47,7 +47,6 @@ class APIResponse: NSObject {
 
             subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
         }
-
         NSNotificationCenter.defaultCenter().postNotificationName("ControllerSubCategoryUpdate", object: self, userInfo: ["SubCategory" : subcategories])
     }
     
@@ -75,5 +74,39 @@ class APIResponse: NSObject {
         else {
             controllerObj.updateSearchCategoryList(subcategories)
         }
+    }
+    
+    //method to parse parent categories
+    func mParseParentCategories(controllerObj : Controller, response : [String : AnyObject]) {
+        var parentCategories = [Categorylist]()
+        let count = response["Responsedetails"]!["category_count"] as! Int
+        for i in 0..<count {
+            let title = response["Responsedetails"]!["category_id_array"]!![i]["category_name"] as! String
+            let image = response["Responsedetails"]!["category_id_array"]!![i]["image_path"]!!["50x50"] as! String
+            let cId = Int(response["Responsedetails"]!["category_id_array"]!![i]["category_id"] as! String)
+            let pId = Int(response["Responsedetails"]!["category_id_array"]!![i]["parent_category_id"] as! String)
+            let totalCount = response["Responsedetails"]!["category_count"] as! Int
+            
+            parentCategories.append(Categorylist(name: title, image: image, cId: cId!, pId: pId!, totalCount: totalCount))
+        }
+        controllerObj.updateParentCategoryList(parentCategories)
+    }
+    
+    //method to parse parent subcategory list
+    func mParseParentSubCategoryDetails(response : [String : AnyObject]) {
+        var subcategories = [SubCategorylist]()
+        
+        let Totalcount = response["Responsedetails"]!["total_count"] as! Int
+        let count = response["Responsedetails"]!["data_array"]!!.count as Int
+        for i in 0..<count {
+            
+            let title = response["Responsedetails"]!["data_array"]!![i]["title"] as! String
+            let imageUrl = response["Responsedetails"]!["data_array"]!![i]["image_path"] as! String
+            let duration = response["Responsedetails"]!["data_array"]!![i]["content_duration"] as! String
+            let downloadUrl = response["Responsedetails"]!["data_array"]!![i]["dnld_url"] as! String
+            
+            subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("ControllerParentSubCategoryUpdate", object: self, userInfo: ["ParentSubCategory" : subcategories])
     }
 }

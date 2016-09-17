@@ -36,15 +36,20 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     var index : Int!
     var historyChecker = false
     
-    var videoUrl : NSURL?
-    var currentIndexPath = NSIndexPath()
+    var mVideoUrl : NSURL?
+    var mCurrentIndexPath = NSIndexPath()
     
     var mSelectedCategoryCount = 0
     var offset = 0
     //------------------------------
     
+    var mActivityIndicator = UIActivityIndicatorView()  //For loading
+    let mActivityIndicatorContainer = UIView()          //For activity indicator display
+    
     //MARK:- View methods
     override func viewDidLoad() {
+        
+        showActivityIndicator()
         
         //setting background for buttons
         mBackButtonLabel.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
@@ -67,21 +72,22 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
 
         
         mSubcategoryViewModelObj = SubCategoryViewModel(category: mCategory!)
-
+        
         // setting background image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
         collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
         headerView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         
         headerLabel.text = mCategory.name.value
-
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateSubCategoryViewController", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataEachCellInSubCategoryVC(_:)), name: "UpdateEachCellInSubCategoryVC", object: nil)
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateSubCategoryViewController", object: nil)
     }
     //MARK:- Collection View methods
     
@@ -91,13 +97,11 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     }
     //method to return number of item in each section of collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mSubcategoryViewModelObj.mTotalSubCategoryCount
+        return mSubcategoryViewModelObj.mSubcategoryList.count
     }
 
     //method to create collection view cell
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
         
@@ -106,29 +110,49 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         
         return cell
     }
+
+    
     //method wil be called when item in collection view is selected
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        videoUrl = NSURL(string: mSubcategoryViewModelObj.mSubcategoryList[indexPath.row].downloadUrl.value)
-        currentIndexPath = indexPath
-        performSegueWithIdentifier("SubCategoryToVideoPlayer", sender: nil)
+        mVideoUrl = NSURL(string: mSubcategoryViewModelObj.mSubcategoryList[indexPath.row].downloadUrl.value)
+        mCurrentIndexPath = indexPath
         
         let LocalDB = LocalDataBase()
         LocalDB.mInsertInToHistoryTabel(mSubcategoryViewModelObj.mSubcategoryList[indexPath.row])
+        
+        performSegueWithIdentifier("SubCategoryToVideoPlayer", sender: nil)
+        
+        
     }
     //method will be called before performing segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SubCategoryToVideoPlayer"
         {
             let videoControllerObj = segue.destinationViewController as! VideoPlayerViewController
-            videoControllerObj.mUrl = videoUrl
-            videoControllerObj.mCurrentVideoIndexPath = currentIndexPath
+            videoControllerObj.mUrl = mVideoUrl
+            videoControllerObj.mCurrentVideoIndexPath = mCurrentIndexPath
             videoControllerObj.mCategory = mCategory
             videoControllerObj.mSubcategoryViewModelObj = self.mSubcategoryViewModelObj
-            
         }
     }
 
+    
+    @objc func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
+        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "subCategoryFooter", forIndexPath: indexPath)
+        return footerView
+    }
+    //adding footer with Activity indicator
+    func layOutWithFooter() {
+        
+        //creating layout for cell in collection view
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "subCategory")
+    }
+    
+    //removing footer from the collection view
+    func layOutWithOutFooter() {
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "subCategorywithoutFooter")
+    }
     //MARK:- IBActions
     
     @IBAction func mBackButtonPressed(sender: UIButton) {
@@ -177,26 +201,60 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         mSearchButtonLabel.setImage(UIImage(named: "searchimage.png"), forState: UIControlState.Normal)
         mCartButtonLabel.setImage(UIImage(named: "carimage.png"), forState: UIControlState.Normal)
     }
-    
+
     //method to update subcategory view controller
     func updataSubCategoryViewController(notification : NSNotification) {
         
-        collectionView.reloadData()
+        stopActivityIndicator()
+        let recievedCategories = mSubcategoryViewModelObj.mSubcategoryList.count
+        let totalCategories = mSubcategoryViewModelObj.mTotalSubCategoryCount
+        
+        //for first cells in the collection view
+        if recievedCategories < 21{
+            collectionView?.reloadData()
+        }
+        //adding footer with activity indicator
+        if recievedCategories < totalCategories{
+            layOutWithFooter()
+        }
+        else{
+            layOutWithOutFooter()
+        }
         
     }
     
-    //For loading each cell in the sub category
-    func updataEachCellInSubCategoryVC(notification : NSNotification){
+    //MARK: Activity indicator methods
+    
+    //For activity indicator display and animation
+    func showActivityIndicator(){
         
-        //looping on visible cells
-        for visibleCell in collectionView.visibleCells(){
-            let currentCell = visibleCell as! CollectionViewCell
-            //Checking if it contains the dummy data
-            if currentCell.VideoLabel.text?.characters.count < 2 {
-                var indexPaths = [NSIndexPath]()
-                indexPaths.append(collectionView.indexPathForCell(currentCell)!)
-                collectionView.reloadItemsAtIndexPaths(indexPaths)
-            }
-        }
+        //customizing container for activity indicator
+        mActivityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
+        mActivityIndicatorContainer.center = view.center
+        mActivityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
+        mActivityIndicatorContainer.layer.cornerRadius = 10
+        
+        //customizing activity indicator
+        mActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        mActivityIndicator.activityIndicatorViewStyle = .White
+        mActivityIndicator.clipsToBounds = true
+        mActivityIndicator.hidesWhenStopped = true
+        
+        //Adding activity indicator to particular view
+        mActivityIndicatorContainer.addSubview(mActivityIndicator)
+        view.addSubview(mActivityIndicatorContainer)
+        
+        //Starting the the animation
+        mActivityIndicator.startAnimating()
+        
+    }
+    
+    //For stop displaying the activity indicator
+    func stopActivityIndicator() {
+        
+        mActivityIndicator.stopAnimating()
+        
+        //removing from the screen
+        mActivityIndicatorContainer.removeFromSuperview()
     }
 }

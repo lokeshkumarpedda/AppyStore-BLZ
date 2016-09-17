@@ -20,6 +20,7 @@ class Utility: NSObject {
     var mVideoPlayer : AVPlayer!
     var mPlayerViewController : AVPlayerViewController!
     var cache = NSCache()
+    var backgroundMusicPlayer: AVAudioPlayer?
 
     //fetch image from string url
     func fetchImage(url : String) -> Operation<UIImage, NSError> {
@@ -130,5 +131,4 @@ class Utility: NSObject {
         
         return isReachable && !needsConnection
     }
-    
-}
+  }

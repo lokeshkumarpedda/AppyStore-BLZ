@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1257B01D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */; };
+		0A1257B21D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */; };
 		0A3694C91D59D64A0005EA82 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3694C81D59D64A0005EA82 /* LoginViewController.swift */; };
 		0A3694CF1D59E53E0005EA82 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3694CD1D59E53E0005EA82 /* FMDB.framework */; };
 		0A3694D01D59E53E0005EA82 /* ReactiveFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3694CE1D59E53E0005EA82 /* ReactiveFoundation.framework */; };
@@ -14,6 +16,12 @@
 		0A81839F1D5895190030204B /* PSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81839E1D5895190030204B /* PSearchViewModel.swift */; };
 		0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8183A01D5895280030204B /* PSearchViewController.swift */; };
 		0A8183A31D58B1C60030204B /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8183A21D58B1C60030204B /* CollectionReusableView.swift */; };
+		0A8ECBD31D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */; };
+		0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */; };
+		0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */; };
+		0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A937AA41D82F28400740CD0 /* Social.framework */; };
+		0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */; };
+		0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */; };
 		0AEC45AF1D65F09E007E06F1 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */; };
 		0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */; };
 		0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */; };
@@ -28,7 +36,7 @@
 		7007F06B1D570BD000A3C543 /* SubCategoryViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0651D570BD000A3C543 /* SubCategoryViewContoller.swift */; };
 		7007F0711D570BE100A3C543 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F06D1D570BE100A3C543 /* CategoryViewModel.swift */; };
 		7007F0721D570BE100A3C543 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F06E1D570BE100A3C543 /* HistoryViewModel.swift */; };
-		7007F0731D570BE100A3C543 /* SearchViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F06F1D570BE100A3C543 /* SearchViewMode.swift */; };
+		7007F0731D570BE100A3C543 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F06F1D570BE100A3C543 /* SearchViewModel.swift */; };
 		7007F0741D570BE100A3C543 /* SubCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0701D570BE100A3C543 /* SubCategoryViewModel.swift */; };
 		7007F0771D570BEA00A3C543 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0761D570BEA00A3C543 /* Controller.swift */; };
 		7007F07A1D570BF200A3C543 /* CategoryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0791D570BF200A3C543 /* CategoryDetails.swift */; };
@@ -49,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingCategoriesCollectionViewController.swift; sourceTree = "<group>"; };
+		0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingCategoriesViewModel.swift; sourceTree = "<group>"; };
 		0A3694C81D59D64A0005EA82 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0A3694CD1D59E53E0005EA82 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "Pods/../build/Debug-iphoneos/FMDB/FMDB.framework"; sourceTree = "<group>"; };
 		0A3694CE1D59E53E0005EA82 /* ReactiveFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveFoundation.framework; path = "../../../Library/Developer/Xcode/DerivedData/AppyStoreBLZ-frlbufotlcqfdbbkzqdcjmbdkcej/Build/Products/Debug-iphonesimulator/ReactiveFoundation/ReactiveFoundation.framework"; sourceTree = "<group>"; };
@@ -56,6 +66,12 @@
 		0A81839E1D5895190030204B /* PSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSearchViewModel.swift; sourceTree = "<group>"; };
 		0A8183A01D5895280030204B /* PSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSearchViewController.swift; sourceTree = "<group>"; };
 		0A8183A21D58B1C60030204B /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
+		0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentsAreaCollectionviewController.swift; sourceTree = "<group>"; };
+		0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music.mp3; sourceTree = "<group>"; };
+		0A937AA41D82F28400740CD0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubCategoryCollectionViewController.swift; sourceTree = "<group>"; };
+		0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubcategoryViewModel.swift; sourceTree = "<group>"; };
 		0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderReusableView.swift; sourceTree = "<group>"; };
@@ -69,7 +85,7 @@
 		7007F0651D570BD000A3C543 /* SubCategoryViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryViewContoller.swift; sourceTree = "<group>"; };
 		7007F06D1D570BE100A3C543 /* CategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		7007F06E1D570BE100A3C543 /* HistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
-		7007F06F1D570BE100A3C543 /* SearchViewMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewMode.swift; sourceTree = "<group>"; };
+		7007F06F1D570BE100A3C543 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7007F0701D570BE100A3C543 /* SubCategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryViewModel.swift; sourceTree = "<group>"; };
 		7007F0761D570BEA00A3C543 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		7007F0791D570BF200A3C543 /* CategoryDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetails.swift; sourceTree = "<group>"; };
@@ -99,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */,
 				0A3694D21D59E5450005EA82 /* libsqlite3.0.tbd in Frameworks */,
 				0A3694CF1D59E53E0005EA82 /* FMDB.framework in Frameworks */,
 				0A3694D01D59E53E0005EA82 /* ReactiveFoundation.framework in Frameworks */,
@@ -113,6 +130,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A1257AE1D814A6E00D8AAB7 /* Parent's Area */ = {
+			isa = PBXGroup;
+			children = (
+				0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */,
+				0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */,
+				0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */,
+				0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */,
+			);
+			name = "Parent's Area";
+			sourceTree = "<group>";
+		};
 		0AFA4AEF1D5B3D3000C9D24B /* LocalDataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +163,7 @@
 				0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */,
 				7007F0631D570BD000A3C543 /* CustomViewFlowLayout.swift */,
 				0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */,
+				0A1257AE1D814A6E00D8AAB7 /* Parent's Area */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,8 +173,10 @@
 			children = (
 				7007F06D1D570BE100A3C543 /* CategoryViewModel.swift */,
 				7007F0701D570BE100A3C543 /* SubCategoryViewModel.swift */,
-				7007F06F1D570BE100A3C543 /* SearchViewMode.swift */,
+				7007F06F1D570BE100A3C543 /* SearchViewModel.swift */,
 				7007F06E1D570BE100A3C543 /* HistoryViewModel.swift */,
+				0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */,
+				0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -221,6 +252,7 @@
 				70DD5B9A1D5314E600A016B9 /* Assets.xcassets */,
 				70DA125B1D4F04390086ECEC /* LaunchScreen.storyboard */,
 				70DA125E1D4F04390086ECEC /* Info.plist */,
+				0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */,
 				0AFBDF3B1D5C52E30043AA98 /* angry_birds_space_image_rectangular_box.png */,
 			);
 			path = AppyStoreBLZ;
@@ -229,6 +261,7 @@
 		9CD4375F000622D092536B47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A937AA41D82F28400740CD0 /* Social.framework */,
 				0A3694D11D59E5450005EA82 /* libsqlite3.0.tbd */,
 				0A3694CD1D59E53E0005EA82 /* FMDB.framework */,
 				0A3694CE1D59E53E0005EA82 /* ReactiveFoundation.framework */,
@@ -286,6 +319,11 @@
 					70DA124E1D4F04390086ECEC = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = C4JYUFMR7M;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -314,6 +352,7 @@
 			files = (
 				70DA125D1D4F04390086ECEC /* LaunchScreen.storyboard in Resources */,
 				70DA12581D4F04390086ECEC /* Main.storyboard in Resources */,
+				0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */,
 				0AFBDF3C1D5C52E30043AA98 /* angry_birds_space_image_rectangular_box.png in Resources */,
 				70DD5B9B1D5314E600A016B9 /* Assets.xcassets in Resources */,
 				7007F0681D570BD000A3C543 /* CollectionViewCell.xib in Resources */,
@@ -376,25 +415,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				7007F07E1D570BFF00A3C543 /* ApiRequest.swift in Sources */,
+				0A8ECBD31D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift in Sources */,
 				0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */,
 				7007F07A1D570BF200A3C543 /* CategoryDetails.swift in Sources */,
+				0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */,
 				7007F0861D573D4A00A3C543 /* PCategoryViewModel.swift in Sources */,
 				0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */,
 				7007F0721D570BE100A3C543 /* HistoryViewModel.swift in Sources */,
+				0A1257B21D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift in Sources */,
 				7007F0711D570BE100A3C543 /* CategoryViewModel.swift in Sources */,
 				7007F0771D570BEA00A3C543 /* Controller.swift in Sources */,
 				7007F0821D570C0800A3C543 /* Utility.swift in Sources */,
-				7007F0731D570BE100A3C543 /* SearchViewMode.swift in Sources */,
+				7007F0731D570BE100A3C543 /* SearchViewModel.swift in Sources */,
 				0A81839F1D5895190030204B /* PSearchViewModel.swift in Sources */,
 				7007F0661D570BD000A3C543 /* CategoryViewController.swift in Sources */,
 				0A3694C91D59D64A0005EA82 /* LoginViewController.swift in Sources */,
 				7007F07F1D570BFF00A3C543 /* APIResponse.swift in Sources */,
+				0A1257B01D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift in Sources */,
 				7007F06A1D570BD000A3C543 /* SearchBarViewController.swift in Sources */,
 				0AEC45AF1D65F09E007E06F1 /* VideoPlayerViewController.swift in Sources */,
 				7007F0741D570BE100A3C543 /* SubCategoryViewModel.swift in Sources */,
 				7007F06B1D570BD000A3C543 /* SubCategoryViewContoller.swift in Sources */,
 				7007F0691D570BD000A3C543 /* CustomViewFlowLayout.swift in Sources */,
 				70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */,
+				0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */,
+				0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */,
 				7007F0881D573DBD00A3C543 /* PController.swift in Sources */,
 				0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */,
 				7007F08C1D57474C00A3C543 /* PSubCategoryViewModel.swift in Sources */,

@@ -20,6 +20,7 @@ class Controller : NSObject,PController{
     var mSubCategoryViewModelObj : PSubCategoryViewModel! //object of sub category view model
     var mSearchViewModelObj : PSearchViewModel! //object od search view model
     var mHistoryViewModel : HistoryViewModel! //object of history view model
+    var mParentCategoryVMobj : ParentingCategoriesViewModel!
     
     //init for category
     override init() {
@@ -28,6 +29,9 @@ class Controller : NSObject,PController{
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateCategoryDetails(_:)), name:"ControllerCategoryUpdate", object: nil)
         //observe notification for subcategory list updates
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateSubCategoryList(_:)), name: "ControllerSubCategoryUpdate", object: nil)
+        //observe notification for parent sub category list updates
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateParentSubCategoryList(_:)), name: "ControllerParentSubCategoryUpdate", object: nil)
+        
     }
     //init for search
     init(searchViewMode : PSearchViewModel) {
@@ -37,7 +41,10 @@ class Controller : NSObject,PController{
     init(historyVMObj : HistoryViewModel) {
         mHistoryViewModel = historyVMObj
     }
-
+    //init for parent categories
+    init(parentCategoryVMobj : ParentingCategoriesViewModel) {
+        mParentCategoryVMobj = parentCategoryVMobj
+    }
     //MARK:- Fetch details methods
     //method to get category list from rest api
     func mGetCategoryDetailsFromRest() {
@@ -69,8 +76,18 @@ class Controller : NSObject,PController{
         return mLocalDataBaseObj.clearHistory()
     }
     
+    //method to get parent categories
+    func mGetParentCategories() {
+        ApiRequesrObj.mFetchParentCategories(self)
+    }
+    
+    //method to get parent subcategories
+    func mGetParentSubCategoryDetails(cId : Int,pId : Int,offSet : Int) {
+        ApiRequesrObj.mFetchSubParentingCategories(cId,p_Id : pId,offset: offSet)
+    }
+    
     //MARK:- Updating methods
-    //method to save played video in lacal database
+    //method to save played video in local database
     func mSaveVideoInHistory(subCategory : SubCategorylist) {
         mLocalDataBaseObj.mInsertInToHistoryTabel(subCategory)
     }
@@ -83,6 +100,7 @@ class Controller : NSObject,PController{
     
     //method to update SubCategory View model
     func updateSubCategoryList(notification : NSNotification){
+        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerSubCategoryUpdate", object: nil)
         NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewModel", object: self, userInfo: notification.userInfo)
         
@@ -93,5 +111,15 @@ class Controller : NSObject,PController{
         mSearchViewModelObj.updateSearchViewModel(subCategoryList)
     }
 
+    //method to update parent categories view model
+    func updateParentCategoryList(categoryList : [Categorylist]) {
+        mParentCategoryVMobj.mUpdateViewModel(categoryList)
+    }
     
+    //method to update Parent sub category view model
+    func updateParentSubCategoryList(notification : NSNotification){
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateParentSubCategoryViewModel", object: self, userInfo: notification.userInfo)
+         NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+    }
 }
