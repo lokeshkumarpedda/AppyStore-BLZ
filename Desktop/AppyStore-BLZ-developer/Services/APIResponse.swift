@@ -1,0 +1,133 @@
+//
+//  APIResponse.swift
+//  AppyStoreBLZ
+//
+//  Created by Shelly on 01/08/16.
+//  Copyright © 2016 bridgelabz. All rights reserved.
+//
+
+import UIKit
+
+class APIResponse: NSObject {
+
+    override init() {
+        super.init()
+    }
+    
+    //method to parse category list
+    func mParseCategoryDetails(response : [String : AnyObject]) {     //response : [String : AnyObject]
+
+        var categories = [Categorylist]()
+        let count = response["Responsedetails"]!["category_count"] as! Int
+        for i in 0..<count {
+            let title = response["Responsedetails"]!["category_id_array"]!![i]["category_name"] as! String
+            let image = response["Responsedetails"]!["category_id_array"]!![i]["image_path"]!!["50x50"] as! String
+            let cId = Int(response["Responsedetails"]!["category_id_array"]!![i]["category_id"] as! String)
+            let pId = Int(response["Responsedetails"]!["category_id_array"]!![i]["parent_category_id"] as! String)
+            let totalCount = response["Responsedetails"]!["category_count"] as! Int
+            
+            categories.append(Categorylist(name: title, image: image, cId: cId!, pId: pId!, totalCount: totalCount))
+        }
+
+        NSNotificationCenter.defaultCenter().postNotificationName("ControllerCategoryUpdate", object: self, userInfo: ["category" : categories])
+    }
+   
+    //method to parse subcategory list
+    func mParseSubCategoryDetails(response : [String : AnyObject]) {
+        var subcategories = [SubCategorylist]()
+        
+        let Totalcount = response["Responsedetails"]!["total_count"] as! Int
+        let count = response["Responsedetails"]!["data_array"]!!.count as Int
+        for i in 0..<count {
+            
+            let title = response["Responsedetails"]!["data_array"]!![i]["title"] as! String
+            let imageUrl = response["Responsedetails"]!["data_array"]!![i]["image_path"] as! String
+            let duration = response["Responsedetails"]!["data_array"]!![i]["content_duration"] as! String
+            let downloadUrl = response["Responsedetails"]!["data_array"]!![i]["dnld_url"] as! String
+
+            subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("ControllerSubCategoryUpdate", object: self, userInfo: ["SubCategory" : subcategories])
+    }
+    
+    //method to parse Search category list 
+    func mParseSearchCategoryList(controllerObj : PController,response : [String : AnyObject]) {
+        var subcategories = [SubCategorylist]()
+        //search result found
+        if response["ResponseMessage"] as! String == "Success"{
+            let Totalcount = response["Responsedetails"]?[0]!["total_count"] as! Int
+            let count = response["Responsedetails"]![0]!["data_array"]!!.count as Int
+            
+            for i in 0..<count {
+                let title = response["Responsedetails"]![0]!["data_array"]!![i]["title"] as! String
+                let imageUrl = response["Responsedetails"]![0]!["data_array"]!![i]["image_path"] as! String
+                let downloadUrl = response["Responsedetails"]![0]!["data_array"]!![i]["dnld_url"] as! String
+                let duration = response["Responsedetails"]![0]!["data_array"]!![i]["content_duration"] as! String
+
+                subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
+                
+            }
+            
+            controllerObj.updateSearchCategoryList(subcategories)
+        }
+        //No Search Results found
+        else {
+            controllerObj.updateSearchCategoryList(subcategories)
+        }
+    }
+    
+    //method to parse parent categories
+    func mParseParentCategories(controllerObj : Controller, response : [String : AnyObject]) {
+        var parentCategories = [Categorylist]()
+        let count = response["Responsedetails"]!["category_count"] as! Int
+        for i in 0..<count {
+            let title = response["Responsedetails"]!["category_id_array"]!![i]["category_name"] as! String
+            let image = response["Responsedetails"]!["category_id_array"]!![i]["image_path"]!!["50x50"] as! String
+            let cId = Int(response["Responsedetails"]!["category_id_array"]!![i]["category_id"] as! String)
+            let pId = Int(response["Responsedetails"]!["category_id_array"]!![i]["parent_category_id"] as! String)
+            let totalCount = response["Responsedetails"]!["category_count"] as! Int
+            
+            parentCategories.append(Categorylist(name: title, image: image, cId: cId!, pId: pId!, totalCount: totalCount))
+        }
+        controllerObj.updateParentCategoryList(parentCategories)
+    }
+    
+    //method to parse parent subcategory list
+    func mParseParentSubCategoryDetails(response : [String : AnyObject]) {
+        var subcategories = [SubCategorylist]()
+        
+        let Totalcount = response["Responsedetails"]!["total_count"] as! Int
+        let count = response["Responsedetails"]!["data_array"]!!.count as Int
+        for i in 0..<count {
+            
+            let title = response["Responsedetails"]!["data_array"]!![i]["title"] as! String
+            let imageUrl = response["Responsedetails"]!["data_array"]!![i]["image_path"] as! String
+            let duration = response["Responsedetails"]!["data_array"]!![i]["content_duration"] as! String
+            let downloadUrl = response["Responsedetails"]!["data_array"]!![i]["dnld_url"] as! String
+            
+            subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("ControllerParentSubCategoryUpdate", object: self, userInfo: ["ParentSubCategory" : subcategories])
+    }
+    
+    //method to parse ChildDetails
+    func mParseChildDetails(response : [String : AnyObject])
+    {
+        //let childDetailsViewControllerObj = ChildDetailsViewController()
+        var childDetails = [ChildDetails]()
+        let name = response["Responsedetails"]!["child_name"] as! String
+        let cId = response["Responsedetails"]!["child_id"] as! String
+        let uId = response["Responsedetails"]!["user_id"] as! String
+        let type = response["Responsedetails"]!["child_type"] as! String
+        let dob = response["Responsedetails"]!["child_dob"] as! String
+        let avtarId = response["Responsedetails"]!["child_avtarid"] as! String
+        let avtarImg = response["Responsedetails"]!["child_avtarIMG"] as! String
+        
+        childDetails.append(ChildDetails(name : name, cId: cId, uId: uId, type: type, dob: dob, avtarId: avtarId, avtarImg: avtarImg))
+    NSNotificationCenter.defaultCenter().postNotificationName("updateChildDetailsViewController", object: self, userInfo: ["child" : childDetails])
+        
+        
+        }
+    
+    
+}
