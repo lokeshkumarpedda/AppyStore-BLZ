@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5o2-ac-eOv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5o2-ac-eOv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -451,7 +451,7 @@
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z1S-a4-fFb">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
@@ -468,19 +468,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="subCategoryFooter" id="EBP-jq-H7Q">
-                                    <rect key="frame" x="0.0" y="50" width="600" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="6Fa-4t-Kyl">
-                                            <rect key="frame" x="290" y="15" width="20" height="20"/>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="6Fa-4t-Kyl" firstAttribute="centerY" secondItem="EBP-jq-H7Q" secondAttribute="centerY" id="gR5-a6-Yax"/>
-                                        <constraint firstItem="6Fa-4t-Kyl" firstAttribute="centerX" secondItem="EBP-jq-H7Q" secondAttribute="centerX" id="yOi-XP-l7d"/>
-                                    </constraints>
-                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="Cjd-cg-aNP" id="C9p-pQ-mqT"/>
                                     <outlet property="delegate" destination="Cjd-cg-aNP" id="AAm-fD-pOv"/>
@@ -610,7 +597,7 @@
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fah-jf-2aN">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="50" height="50"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
@@ -624,19 +611,6 @@
                                                 </view>
                                             </collectionViewCell>
                                         </cells>
-                                        <collectionReusableView key="sectionFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playlistFooter" id="LQM-5T-5TD">
-                                            <rect key="frame" x="0.0" y="50" width="600" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="QEO-IO-QM1">
-                                                    <rect key="frame" x="290" y="15" width="20" height="20"/>
-                                                </activityIndicatorView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="QEO-IO-QM1" firstAttribute="centerX" secondItem="LQM-5T-5TD" secondAttribute="centerX" id="aNW-45-eE8"/>
-                                                <constraint firstItem="QEO-IO-QM1" firstAttribute="centerY" secondItem="LQM-5T-5TD" secondAttribute="centerY" id="gxD-A1-c0U"/>
-                                            </constraints>
-                                        </collectionReusableView>
                                         <connections>
                                             <outlet property="dataSource" destination="Ram-qm-fEW" id="0uh-it-0aL"/>
                                             <outlet property="delegate" destination="Ram-qm-fEW" id="YFa-wa-W26"/>
@@ -1254,7 +1228,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Parent's Area" id="CIp-py-OOd">
-                        <barButtonItem key="leftBarButtonItem" image="backY" id="VCl-C4-ZGZ">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="VCl-C4-ZGZ">
                             <connections>
                                 <segue destination="TGT-he-LA6" kind="unwind" unwindAction="backToCategoryVC:" id="R2K-Yu-vS2"/>
                             </connections>
@@ -1262,7 +1236,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="AVd-5g-UAt" kind="show" identifier="ParentAreaToCategories" id="cNY-H5-zJw"/>
-                        <segue destination="XKg-vB-eUy" kind="show" identifier="ParentAreaToRating" id="HfN-qe-byl"/>
+                        <segue destination="ouQ-Bm-bdK" kind="show" identifier="ParentAreaToChildDetails" id="Qmi-CJ-yN4"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yd3-zk-QpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1270,30 +1244,76 @@
             </objects>
             <point key="canvasLocation" x="950" y="665"/>
         </scene>
-        <!--Appy Store-->
-        <scene sceneID="2Fu-5t-5zW">
+        <!--Child Details View Controller-->
+        <scene sceneID="4sU-rN-JzD">
             <objects>
-                <viewController id="XKg-vB-eUy" customClass="RatingViewController" customModule="AppyStoreBLZ" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ouQ-Bm-bdK" customClass="ChildDetailsViewController" customModule="AppyStoreBLZ" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EV9-ec-iWI"/>
-                        <viewControllerLayoutGuide type="bottom" id="5I8-Nl-AqD"/>
+                        <viewControllerLayoutGuide type="top" id="tFa-hD-10u"/>
+                        <viewControllerLayoutGuide type="bottom" id="rZ0-FY-Xs2"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7EW-rw-XYi">
+                    <view key="view" contentMode="scaleToFill" id="rEo-5v-TQK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PlQ-Qz-q6s">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4F7-lx-tH8">
+                                        <rect key="frame" x="138" y="18" width="55" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dxG-4b-Fba">
+                                        <rect key="frame" x="8" y="18" width="110" height="110"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpk-Pc-RhK">
+                                        <rect key="frame" x="136" y="57" width="57" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bec-Ex-3xT">
+                                        <rect key="frame" x="201" y="18" width="100" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrX-uu-Gch">
+                                        <rect key="frame" x="138" y="98" width="100" height="31"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Edit Details">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd3-1c-D4v">
+                                        <rect key="frame" x="201" y="57" width="37" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PlQ-Qz-q6s" firstAttribute="top" secondItem="rEo-5v-TQK" secondAttribute="topMargin" id="Ddz-od-avP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PlQ-Qz-q6s" secondAttribute="trailing" constant="-20" id="K58-v0-OOi"/>
+                            <constraint firstItem="PlQ-Qz-q6s" firstAttribute="leading" secondItem="rEo-5v-TQK" secondAttribute="leadingMargin" constant="-20" id="R9u-Ki-O3T"/>
+                            <constraint firstItem="rZ0-FY-Xs2" firstAttribute="top" secondItem="PlQ-Qz-q6s" secondAttribute="bottom" id="boX-yE-Uez"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Appy Store" id="I8O-KG-uhg">
-                        <barButtonItem key="leftBarButtonItem" image="backY" id="awp-1m-vsM">
-                            <connections>
-                                <action selector="backButton:" destination="XKg-vB-eUy" id="ubN-th-N0R"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <connections>
+                        <outlet property="mAgeLabel" destination="kd3-1c-D4v" id="v7w-BM-0ox"/>
+                        <outlet property="mImageView" destination="dxG-4b-Fba" id="s8W-6F-86h"/>
+                        <outlet property="mNameLabel" destination="bec-Ex-3xT" id="1az-pW-xPh"/>
+                        <outlet property="scrollView" destination="PlQ-Qz-q6s" id="A4X-az-od8"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BKe-gc-bEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gm3-AX-uTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="1401"/>
+            <point key="canvasLocation" x="950" y="1394"/>
         </scene>
         <!--Parenting Videos-->
         <scene sceneID="nGB-3M-iBg">
@@ -1324,15 +1344,7 @@
                             <outlet property="delegate" destination="AVd-5g-UAt" id="fPK-Uf-QW7"/>
                         </connections>
                     </collectionView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Parenting Videos" id="lgQ-eF-254">
-                        <barButtonItem key="leftBarButtonItem" image="backY" id="vco-SL-Rst">
-                            <connections>
-                                <action selector="backButtonPressed:" destination="AVd-5g-UAt" id="bQY-tH-Hqq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Parenting Videos" id="mTB-Ow-cUi"/>
                     <connections>
                         <segue destination="6jW-kV-yKL" kind="show" identifier="ParentCategoryToSubCategory" id="x5k-Hg-Fpg"/>
                     </connections>
@@ -1383,15 +1395,6 @@
                             <outlet property="delegate" destination="6jW-kV-yKL" id="kFh-le-aOn"/>
                         </connections>
                     </collectionView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="dH0-ef-cMK">
-                        <barButtonItem key="leftBarButtonItem" image="backY" id="n7w-tY-Hjx">
-                            <connections>
-                                <action selector="backButton:" destination="6jW-kV-yKL" id="eWD-PH-QRq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkL-yC-mXy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1417,7 +1420,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backY" width="29" height="29"/>
         <image name="backarrow" width="30" height="36"/>
         <image name="imagebutton" width="288" height="163"/>
         <image name="nextvideobutton" width="54" height="54"/>
@@ -1425,9 +1427,9 @@
         <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="R1j-RD-yfJ"/>
-        <segue reference="0Er-HR-mOK"/>
         <segue reference="U3x-Hw-KJU"/>
-        <segue reference="PWM-wa-fpP"/>
+        <segue reference="Kp3-yl-Wet"/>
+        <segue reference="rzI-H6-4xl"/>
+        <segue reference="UDj-z8-HTj"/>
     </inferredMetricsTieBreakers>
 </document>

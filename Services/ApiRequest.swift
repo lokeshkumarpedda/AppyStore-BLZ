@@ -45,14 +45,16 @@ class ApiRequest: NSObject {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
         
-        Alamofire.request(.GET, "\(url)method=getContentList&content_type=videos&limit=20&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)&age=1.5&incl_age=5", headers: header)
+        Alamofire.request(.GET, "\(url)method=getContentList&content_type=videos&limit=8&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)&age=1.5&incl_age=5", headers: header)
             .responseJSON { response in
-                if(response.result.value != nil){
-                    
+                if(response.result.value != nil)
+                
+                {
                     let APIresponseObj = APIResponse()
                     APIresponseObj.mParseSubCategoryDetails(response.result.value as! [String : AnyObject])
                 }
-                else{
+                else
+                {
                     print("Error")
                 }
         }
@@ -78,7 +80,7 @@ class ApiRequest: NSObject {
     func mFetchParentCategories(controllerObj : Controller) {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
-        
+     
         Alamofire.request(.GET, "\(url)method=getParentingCategories", headers: header)
             .responseJSON { response in
                 
@@ -91,16 +93,39 @@ class ApiRequest: NSObject {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
         
-        Alamofire.request(.GET, "\(url)method=getParentingVideos&content_type=videos&limit=20&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)", headers: header)
+        Alamofire.request(.GET, "\(url)method=getParentingVideos&content_type=videos&limit=6&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)", headers: header)
             .responseJSON { response in
-                if(response.result.value != nil){
+                if(response.result.value != nil)
+                    
+                {
                     let APIresponseObj = APIResponse()
                     APIresponseObj.mParseParentSubCategoryDetails(response.result.value as! [String : AnyObject])
                 }
-                else{
-                    
+                else
+                {
                     print("Error")
                 }
         }
     }
+    
+    //method to fetch child details
+    func mFetchChildDetails(c_Id : Int)
+    {
+        //getting url from info.plist
+        let url = infoPlist!["Web_Url"] as! String
+        Alamofire.request(.GET, "\(url)method=getChildContentAccess&child_id=\(c_Id)", headers: header)
+            .responseJSON{ response in
+            if(response.result.value != nil)
+            {
+                let APIresponseObj = APIResponse()
+                APIresponseObj.mParseChildDetails(response.result.value as! [String : AnyObject])
+            }
+            else
+            {
+                print("Error")
+            }
+        }
+    }
+    
 }
+

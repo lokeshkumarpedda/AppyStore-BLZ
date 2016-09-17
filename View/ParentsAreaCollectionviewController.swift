@@ -74,7 +74,13 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
     //For selected cell
     @objc override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         //each functionaly for each cell
-        if indexPath.row == 2{
+        if indexPath.row == 0{
+            
+            //for moving to child details
+            performSegueWithIdentifier("ParentAreaToChildDetails", sender: nil)
+            
+        }
+        else if indexPath.row == 2{
             
             //For moving to parent categories
             performSegueWithIdentifier("ParentAreaToCategories", sender: nil)

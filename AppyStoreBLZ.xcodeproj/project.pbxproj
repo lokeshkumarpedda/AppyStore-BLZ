@@ -22,6 +22,9 @@
 		0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A937AA41D82F28400740CD0 /* Social.framework */; };
 		0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */; };
 		0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */; };
+		0AC1B60D1D8D2BED00BE86E6 /* ChildDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1B60C1D8D2BED00BE86E6 /* ChildDetailsViewController.swift */; };
+		0AC1B6111D8D2C4400BE86E6 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1B6101D8D2C4400BE86E6 /* Controller.swift */; };
+		0AC1B6131D8D2C8200BE86E6 /* ChildDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1B6121D8D2C8200BE86E6 /* ChildDetailsViewModel.swift */; };
 		0AEC45AF1D65F09E007E06F1 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */; };
 		0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */; };
 		0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */; };
@@ -38,7 +41,6 @@
 		7007F0721D570BE100A3C543 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F06E1D570BE100A3C543 /* HistoryViewModel.swift */; };
 		7007F0731D570BE100A3C543 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F06F1D570BE100A3C543 /* SearchViewModel.swift */; };
 		7007F0741D570BE100A3C543 /* SubCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0701D570BE100A3C543 /* SubCategoryViewModel.swift */; };
-		7007F0771D570BEA00A3C543 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0761D570BEA00A3C543 /* Controller.swift */; };
 		7007F07A1D570BF200A3C543 /* CategoryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0791D570BF200A3C543 /* CategoryDetails.swift */; };
 		7007F07E1D570BFF00A3C543 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F07C1D570BFF00A3C543 /* ApiRequest.swift */; };
 		7007F07F1D570BFF00A3C543 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F07D1D570BFF00A3C543 /* APIResponse.swift */; };
@@ -72,6 +74,9 @@
 		0A937AA41D82F28400740CD0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubCategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubcategoryViewModel.swift; sourceTree = "<group>"; };
+		0AC1B60C1D8D2BED00BE86E6 /* ChildDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildDetailsViewController.swift; sourceTree = "<group>"; };
+		0AC1B6101D8D2C4400BE86E6 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		0AC1B6121D8D2C8200BE86E6 /* ChildDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildDetailsViewModel.swift; sourceTree = "<group>"; };
 		0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderReusableView.swift; sourceTree = "<group>"; };
@@ -87,7 +92,6 @@
 		7007F06E1D570BE100A3C543 /* HistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		7007F06F1D570BE100A3C543 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7007F0701D570BE100A3C543 /* SubCategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryViewModel.swift; sourceTree = "<group>"; };
-		7007F0761D570BEA00A3C543 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		7007F0791D570BF200A3C543 /* CategoryDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetails.swift; sourceTree = "<group>"; };
 		7007F07C1D570BFF00A3C543 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		7007F07D1D570BFF00A3C543 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 				0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */,
 				0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */,
 				0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */,
+				0AC1B60C1D8D2BED00BE86E6 /* ChildDetailsViewController.swift */,
 			);
 			name = "Parent's Area";
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				7007F06E1D570BE100A3C543 /* HistoryViewModel.swift */,
 				0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */,
 				0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */,
+				0AC1B6121D8D2C8200BE86E6 /* ChildDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -184,7 +190,7 @@
 		7007F0751D570BEA00A3C543 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7007F0761D570BEA00A3C543 /* Controller.swift */,
+				0AC1B6101D8D2C4400BE86E6 /* Controller.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -424,7 +430,7 @@
 				7007F0721D570BE100A3C543 /* HistoryViewModel.swift in Sources */,
 				0A1257B21D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift in Sources */,
 				7007F0711D570BE100A3C543 /* CategoryViewModel.swift in Sources */,
-				7007F0771D570BEA00A3C543 /* Controller.swift in Sources */,
+				0AC1B60D1D8D2BED00BE86E6 /* ChildDetailsViewController.swift in Sources */,
 				7007F0821D570C0800A3C543 /* Utility.swift in Sources */,
 				7007F0731D570BE100A3C543 /* SearchViewModel.swift in Sources */,
 				0A81839F1D5895190030204B /* PSearchViewModel.swift in Sources */,
@@ -438,6 +444,8 @@
 				7007F06B1D570BD000A3C543 /* SubCategoryViewContoller.swift in Sources */,
 				7007F0691D570BD000A3C543 /* CustomViewFlowLayout.swift in Sources */,
 				70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */,
+				0AC1B6131D8D2C8200BE86E6 /* ChildDetailsViewModel.swift in Sources */,
+				0AC1B6111D8D2C4400BE86E6 /* Controller.swift in Sources */,
 				0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */,
 				0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */,
 				7007F0881D573DBD00A3C543 /* PController.swift in Sources */,

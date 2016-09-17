@@ -109,4 +109,25 @@ class APIResponse: NSObject {
         }
         NSNotificationCenter.defaultCenter().postNotificationName("ControllerParentSubCategoryUpdate", object: self, userInfo: ["ParentSubCategory" : subcategories])
     }
+    
+    //method to parse ChildDetails
+    func mParseChildDetails(response : [String : AnyObject])
+    {
+        //let childDetailsViewControllerObj = ChildDetailsViewController()
+        var childDetails = [ChildDetails]()
+        let name = response["Responsedetails"]!["child_name"] as! String
+        let cId = response["Responsedetails"]!["child_id"] as! String
+        let uId = response["Responsedetails"]!["user_id"] as! String
+        let type = response["Responsedetails"]!["child_type"] as! String
+        let dob = response["Responsedetails"]!["child_dob"] as! String
+        let avtarId = response["Responsedetails"]!["child_avtarid"] as! String
+        let avtarImg = response["Responsedetails"]!["child_avtarIMG"] as! String
+        
+        childDetails.append(ChildDetails(name : name, cId: cId, uId: uId, type: type, dob: dob, avtarId: avtarId, avtarImg: avtarImg))
+    NSNotificationCenter.defaultCenter().postNotificationName("updateChildDetailsViewController", object: self, userInfo: ["child" : childDetails])
+        
+        
+        }
+    
+    
 }
