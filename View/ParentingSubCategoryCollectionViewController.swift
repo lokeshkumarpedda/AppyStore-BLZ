@@ -49,6 +49,11 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
             .addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateParentSubCategoryViewController", object: nil)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        BackGroundMusic.sharedPlayer.playMusic()
+        
+    }
     //when view will disappear
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter()
@@ -126,6 +131,8 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
     
     //for selected video
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+        
+        BackGroundMusic.sharedPlayer.pauseMusic()
         
         //getting the selected video url
         let url = NSURL(string: mParentSubcategoryViewModelObj.mParentSubcategoryList[indexPath.row].downloadUrl.value)

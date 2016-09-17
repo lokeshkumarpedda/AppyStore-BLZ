@@ -23,6 +23,11 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
         collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame) , height : CGRectGetHeight(self.view.frame) , view: "parentArea")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        BackGroundMusic.sharedPlayer.playMusic()
+        
+    }
     //MARK: CollectionView DataSource
     
     //number of cells
@@ -55,7 +60,7 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
         case 0 :
             return "Child Details"
         case 1 :
-            return "Child Progress"
+            return "Register Child"
         case 2 :
             return "Parenting Videos"
         case 3 :
@@ -74,14 +79,19 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
     //For selected cell
     @objc override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         //each functionaly for each cell
-        if indexPath.row == 2{
+        if indexPath.row == 1{
+            
+            performSegueWithIdentifier("ParentAreaToRegistration", sender: nil)
+            
+        }
+        else if indexPath.row == 2{
             
             //For moving to parent categories
             performSegueWithIdentifier("ParentAreaToCategories", sender: nil)
             
         }
         else if indexPath.row == 4 || indexPath.row == 3{
-            
+            BackGroundMusic.sharedPlayer.pauseMusic()
             //for going to appy store
             performSegueWithIdentifier("ParentAreaToRating", sender: nil)
         }

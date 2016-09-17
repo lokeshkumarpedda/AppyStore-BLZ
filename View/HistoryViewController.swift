@@ -32,7 +32,6 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     //MARK:- View methods
     override func viewDidLoad() {
-        
         //setting background for button
         mBackButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         mVideoButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
@@ -61,6 +60,12 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.viewDidLoad()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        
+        BackGroundMusic.sharedPlayer.playMusic()
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -89,6 +94,7 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     //For selected video
     @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+        BackGroundMusic.sharedPlayer.pauseMusic()
         
         //getting the selected video url
         let url = NSURL(string: mHistoryViewModelObj.mHistoryList[indexPath.row].downloadUrl.value)

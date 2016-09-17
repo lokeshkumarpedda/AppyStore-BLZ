@@ -81,6 +81,7 @@ class VideoPlayerViewController: UIViewController {
         
         super.viewDidAppear(true)
 
+        BackGroundMusic.sharedPlayer.pauseMusic()
         //Timer to update slider for each second
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(updateSlider) , userInfo: nil, repeats: true)
         
@@ -96,6 +97,8 @@ class VideoPlayerViewController: UIViewController {
     //After disappearing
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+            
+        BackGroundMusic.sharedPlayer.playMusic()
     }
 
 

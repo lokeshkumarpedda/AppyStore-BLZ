@@ -20,16 +20,18 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 
     var mlocalDataBaseObj = LocalDataBase() //object of local database
     @IBOutlet weak var mobileNoTextField: UITextField!
-    var backgroundMusicPlayer: AVAudioPlayer?
     override func viewDidLoad() {
         super.viewDidLoad()
-        playBackgroundMusic()
+        //for background music
+        BackGroundMusic.sharedPlayer.backGroundMusic()
+        
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
         //to dismiss keyboard 
         mobileNoTextField.delegate = self
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard)))
+        
     }
     
     func  dismissKeyboard() {
@@ -44,28 +46,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    func playBackgroundMusic() {
-        let url = NSBundle.mainBundle().URLForResource("background_music", withExtension: "mp3")
-        if url == nil{
-            print("music file not found")
-        }
-        do {
-            backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: url!)
-            backgroundMusicPlayer!.numberOfLoops = -1
-            backgroundMusicPlayer!.prepareToPlay()
-            backgroundMusicPlayer!.play()
-        }
-        catch{
-            
-        }
-//        let session:AVAudioSession = AVAudioSession.sharedInstance()
-//        
-//        do {
-//            try session.setCategory(AVAudioSessionCategoryPlayback)
-//        } catch {
-//            //catching the error.
-//        }
     }
     
     @IBAction func loginInWithMobileNoButton(sender: UIButton) {

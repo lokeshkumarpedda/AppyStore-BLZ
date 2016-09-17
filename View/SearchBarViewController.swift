@@ -44,6 +44,7 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     //MARK:- View methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        BackGroundMusic.sharedPlayer.playMusic()
         mSearchViewModelObj = SearchViewModel(searchVCObj: self) //create object of serach view model
         //creating layout for cell in collection view
         collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame))
@@ -67,6 +68,13 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         }
         inputTextField.resignFirstResponder()
         return true
+    }
+    
+    //when view will appear
+    override func viewWillAppear(animated: Bool) {
+        
+        BackGroundMusic.sharedPlayer.playMusic()
+        
     }
 
     //called when memory overloaded
@@ -177,6 +185,7 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     }
     //method get called any item in collection view is pressed
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        BackGroundMusic.sharedPlayer.pauseMusic()
         let url = NSURL(string: mSearchViewModelObj.mSearchList[indexPath.row].downloadUrl.value)
         mVideoPlayer = AVPlayer(URL: url!)
         mPlayerViewController = AVPlayerViewController()

@@ -22,6 +22,8 @@
 		0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A937AA41D82F28400740CD0 /* Social.framework */; };
 		0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */; };
 		0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */; };
+		0AC626D81D8D0C4600D71907 /* BackGroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC626D71D8D0C4600D71907 /* BackGroundMusic.swift */; };
+		0AC626DC1D8D3EEB00D71907 /* RegisterChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC626DB1D8D3EEB00D71907 /* RegisterChildViewController.swift */; };
 		0AEC45AF1D65F09E007E06F1 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */; };
 		0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */; };
 		0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */; };
@@ -72,6 +74,8 @@
 		0A937AA41D82F28400740CD0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubCategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubcategoryViewModel.swift; sourceTree = "<group>"; };
+		0AC626D71D8D0C4600D71907 /* BackGroundMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackGroundMusic.swift; sourceTree = "<group>"; };
+		0AC626DB1D8D3EEB00D71907 /* RegisterChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterChildViewController.swift; sourceTree = "<group>"; };
 		0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0AFA4AEB1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderReusableView.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 				0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */,
 				0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */,
 				0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */,
+				0AC626DB1D8D3EEB00D71907 /* RegisterChildViewController.swift */,
 			);
 			name = "Parent's Area";
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 				0A8183A01D5895280030204B /* PSearchViewController.swift */,
 				0A81839E1D5895190030204B /* PSearchViewModel.swift */,
 				7007F0791D570BF200A3C543 /* CategoryDetails.swift */,
+				0AC626D71D8D0C4600D71907 /* BackGroundMusic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -440,8 +446,10 @@
 				70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */,
 				0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */,
 				0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */,
+				0AC626DC1D8D3EEB00D71907 /* RegisterChildViewController.swift in Sources */,
 				7007F0881D573DBD00A3C543 /* PController.swift in Sources */,
 				0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */,
+				0AC626D81D8D0C4600D71907 /* BackGroundMusic.swift in Sources */,
 				7007F08C1D57474C00A3C543 /* PSubCategoryViewModel.swift in Sources */,
 				0AFA4AF11D5B3D4300C9D24B /* LocalDataBase.swift in Sources */,
 				0A8183A31D58B1C60030204B /* CollectionReusableView.swift in Sources */,
