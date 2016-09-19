@@ -13,27 +13,33 @@ import WebKit
 
 class RatingViewController: UIViewController {
 
-    var mWebView : WKWebView?
+    var mWebView : WKWebView?   //webview for displaying web content
     
+    //when view loaded
     override func viewDidLoad() {
         super.viewDidLoad()
+        //adding delegate
         mWebView?.navigationDelegate = self
+        
         let url = NSURL(string: "https://play.google.com/store/apps/details?id=com.appy.store.lite")
         let request = NSURLRequest(URL: url!)
+        
+        //requesting the url
         mWebView?.loadRequest(request)
     }
-    
+    //when view loaded
     override func loadView() {
         super.loadView()
         mWebView = WKWebView()
         self.view = mWebView
     }
     
+    //when memory warning recieved
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    
+    //going back to previous view
     @IBAction func backButton(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }

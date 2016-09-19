@@ -31,6 +31,8 @@ class Controller : NSObject,PController{
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateSubCategoryList(_:)), name: "ControllerSubCategoryUpdate", object: nil)
         //observe notification for parent sub category list updates
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateParentSubCategoryList(_:)), name: "ControllerParentSubCategoryUpdate", object: nil)
+        //observe notification for avatar list
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateAvatars(_:)), name: "ControllerAvatarsUpdate", object: nil)
         
     }
     //init for search
@@ -86,6 +88,11 @@ class Controller : NSObject,PController{
         ApiRequesrObj.mFetchSubParentingCategories(cId,p_Id : pId,offset: offSet)
     }
     
+    //method to get avatar list
+    func mGetAvatars() {
+        ApiRequesrObj.mFetchAvatarList()
+    }
+    
     //MARK:- Updating methods
     //method to save played video in local database
     func mSaveVideoInHistory(subCategory : SubCategorylist) {
@@ -121,5 +128,10 @@ class Controller : NSObject,PController{
         NSNotificationCenter.defaultCenter().postNotificationName("UpdateParentSubCategoryViewModel", object: self, userInfo: notification.userInfo)
          NSNotificationCenter.defaultCenter().removeObserver(self)
         
+    }
+    
+    func updateAvatars(notification : NSNotification){
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateAvatarsViewModel", object: self, userInfo: notification.userInfo)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

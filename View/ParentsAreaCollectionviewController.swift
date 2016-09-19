@@ -79,9 +79,15 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
     //For selected cell
     @objc override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         //each functionaly for each cell
-        if indexPath.row == 1{
+        if indexPath.row == 0{
             
-            performSegueWithIdentifier("ParentAreaToRegistration", sender: nil)
+            underContructionMessage()
+            
+        }
+        else if indexPath.row == 1{
+            
+            //Going into the registration
+            performSegueWithIdentifier("ParentAreaToAvatars", sender: nil)
             
         }
         else if indexPath.row == 2{
@@ -90,8 +96,10 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
             performSegueWithIdentifier("ParentAreaToCategories", sender: nil)
             
         }
-        else if indexPath.row == 4 || indexPath.row == 3{
+        else if indexPath.row == 3 || indexPath.row == 4{
+            //stoping the music
             BackGroundMusic.sharedPlayer.pauseMusic()
+            
             //for going to appy store
             performSegueWithIdentifier("ParentAreaToRating", sender: nil)
         }
@@ -102,44 +110,6 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
             presentViewController(activityViewController, animated: true, completion: nil)
             
         }
-        else{
-            //cells are not functionable
-            underContructionMessage()
-        }
-    }
-    
-    //for giving ratings to the app
-    func appRating() {
-        let menu = UIAlertController(title: nil, message: "", preferredStyle: .ActionSheet)
-        let one = UIAlertAction(title: "ONE", style: .Default, handler: {
-            (result : UIAlertAction) -> Void in
-            self.underContructionMessage()
-        })
-        let two = UIAlertAction(title: "TWO", style: .Default, handler: {
-            (result : UIAlertAction) -> Void in
-            self.underContructionMessage()
-        })
-        let three = UIAlertAction(title: "THREE", style: .Default, handler: {
-            (result : UIAlertAction) -> Void in
-            self.underContructionMessage()
-        })
-        let four = UIAlertAction(title: "FOUR", style: .Default, handler: {
-            (result : UIAlertAction) -> Void in
-            self.underContructionMessage()
-        })
-        let five = UIAlertAction(title: "FIVE", style: .Default, handler: {
-            (result : UIAlertAction) -> Void in
-            self.underContructionMessage()
-        })
-        let cancelAction = UIAlertAction(title: "cancel", style: .Cancel, handler:nil)
-        
-        menu.addAction(one)
-        menu.addAction(two)
-        menu.addAction(three)
-        menu.addAction(four)
-        menu.addAction(five)
-        menu.addAction(cancelAction)
-        self.presentViewController(menu, animated: true, completion: nil)
     }
     
     //Telling about non functionable cells

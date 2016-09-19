@@ -20,6 +20,9 @@
 		0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */; };
 		0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */; };
 		0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A937AA41D82F28400740CD0 /* Social.framework */; };
+		0AA0BAED1D8E78D6007DC3E7 /* AvatarListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAEC1D8E78D6007DC3E7 /* AvatarListModel.swift */; };
+		0AA0BAEF1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAEE1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift */; };
+		0AA0BAF11D8E82A6007DC3E7 /* AvatarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAF01D8E82A6007DC3E7 /* AvatarsViewModel.swift */; };
 		0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */; };
 		0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */; };
 		0AC626D81D8D0C4600D71907 /* BackGroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC626D71D8D0C4600D71907 /* BackGroundMusic.swift */; };
@@ -72,9 +75,12 @@
 		0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music.mp3; sourceTree = "<group>"; };
 		0A937AA41D82F28400740CD0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0AA0BAEC1D8E78D6007DC3E7 /* AvatarListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarListModel.swift; sourceTree = "<group>"; };
+		0AA0BAEE1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsCollectionViewController.swift; sourceTree = "<group>"; };
+		0AA0BAF01D8E82A6007DC3E7 /* AvatarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsViewModel.swift; sourceTree = "<group>"; };
 		0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubCategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubcategoryViewModel.swift; sourceTree = "<group>"; };
-		0AC626D71D8D0C4600D71907 /* BackGroundMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackGroundMusic.swift; sourceTree = "<group>"; };
+		0AC626D71D8D0C4600D71907 /* BackGroundMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackGroundMusic.swift; path = ../Model/BackGroundMusic.swift; sourceTree = "<group>"; };
 		0AC626DB1D8D3EEB00D71907 /* RegisterChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterChildViewController.swift; sourceTree = "<group>"; };
 		0AEC45AE1D65F09E007E06F1 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		0AFA4AE91D5B3C8200C9D24B /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 				0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */,
 				0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */,
 				0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */,
+				0AA0BAEE1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift */,
 				0AC626DB1D8D3EEB00D71907 /* RegisterChildViewController.swift */,
 			);
 			name = "Parent's Area";
@@ -182,6 +189,7 @@
 				7007F06E1D570BE100A3C543 /* HistoryViewModel.swift */,
 				0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */,
 				0AAA85CD1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift */,
+				0AA0BAF01D8E82A6007DC3E7 /* AvatarsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -203,7 +211,7 @@
 				0A8183A01D5895280030204B /* PSearchViewController.swift */,
 				0A81839E1D5895190030204B /* PSearchViewModel.swift */,
 				7007F0791D570BF200A3C543 /* CategoryDetails.swift */,
-				0AC626D71D8D0C4600D71907 /* BackGroundMusic.swift */,
+				0AA0BAEC1D8E78D6007DC3E7 /* AvatarListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				7007F0811D570C0800A3C543 /* Utility.swift */,
+				0AC626D71D8D0C4600D71907 /* BackGroundMusic.swift */,
 			);
 			path = Utlity;
 			sourceTree = "<group>";
@@ -436,11 +445,13 @@
 				0A81839F1D5895190030204B /* PSearchViewModel.swift in Sources */,
 				7007F0661D570BD000A3C543 /* CategoryViewController.swift in Sources */,
 				0A3694C91D59D64A0005EA82 /* LoginViewController.swift in Sources */,
+				0AA0BAED1D8E78D6007DC3E7 /* AvatarListModel.swift in Sources */,
 				7007F07F1D570BFF00A3C543 /* APIResponse.swift in Sources */,
 				0A1257B01D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift in Sources */,
 				7007F06A1D570BD000A3C543 /* SearchBarViewController.swift in Sources */,
 				0AEC45AF1D65F09E007E06F1 /* VideoPlayerViewController.swift in Sources */,
 				7007F0741D570BE100A3C543 /* SubCategoryViewModel.swift in Sources */,
+				0AA0BAF11D8E82A6007DC3E7 /* AvatarsViewModel.swift in Sources */,
 				7007F06B1D570BD000A3C543 /* SubCategoryViewContoller.swift in Sources */,
 				7007F0691D570BD000A3C543 /* CustomViewFlowLayout.swift in Sources */,
 				70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */,
@@ -448,6 +459,7 @@
 				0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */,
 				0AC626DC1D8D3EEB00D71907 /* RegisterChildViewController.swift in Sources */,
 				7007F0881D573DBD00A3C543 /* PController.swift in Sources */,
+				0AA0BAEF1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift in Sources */,
 				0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */,
 				0AC626D81D8D0C4600D71907 /* BackGroundMusic.swift in Sources */,
 				7007F08C1D57474C00A3C543 /* PSubCategoryViewModel.swift in Sources */,

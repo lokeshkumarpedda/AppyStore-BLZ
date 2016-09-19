@@ -20,7 +20,7 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
     var mParentSubcategoryViewModelObj : ParentingSubcategoryViewModel!//viewmodel object
     var mParentCategory : Categorylist!   //to store selected category from category view
     
-    var mAvPlayer = AVPlayer()
+    var mAvPlayer = AVPlayer()              //For playing the video
     var mAvPlayerViewController = AVPlayerViewController()
     
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
@@ -49,26 +49,20 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
             .addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateParentSubCategoryViewController", object: nil)
     }
     
+    //when view appears playing the music
     override func viewWillAppear(animated: Bool) {
         
         BackGroundMusic.sharedPlayer.playMusic()
         
     }
+    
     //when view will disappear
     override func viewWillDisappear(animated: Bool) {
+        
+        //removing the observer
         NSNotificationCenter.defaultCenter()
             .removeObserver(self, name: "UpdateParentSubCategoryViewController", object: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
     
@@ -104,11 +98,15 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         
         //for first cells in the collection view
         if recievedCategories < 21{
+            
             collectionView?.reloadData()
+            
         }
         //adding footer with activity indicator
         if recievedCategories < totalCategories{
+            
             layOutWithFooter()
+            
         }
         else{
             layOutWithOutFooter()
@@ -124,6 +122,8 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
     
     //removing footer from the collection view
     func layOutWithOutFooter() {
+        
+        //creating layout for cell in collection view
         collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategorywithoutFooter")
     }
     
@@ -149,6 +149,7 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         }
     }
 
+    //For going back to previous view
     @IBAction func backButton(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }

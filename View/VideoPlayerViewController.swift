@@ -81,7 +81,9 @@ class VideoPlayerViewController: UIViewController {
         
         super.viewDidAppear(true)
 
+        //stoping the music
         BackGroundMusic.sharedPlayer.pauseMusic()
+        
         //Timer to update slider for each second
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(updateSlider) , userInfo: nil, repeats: true)
         
@@ -97,11 +99,13 @@ class VideoPlayerViewController: UIViewController {
     //After disappearing
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-            
+        
+        //playing the background music
         BackGroundMusic.sharedPlayer.playMusic()
     }
 
 
+    //when memory warning recieved
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -476,6 +480,7 @@ extension VideoPlayerViewController : UICollectionViewDelegate{
         LocalDB.mInsertInToHistoryTabel(mSubcategoryViewModelObj.mSubcategoryList[indexPath.row])
     }
     
+    //Adding custom footer
     @objc func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
         let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "playlistFooter", forIndexPath: indexPath)
         return footerView

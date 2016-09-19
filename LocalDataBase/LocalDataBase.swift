@@ -60,7 +60,7 @@ class LocalDataBase: NSObject {
         let AppyStoreDataBase = FMDatabase(path: dataBasePath)
         //opening database
         if AppyStoreDataBase.open() {
-            let insertSql = "INSERT INTO CATEGORY (category_name,category_id,parent_category_id,image_path,TotalCount) VALUES ('\(category.name.value)','\(category.categoryId)','\(category.parentId)','\(category.image)','\(category.totalCOunt)')"
+            let insertSql = "INSERT INTO CATEGORY (category_name,category_id,parent_category_id,image_path,TotalCount) VALUES ('\(category.name.value)','\(category.categoryId)','\(category.parentId)','\(category.image)','\(category.totalCount)')"
             //execute insert statement
             if (AppyStoreDataBase.executeStatements(insertSql)) {
                 print("Data inserted")

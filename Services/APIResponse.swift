@@ -36,7 +36,7 @@ class APIResponse: NSObject {
     func mParseSubCategoryDetails(response : [String : AnyObject]) {
         var subcategories = [SubCategorylist]()
         
-        let Totalcount = response["Responsedetails"]!["total_count"] as! Int
+        let totalcount = response["Responsedetails"]!["total_count"] as! Int
         let count = response["Responsedetails"]!["data_array"]!!.count as Int
         for i in 0..<count {
             
@@ -45,7 +45,7 @@ class APIResponse: NSObject {
             let duration = response["Responsedetails"]!["data_array"]!![i]["content_duration"] as! String
             let downloadUrl = response["Responsedetails"]!["data_array"]!![i]["dnld_url"] as! String
 
-            subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
+            subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: totalcount))
         }
         NSNotificationCenter.defaultCenter().postNotificationName("ControllerSubCategoryUpdate", object: self, userInfo: ["SubCategory" : subcategories])
     }
@@ -55,7 +55,7 @@ class APIResponse: NSObject {
         var subcategories = [SubCategorylist]()
         //search result found
         if response["ResponseMessage"] as! String == "Success"{
-            let Totalcount = response["Responsedetails"]?[0]!["total_count"] as! Int
+            let totalcount = response["Responsedetails"]?[0]!["total_count"] as! Int
             let count = response["Responsedetails"]![0]!["data_array"]!!.count as Int
             
             for i in 0..<count {
@@ -64,7 +64,7 @@ class APIResponse: NSObject {
                 let downloadUrl = response["Responsedetails"]![0]!["data_array"]!![i]["dnld_url"] as! String
                 let duration = response["Responsedetails"]![0]!["data_array"]!![i]["content_duration"] as! String
 
-                subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
+                subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: totalcount))
                 
             }
             
@@ -96,7 +96,7 @@ class APIResponse: NSObject {
     func mParseParentSubCategoryDetails(response : [String : AnyObject]) {
         var subcategories = [SubCategorylist]()
         
-        let Totalcount = response["Responsedetails"]!["total_count"] as! Int
+        let totalcount = response["Responsedetails"]!["total_count"] as! Int
         let count = response["Responsedetails"]!["data_array"]!!.count as Int
         for i in 0..<count {
             
@@ -105,8 +105,23 @@ class APIResponse: NSObject {
             let duration = response["Responsedetails"]!["data_array"]!![i]["content_duration"] as! String
             let downloadUrl = response["Responsedetails"]!["data_array"]!![i]["dnld_url"] as! String
             
-            subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: Totalcount))
+            subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: totalcount))
         }
         NSNotificationCenter.defaultCenter().postNotificationName("ControllerParentSubCategoryUpdate", object: self, userInfo: ["ParentSubCategory" : subcategories])
+    }
+    
+    //method to parse avatar list
+    func mParseAvatarList(response : [String : AnyObject]){
+        var avatarList = [Avatar]()
+        
+        let count = response["Responsedetails"]!.count as Int
+        
+        for i in 0..<count{
+            let avatarId = response["Responsedetails"]![i]["avatarID"] as! Int
+            let avatarUrl = response["Responsedetails"]![i]["avatarIMG"] as!String
+            
+            avatarList.append(Avatar(id: avatarId, url: avatarUrl))
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("ControllerAvatarsUpdate", object: self, userInfo: ["Avatars" : avatarList])
     }
 }

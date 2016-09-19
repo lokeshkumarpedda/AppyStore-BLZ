@@ -16,14 +16,14 @@ class Categorylist {
     var image : String
     var categoryId : Int
     var parentId : Int
-    var totalCOunt : Int
+    var totalCount : Int
     
     init(name : String,image : String,cId : Int,pId : Int,totalCount : Int){
         self.name = Observable(name)
         self.image = image
         self.categoryId = cId
         self.parentId = pId
-        self.totalCOunt = totalCount
+        self.totalCount = totalCount
     }
 }
 

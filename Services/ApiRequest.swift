@@ -91,11 +91,31 @@ class ApiRequest: NSObject {
         //getting url from info.plist
         let url = infoPlist!["Web_Url"] as! String
         
-        Alamofire.request(.GET, "\(url)method=getParentingVideos&content_type=videos&limit=20&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)", headers: header)
+        Alamofire.request(.GET,
+            "\(url)method=getParentingVideos&content_type=videos&limit=20&offset=\(offset)&catid=\(c_Id)&pcatid=\(p_Id)",
+            headers: header)
             .responseJSON { response in
                 if(response.result.value != nil){
                     let APIresponseObj = APIResponse()
                     APIresponseObj.mParseParentSubCategoryDetails(response.result.value as! [String : AnyObject])
+                }
+                else{
+                    
+                    print("Error")
+                }
+        }
+    }
+    
+    //method to fetch avatar list
+    func mFetchAvatarList() {
+        //getting url from info.plist
+        let url = infoPlist!["Web_Url"] as! String
+        
+        Alamofire.request(.GET,"\(url)method=getAvatarList",headers: header)
+            .responseJSON { response in
+                if(response.result.value != nil){
+                    let APIresponseObj = APIResponse()
+                    APIresponseObj.mParseAvatarList(response.result.value as! [String : AnyObject])
                 }
                 else{
                     
