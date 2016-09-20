@@ -123,4 +123,22 @@ class ApiRequest: NSObject {
                 }
         }
     }
+    
+    //method to Register a child
+    func mRegisterChild(name: String , dob: String , avatarId: Int) {
+        //getting url from info.plist
+        let url = infoPlist!["Web_Url"] as! String
+        
+        Alamofire.request(.GET,"\(url)method=register&child_name=\(name)&child_dob=\(dob)&child_avtarid=\(avatarId)",headers: header)
+            .responseJSON { response in
+                if(response.result.value != nil){
+                    let APIresponseObj = APIResponse()
+                    APIresponseObj.mRegistrationRespone(response.result.value as! [String : AnyObject])
+                }
+                else{
+                    
+                    print("Error")
+                }
+        }
+    }
 }

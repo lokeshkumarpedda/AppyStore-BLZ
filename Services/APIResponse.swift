@@ -124,4 +124,31 @@ class APIResponse: NSObject {
         }
         NSNotificationCenter.defaultCenter().postNotificationName("ControllerAvatarsUpdate", object: self, userInfo: ["Avatars" : avatarList])
     }
+    
+    //method to get the child registratoin response
+    func mRegistrationRespone(response : [String : AnyObject]) {
+        
+        let message = response["ResponseMessage"] as! String
+        if message == "Success"{
+            let name = response["childlist"]![0]["childName"] as! String
+            let dateOfBirth = response["childlist"]![0]["dob"] as! String
+            let age = response["childlist"]![0]["age"] as! String
+            let childId = response["childlist"]![0]["childId"] as! String
+            let avatarId = response["childlist"]![0]["avatarId"] as! String
+            let avatarUrl = response["childlist"]![0]["avatarIMG"] as! String
+            let childDetails = ChildDetails(name: name, dob: dateOfBirth, age: Int(age)!, childId: Int(childId)!, avatarId: Int(avatarId)!, avatarUrl: avatarUrl)
+            
+            //encoding the class object to store in the nsuser defaults
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let encodedData = NSKeyedArchiver.archivedDataWithRootObject(childDetails)
+            defaults.setObject(encodedData, forKey: "childInformation")
+            
+            //posting notification with successfull registration
+            NSNotificationCenter.defaultCenter().postNotificationName("RegistrationSuccess", object: self, userInfo: nil)
+        }
+        else{
+            //For registration failure
+            NSNotificationCenter.defaultCenter().postNotificationName("RegistrationFailed", object: self, userInfo: nil)
+        }
+    }
 }

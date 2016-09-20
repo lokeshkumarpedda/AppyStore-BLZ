@@ -1253,10 +1253,10 @@
                             <outlet property="delegate" destination="ojM-3p-8bZ" id="Egn-9M-HqL"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Parent's Area" id="CIp-py-OOd">
-                        <barButtonItem key="leftBarButtonItem" image="backY" id="VCl-C4-ZGZ">
+                    <navigationItem key="navigationItem" title="Parent's Area" id="kH0-8h-srV">
+                        <barButtonItem key="leftBarButtonItem" image="backY" id="OlY-iP-dAz">
                             <connections>
-                                <segue destination="TGT-he-LA6" kind="unwind" unwindAction="backToCategoryVC:" id="R2K-Yu-vS2"/>
+                                <segue destination="yMQ-ph-IYN" kind="unwind" unwindAction="backToCategoryVC:" id="z3K-DE-HLi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1264,12 +1264,59 @@
                         <segue destination="AVd-5g-UAt" kind="show" identifier="ParentAreaToCategories" id="cNY-H5-zJw"/>
                         <segue destination="XKg-vB-eUy" kind="show" identifier="ParentAreaToRating" id="HfN-qe-byl"/>
                         <segue destination="CZ5-tV-Id2" kind="show" identifier="ParentAreaToAvatars" id="TEQ-Fl-ewu"/>
+                        <segue destination="EUC-lP-JKd" kind="show" identifier="Parent'sAreaToChildDetails" id="vsm-fj-kx0"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yd3-zk-QpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="TGT-he-LA6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="950" y="665"/>
+        </scene>
+        <!--Child Details-->
+        <scene sceneID="n1i-QU-2cZ">
+            <objects>
+                <viewController id="EUC-lP-JKd" customClass="ChildDetailsViewController" customModule="AppyStoreBLZ" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F3e-Ii-sm4"/>
+                        <viewControllerLayoutGuide type="bottom" id="GN2-N8-tWN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9kr-Ml-2fq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppL-Lt-vq0">
+                                <rect key="frame" x="20" y="20" width="300" height="300"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gk-q0-VFJ">
+                                <rect key="frame" x="340" y="20" width="120" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfD-3L-C5Q">
+                                <rect key="frame" x="340" y="100" width="120" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Child Details" id="KmG-F8-610">
+                        <barButtonItem key="leftBarButtonItem" image="backY" id="eJn-KZ-sZg">
+                            <connections>
+                                <action selector="backButton:" destination="EUC-lP-JKd" id="Vua-Al-uat"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mAgeLabel" destination="xfD-3L-C5Q" id="i2g-LE-27x"/>
+                        <outlet property="mImageView" destination="ppL-Lt-vq0" id="3bA-b4-1mD"/>
+                        <outlet property="mNameLabel" destination="8Gk-q0-VFJ" id="fEV-Nh-muL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tcQ-Ca-LSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270" y="1464"/>
         </scene>
         <!--Select A Avatar-->
         <scene sceneID="yfv-aZ-1kS">
@@ -1362,10 +1409,13 @@
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWN-5n-W3y">
                                         <rect key="frame" x="275" y="415" width="50" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="0Js-HJ-bel"/>
-                                            <constraint firstAttribute="width" constant="50" id="WAl-1Q-OdW"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="0Js-HJ-bel"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="WAl-1Q-OdW"/>
                                         </constraints>
-                                        <state key="normal" title="Next"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Register">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="nextButton:" destination="PM8-bI-2MQ" eventType="touchUpInside" id="ZTk-Ef-iZN"/>
                                         </connections>
@@ -1574,6 +1624,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OsP-Hu-XVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yMQ-ph-IYN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="282" y="665"/>
         </scene>
@@ -1587,9 +1638,9 @@
         <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Vnk-rj-NgP"/>
         <segue reference="R1j-RD-yfJ"/>
         <segue reference="0Er-HR-mOK"/>
-        <segue reference="U3x-Hw-KJU"/>
         <segue reference="PWM-wa-fpP"/>
     </inferredMetricsTieBreakers>
 </document>

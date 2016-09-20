@@ -12,6 +12,9 @@ class AvatarsCollectionViewController: UICollectionViewController {
 
     var mAvatarVMobj : AvatarsViewModel?
     var cache = NSCache()
+    
+    var mSelectedAvatarId : Int?
+    
     //When the view loaded
     override func viewDidLoad() {
         
@@ -56,10 +59,9 @@ class AvatarsCollectionViewController: UICollectionViewController {
         let image = avatar.avatarUrl
         cell.VideoLabel.text = String(avatar.avatarId)
         cell.activityIndicator.hidden = true
-        cell.VideoLabel.hidden = true
         
         cell.VideoImageView.image = UIImage(named: "angry_birds_space_image_rectangular_box")
-        cell.VideoImageView.layer.cornerRadius = 8
+        cell.VideoImageView.layer.cornerRadius = (cell.VideoImageView.frame.size.height/2)
         cell.VideoImageView.clipsToBounds = true
         cell.VideoDurationLabel.hidden = true
         
@@ -96,7 +98,7 @@ class AvatarsCollectionViewController: UICollectionViewController {
     
     //when collection view cell selected
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
-        
+        mSelectedAvatarId = mAvatarVMobj!.getAvatar(indexPath.row).avatarId
         performSegueWithIdentifier("AvatarToRegistration", sender: nil)
     }
     
@@ -104,6 +106,15 @@ class AvatarsCollectionViewController: UICollectionViewController {
     func updateAvatarVC(notification : NSNotification){
         
         collectionView?.reloadData()
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "AvatarToRegistration" {
+            let registrationChildVCObj = segue.destinationViewController as! RegisterChildViewController
+            registrationChildVCObj.mSelectedAvatar = mSelectedAvatarId
+        }
     }
     //Going to previous view controller
     @IBAction func backButton(sender: AnyObject) {

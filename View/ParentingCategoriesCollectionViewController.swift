@@ -129,7 +129,8 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
         
         //storing the selected category
         mSelectedCategory = mParentCategoryVMobj.mParentCategoryList[indexPath.row]
-        performSegueWithIdentifier("ParentCategoryToSubCategory", sender: mParentCategoryVMobj.getCellValues(indexPath.row))
+        
+        performSegueWithIdentifier("ParentCategoryToSubCategory", sender: nil)
     }
 
     

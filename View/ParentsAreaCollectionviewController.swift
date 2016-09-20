@@ -81,7 +81,8 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
         //each functionaly for each cell
         if indexPath.row == 0{
             
-            underContructionMessage()
+            performSegueWithIdentifier("Parent'sAreaToChildDetails", sender: nil)
+            
             
         }
         else if indexPath.row == 1{
@@ -110,17 +111,6 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
             presentViewController(activityViewController, animated: true, completion: nil)
             
         }
-    }
-    
-    //Telling about non functionable cells
-    func underContructionMessage()  {
-        //creating alert view
-        let alertController = UIAlertController(title: "Sorry !!", message: "Not available at this time", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
-        }
-        alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 

@@ -14,7 +14,7 @@ import UIKit
 
 class Controller : NSObject,PController{
     
-    var ApiRequesrObj = ApiRequest() //create object to make rest call
+    var mApiRequesrObj = ApiRequest() //create object to make rest call
     var mLocalDataBaseObj = LocalDataBase() //object of local database
     var mCategoryViewModelObj : PCategoryViewModel! //object od category view model
     var mSubCategoryViewModelObj : PSubCategoryViewModel! //object of sub category view model
@@ -50,7 +50,7 @@ class Controller : NSObject,PController{
     //MARK:- Fetch details methods
     //method to get category list from rest api
     func mGetCategoryDetailsFromRest() {
-        ApiRequesrObj.mFetchCategoryList()
+        mApiRequesrObj.mFetchCategoryList()
     }
     
     //method to get category lisf from local database
@@ -60,12 +60,12 @@ class Controller : NSObject,PController{
     
     //method to get subcategory from rest api
     func mGetSubCategoryDetails(cId : Int,pId : Int,offSet : Int) {
-        ApiRequesrObj.mFetchSubCategoryList(cId,p_Id : pId,offset: offSet)
+        mApiRequesrObj.mFetchSubCategoryList(cId,p_Id : pId,offset: offSet)
     }
     
     //medthod to get SearchDetails from api
     func mGetSearchCategory(keyword : String , index : Int) {
-        ApiRequesrObj.mFetchSearchDetails(self,keyword: keyword, offset: index)
+        mApiRequesrObj.mFetchSearchDetails(self,keyword: keyword, offset: index)
     }
     
     //method to get history details
@@ -80,17 +80,22 @@ class Controller : NSObject,PController{
     
     //method to get parent categories
     func mGetParentCategories() {
-        ApiRequesrObj.mFetchParentCategories(self)
+        mApiRequesrObj.mFetchParentCategories(self)
     }
     
     //method to get parent subcategories
     func mGetParentSubCategoryDetails(cId : Int,pId : Int,offSet : Int) {
-        ApiRequesrObj.mFetchSubParentingCategories(cId,p_Id : pId,offset: offSet)
+        mApiRequesrObj.mFetchSubParentingCategories(cId,p_Id : pId,offset: offSet)
     }
     
     //method to get avatar list
     func mGetAvatars() {
-        ApiRequesrObj.mFetchAvatarList()
+        mApiRequesrObj.mFetchAvatarList()
+    }
+    
+    //method to registering a child
+    func mRegisterChildDetails(name: String , dob: String , avatarId: Int) {
+        mApiRequesrObj.mRegisterChild(name, dob: dob, avatarId: avatarId)
     }
     
     //MARK:- Updating methods

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A1257B01D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */; };
 		0A1257B21D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */; };
+		0A1523BB1D913B3300AAD145 /* ChildDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1523BA1D913B3300AAD145 /* ChildDetailsViewController.swift */; };
 		0A3694C91D59D64A0005EA82 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3694C81D59D64A0005EA82 /* LoginViewController.swift */; };
 		0A3694CF1D59E53E0005EA82 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3694CD1D59E53E0005EA82 /* FMDB.framework */; };
 		0A3694D01D59E53E0005EA82 /* ReactiveFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3694CE1D59E53E0005EA82 /* ReactiveFoundation.framework */; };
@@ -20,7 +21,7 @@
 		0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */; };
 		0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */; };
 		0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A937AA41D82F28400740CD0 /* Social.framework */; };
-		0AA0BAED1D8E78D6007DC3E7 /* AvatarListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAEC1D8E78D6007DC3E7 /* AvatarListModel.swift */; };
+		0AA0BAED1D8E78D6007DC3E7 /* ChildInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAEC1D8E78D6007DC3E7 /* ChildInformation.swift */; };
 		0AA0BAEF1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAEE1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift */; };
 		0AA0BAF11D8E82A6007DC3E7 /* AvatarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAF01D8E82A6007DC3E7 /* AvatarsViewModel.swift */; };
 		0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingCategoriesCollectionViewController.swift; sourceTree = "<group>"; };
 		0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingCategoriesViewModel.swift; sourceTree = "<group>"; };
+		0A1523BA1D913B3300AAD145 /* ChildDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildDetailsViewController.swift; sourceTree = "<group>"; };
 		0A3694C81D59D64A0005EA82 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0A3694CD1D59E53E0005EA82 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "Pods/../build/Debug-iphoneos/FMDB/FMDB.framework"; sourceTree = "<group>"; };
 		0A3694CE1D59E53E0005EA82 /* ReactiveFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveFoundation.framework; path = "../../../Library/Developer/Xcode/DerivedData/AppyStoreBLZ-frlbufotlcqfdbbkzqdcjmbdkcej/Build/Products/Debug-iphonesimulator/ReactiveFoundation/ReactiveFoundation.framework"; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music.mp3; sourceTree = "<group>"; };
 		0A937AA41D82F28400740CD0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		0AA0BAEC1D8E78D6007DC3E7 /* AvatarListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarListModel.swift; sourceTree = "<group>"; };
+		0AA0BAEC1D8E78D6007DC3E7 /* ChildInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildInformation.swift; sourceTree = "<group>"; };
 		0AA0BAEE1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsCollectionViewController.swift; sourceTree = "<group>"; };
 		0AA0BAF01D8E82A6007DC3E7 /* AvatarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsViewModel.swift; sourceTree = "<group>"; };
 		0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingSubCategoryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */,
 				0AAA85CB1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift */,
 				0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */,
+				0A1523BA1D913B3300AAD145 /* ChildDetailsViewController.swift */,
 				0AA0BAEE1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift */,
 				0AC626DB1D8D3EEB00D71907 /* RegisterChildViewController.swift */,
 			);
@@ -211,7 +214,7 @@
 				0A8183A01D5895280030204B /* PSearchViewController.swift */,
 				0A81839E1D5895190030204B /* PSearchViewModel.swift */,
 				7007F0791D570BF200A3C543 /* CategoryDetails.swift */,
-				0AA0BAEC1D8E78D6007DC3E7 /* AvatarListModel.swift */,
+				0AA0BAEC1D8E78D6007DC3E7 /* ChildInformation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -445,8 +448,9 @@
 				0A81839F1D5895190030204B /* PSearchViewModel.swift in Sources */,
 				7007F0661D570BD000A3C543 /* CategoryViewController.swift in Sources */,
 				0A3694C91D59D64A0005EA82 /* LoginViewController.swift in Sources */,
-				0AA0BAED1D8E78D6007DC3E7 /* AvatarListModel.swift in Sources */,
+				0AA0BAED1D8E78D6007DC3E7 /* ChildInformation.swift in Sources */,
 				7007F07F1D570BFF00A3C543 /* APIResponse.swift in Sources */,
+				0A1523BB1D913B3300AAD145 /* ChildDetailsViewController.swift in Sources */,
 				0A1257B01D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift in Sources */,
 				7007F06A1D570BD000A3C543 /* SearchBarViewController.swift in Sources */,
 				0AEC45AF1D65F09E007E06F1 /* VideoPlayerViewController.swift in Sources */,
