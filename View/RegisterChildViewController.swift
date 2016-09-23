@@ -37,7 +37,7 @@ class RegisterChildViewController: UIViewController {
             .addObserver(self, selector: #selector(invalidChildName(_:)), name: "RegistrationFailed", object: nil)
     }
     
-    @IBAction func nextButton(sender: AnyObject) {
+    @IBAction func registrationButton(sender: AnyObject) {
         
         //checking the texfield is empty or not
         let text = mNameTxtFld.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())

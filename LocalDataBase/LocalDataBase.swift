@@ -146,7 +146,7 @@ class LocalDataBase: NSObject {
     }
 
     //For clearing the data in the history table
-    //returns tru if clear fase if not
+    //returns tru if clear false if not
     func clearHistory() -> Bool{
         var cleared = false
         let AppyStoreDataBase = FMDatabase(path: dataBasePath)

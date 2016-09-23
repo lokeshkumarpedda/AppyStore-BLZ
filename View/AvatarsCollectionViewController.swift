@@ -81,7 +81,6 @@ class AvatarsCollectionViewController: UICollectionViewController {
                             self.cache.setObject(img, forKey: image!)
                             if cell.imgUrl == image {
                                 cell.VideoImageView.image = img
-                                
                             }
                         }
                     }

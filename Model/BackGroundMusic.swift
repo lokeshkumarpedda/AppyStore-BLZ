@@ -30,12 +30,14 @@ class BackGroundMusic {
         }
     }
     
+    //for starting the music
     func playMusic() {
         
         backgroundMusicPlayer?.play()
         
     }
     
+    //pausing the music
     func pauseMusic()  {
         
         backgroundMusicPlayer?.pause()
