@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5o2-ac-eOv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5o2-ac-eOv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1283,23 +1283,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppL-Lt-vq0">
-                                <rect key="frame" x="20" y="20" width="300" height="300"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gk-q0-VFJ">
+                                <rect key="frame" x="260" y="76" width="100" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfD-3L-C5Q">
+                                <rect key="frame" x="260" y="119" width="100" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf1-wT-eV8">
+                                <rect key="frame" x="185" y="76" width="70" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Age :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vE-CA-VjN">
+                                <rect key="frame" x="185" y="119" width="70" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ppL-Lt-vq0">
+                                <rect key="frame" x="20" y="40" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ppL-Lt-vq0" secondAttribute="height" multiplier="1:1" id="5YF-zf-BOj"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="H6x-V7-eNB"/>
+                                    <constraint firstAttribute="height" constant="150" id="fpb-q4-ac7"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gk-q0-VFJ">
-                                <rect key="frame" x="340" y="20" width="120" height="50"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfD-3L-C5Q">
-                                <rect key="frame" x="340" y="100" width="120" height="50"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ppL-Lt-vq0" firstAttribute="top" secondItem="F3e-Ii-sm4" secondAttribute="bottom" constant="20" id="1Mj-Is-HeM"/>
+                            <constraint firstItem="xfD-3L-C5Q" firstAttribute="top" secondItem="8Gk-q0-VFJ" secondAttribute="bottom" constant="8" id="1n7-ca-ECC"/>
+                            <constraint firstItem="xfD-3L-C5Q" firstAttribute="leading" secondItem="1vE-CA-VjN" secondAttribute="trailing" constant="5" id="5Vn-51-OdI"/>
+                            <constraint firstItem="1vE-CA-VjN" firstAttribute="top" secondItem="gf1-wT-eV8" secondAttribute="bottom" constant="8" id="IRH-Qs-FNN"/>
+                            <constraint firstItem="xfD-3L-C5Q" firstAttribute="top" secondItem="8Gk-q0-VFJ" secondAttribute="bottom" constant="8" id="LL9-4L-lcu"/>
+                            <constraint firstItem="8Gk-q0-VFJ" firstAttribute="top" secondItem="F3e-Ii-sm4" secondAttribute="bottom" constant="56" id="NEv-hn-3YY"/>
+                            <constraint firstItem="8Gk-q0-VFJ" firstAttribute="leading" secondItem="gf1-wT-eV8" secondAttribute="trailing" constant="5" id="PQ6-Gp-ZqM"/>
+                            <constraint firstItem="xfD-3L-C5Q" firstAttribute="leading" secondItem="1vE-CA-VjN" secondAttribute="trailing" constant="5" id="XiU-cn-Gyg"/>
+                            <constraint firstItem="gf1-wT-eV8" firstAttribute="top" secondItem="F3e-Ii-sm4" secondAttribute="bottom" constant="56" id="b6R-CI-z50"/>
+                            <constraint firstItem="1vE-CA-VjN" firstAttribute="leading" secondItem="ppL-Lt-vq0" secondAttribute="trailing" constant="15" id="bhE-GP-0Nv"/>
+                            <constraint firstItem="1vE-CA-VjN" firstAttribute="top" secondItem="gf1-wT-eV8" secondAttribute="bottom" constant="8" id="eIe-C6-VPT"/>
+                            <constraint firstItem="gf1-wT-eV8" firstAttribute="leading" secondItem="ppL-Lt-vq0" secondAttribute="trailing" constant="15" id="hB2-yf-4XA"/>
+                            <constraint firstItem="ppL-Lt-vq0" firstAttribute="leading" secondItem="9kr-Ml-2fq" secondAttribute="leading" constant="20" id="m5D-3a-gZO"/>
+                            <constraint firstItem="8Gk-q0-VFJ" firstAttribute="leading" secondItem="gf1-wT-eV8" secondAttribute="trailing" constant="5" id="rBC-H1-SuG"/>
+                            <constraint firstItem="1vE-CA-VjN" firstAttribute="leading" secondItem="ppL-Lt-vq0" secondAttribute="trailing" constant="15" id="yYb-k2-mgL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Child Details" id="KmG-F8-610">
                         <barButtonItem key="leftBarButtonItem" image="backY" id="eJn-KZ-sZg">
@@ -1639,8 +1673,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Vnk-rj-NgP"/>
-        <segue reference="R1j-RD-yfJ"/>
-        <segue reference="0Er-HR-mOK"/>
-        <segue reference="PWM-wa-fpP"/>
+        <segue reference="UDj-z8-HTj"/>
+        <segue reference="rzI-H6-4xl"/>
+        <segue reference="Kp3-yl-Wet"/>
     </inferredMetricsTieBreakers>
 </document>

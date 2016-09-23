@@ -4,19 +4,25 @@
 //
 //  Purpose :
 //  For showing child details
+//  NSUserDefaults to store child data
+//  UIImagePicker to take pic from photo library
 //
 //  Created by Sumeet on 14/09/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
+
 import UIKit
 
-class ChildDetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-
+class ChildDetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+{
+    //outlet of UIImageView
     @IBOutlet weak var mImageView: UIImageView!
     
+    //outlet of UILabel for name
     @IBOutlet weak var mNameLabel: UILabel!
     
+    //outlet of UILabel of age
     @IBOutlet weak var mAgeLabel: UILabel!
     
     //creating variable for UIImagePicker
@@ -25,8 +31,11 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        //calling method
         updateChildDetailsViewController()
-        //calling method for setting imageView layout
+        
+        //calling method for setting imageView layout to circle
         self.setImageView()
         
         //set the delegate
@@ -72,9 +81,11 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     //method to update childDetailsViewController
     func updateChildDetailsViewController()
     {
+        //NSUserDefaults
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        if let object = defaults.objectForKey("childInformation"){
+        if let object = defaults.objectForKey("childInformation")
+        {
             //decoding information from NSUSERDEFAULTS
             let child = NSKeyedUnarchiver.unarchiveObjectWithData(object as! NSData) as! ChildDetails
             
@@ -82,28 +93,43 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
             mNameLabel.text = child.childName
         
             //setting child avtar pic
-            let imageUrl = child.avatarUrl
-            mImageView.image = UIImage(data: NSData(contentsOfURL: NSURL(string:imageUrl!)!)!)
+            if let imgObject = defaults.objectForKey("imageAvtar")
+            {
+                mImageView.image = UIImage(data: imgObject as! NSData)
+            }
+            else
+            {
+                let imageUrl = child.avatarUrl
+                let request: NSURLRequest = NSURLRequest(URL:NSURL(string:imageUrl!)!)
+                let session = NSURLSession.sharedSession()
+                session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+                    if error == nil {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.mImageView.image = UIImage(data: data!)
+                        })
+                    }
+                    }.resume()
+            }
         
             //setting child dob
             mAgeLabel.text = String(child.age!)
         }
-        else{
+        else
+        {
             //creating alert view
             let alertController = UIAlertController(title: "Register A child", message: "Please register a child", preferredStyle: UIAlertControllerStyle.Alert)
             
+            //creating action for alertView
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
                 self.navigationController?.popViewControllerAnimated(true)
             }
+            
+            //adding action to alertView
             alertController.addAction(okAction)
+            
+            //adding alertView  to viewController
             self.presentViewController(alertController, animated: true, completion: nil)
         }
-    }
-    
-    //calculating age
-    func calculateAge (birthday: NSDate) -> Int
-    {
-        return NSCalendar.currentCalendar().components(.Year, fromDate: birthday, toDate: NSDate() , options: [] ).year
     }
     
     // MARK: tap gesture
@@ -114,6 +140,7 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         if (gesture.view as? UIImageView) != nil
         {
             imagePicker.allowsEditing = true
+            
             //selecting source type as photo library
             imagePicker.sourceType = .PhotoLibrary
             imagePicker.modalPresentationStyle = .Custom
@@ -128,8 +155,11 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     {
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
         {
-            //mImageView.contentMode = .ScaleAspectFit
+           let defaults = NSUserDefaults.standardUserDefaults()
             mImageView.image = pickedImage
+            
+            let imageData : NSData = UIImagePNGRepresentation(pickedImage)!
+            defaults.setObject(imageData, forKey: "imageAvtar")
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -145,8 +175,13 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         return UIInterfaceOrientationMask.Portrait
     }
     
+    override func shouldAutorotate() -> Bool
+    {
+        return true
+    }
     
-    @IBAction func backButton(sender: AnyObject) {
+    @IBAction func backButton(sender: AnyObject)
+    {
         navigationController?.popViewControllerAnimated(true)
     }
 }
