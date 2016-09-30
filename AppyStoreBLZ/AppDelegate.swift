@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  AppyStoreBLZ
 //
-//  Created by BridgeIt on 01/08/16.
+//  Created by Shelly on 01/08/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
@@ -13,6 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.All
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

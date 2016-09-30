@@ -29,14 +29,14 @@ class LocalDataBase: NSObject {
             else{
                 if AppyStoreDataBase.open() {
                     //sql query to create category table
-                    let sql_Categort = "CREATE TABLE IF NOT EXISTS CATEGORY (category_name TEXT,category_id INTEGER,parent_category_id INTEGER,image_path TEXT PRIMARY KEY ,TotalCount INTEGER)"
+                    let sql_Category = "CREATE TABLE IF NOT EXISTS CATEGORY (category_name TEXT,category_id INTEGER PRIMARY KEY ,parent_category_id INTEGER,image_path TEXT ,TotalCount INTEGER)"
                     
                     //sql query to create history table
                     let sql_History = "CREATE TABLE IF NOT EXISTS HISTORY (title TEXT,content_duration TEXT,image_path TEXT PRIMARY KEY ,DwnLUrl TEXT)"
                     
                     
                     //create category table table
-                    if (!AppyStoreDataBase.executeStatements(sql_Categort)){
+                    if (!AppyStoreDataBase.executeStatements(sql_Category)){
                         print("Error : \(AppyStoreDataBase.lastErrorMessage())")
                     }
                     //create category table table
@@ -53,20 +53,20 @@ class LocalDataBase: NSObject {
         }
     }
 
-    
-    
     //method to insert into category table
-    func mInsertInToCategoryTable(category : Categorylist) {
+    func mInsertInToCategoryTable(categoryList : [Categorylist]) {
         let AppyStoreDataBase = FMDatabase(path: dataBasePath)
         //opening database
         if AppyStoreDataBase.open() {
-            let insertSql = "INSERT INTO CATEGORY (category_name,category_id,parent_category_id,image_path,TotalCount) VALUES ('\(category.name.value)','\(category.categoryId)','\(category.parentId)','\(category.image)','\(category.totalCount)')"
-            //execute insert statement
-            if (AppyStoreDataBase.executeStatements(insertSql)) {
-                print("Data inserted")
-            }
-            else {
-                print("Failed to insert values into table")
+            for category in categoryList{
+                let insertSql = "INSERT INTO CATEGORY (category_name,category_id,parent_category_id,image_path,TotalCount) VALUES ('\(category.name.value)','\(category.categoryId)','\(category.parentId)','\(category.image)','\(category.totalCount)')"
+                //execute insert statement
+                if (AppyStoreDataBase.executeStatements(insertSql)) {
+                    //print("Data inserted")
+                }
+                else {
+                    print("Failed to insert values into table")
+                }
             }
             AppyStoreDataBase.close() //closing database
         }
@@ -96,7 +96,57 @@ class LocalDataBase: NSObject {
         }
     }
     
-    //mehtod to fetch category list
+    //for checking any changes in the response from rest service
+    func mCheckCategoryUpdates(restCategories : [Categorylist]) -> Bool{
+        let databaseCategories = mFetchCategoryDetails()
+        //if its empty then adding categories
+        if databaseCategories.count == 0{
+            mInsertInToCategoryTable(restCategories)
+            return true
+        }
+        //checking for changes in categories
+        else if restCategories.count != databaseCategories.count{
+            mClearCategories()
+            mInsertInToCategoryTable(restCategories)
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
+    //for emptying the category table
+    func mClearCategories(){
+        let AppyStoreDataBase = FMDatabase(path: dataBasePath)
+        //checking if database exists or not
+        if (AppyStoreDataBase == nil) {
+            print("Error : \(AppyStoreDataBase.lastErrorMessage())")
+        }
+        else{
+            //Opening the database
+            if AppyStoreDataBase.open() {
+                //Deleting the whole table
+                let deleteTable = "DELETE FROM CATEGORY"
+                if AppyStoreDataBase.executeUpdate(deleteTable, withArgumentsInArray: nil){
+                    print("table deleted")
+                }
+                //sql query to create history table
+                let sql_Category = "CREATE TABLE IF NOT EXISTS CATEGORY (category_name TEXT,category_id INTEGER PRIMARY KEY ,parent_category_id INTEGER,image_path TEXT ,TotalCount INTEGER)"
+                
+                //create category table table
+                if (!AppyStoreDataBase.executeStatements(sql_Category)) {
+                    print("Error : \(AppyStoreDataBase.lastErrorMessage())")
+                }
+                //close Database
+                AppyStoreDataBase.close()
+            }
+            else {
+                print("failed to open db \(AppyStoreDataBase.lastErrorMessage())")
+            }
+        }
+    }
+    
+    //method to fetch category list
     func mFetchCategoryDetails() -> [Categorylist] {
         var categories = [Categorylist]()
         let AppyStoreDataBase = FMDatabase(path: dataBasePath)
@@ -104,15 +154,15 @@ class LocalDataBase: NSObject {
         if AppyStoreDataBase.open() {
             //fetch query
             let querySql = "SELECT * FROM CATEGORY"
-            let result : FMResultSet? = AppyStoreDataBase.executeQuery(querySql, withArgumentsInArray: nil)
-            if (result?.next() == true) {
+            let result = AppyStoreDataBase.executeQuery(querySql, withArgumentsInArray: nil)
+            if (result != nil) {
                 while result!.next() {
                     let category = Categorylist(name: result!.stringForColumn("category_name"), image: result!.stringForColumn("image_path"), cId: Int((result?.stringForColumn("category_id"))!)!, pId: Int((result?.intForColumn("parent_category_id"))!), totalCount: Int((result?.intForColumn("TotalCount"))!))
                     categories.append(category)
                 }
             }
             else {
-                print("Failed to fetch data from database")
+                print("database is empty")
             }
             AppyStoreDataBase.close() //closing database
         }

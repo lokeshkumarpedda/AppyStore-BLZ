@@ -81,9 +81,27 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
         //each functionaly for each cell
         if indexPath.row == 0{
             
-            performSegueWithIdentifier("Parent'sAreaToChildDetails", sender: nil)
+            //NSUserDefaults
+            let defaults = NSUserDefaults.standardUserDefaults()
             
-            
+            if defaults.objectForKey("childInformation") != nil{
+                
+                performSegueWithIdentifier("Parent'sAreaToChildDetails", sender: nil)
+            }
+            else{
+                //creating alert view
+                let alertController = UIAlertController(title: "Register A child", message: "Please register a child", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                //creating action for alertView
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                }
+                
+                //adding action to alertView
+                alertController.addAction(okAction)
+                
+                //adding alertView  to viewController
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
         }
         else if indexPath.row == 1{
             

@@ -56,6 +56,8 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         mChangeButtonImage()
         mVideoButton.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
         
+        let mlocalDataBaseObj = LocalDataBase() //object of local database
+        
         //setting background for views
         collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
@@ -93,6 +95,9 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     }
     //method to return number of item in collection view section
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if mCategoryViewModelObj.mTotalCount != 0{
+            stopActivityIndicator()
+        }
         return mCategoryViewModelObj.mTotalCount
     }
     //method to return collection view cell

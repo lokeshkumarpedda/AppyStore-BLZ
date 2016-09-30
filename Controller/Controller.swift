@@ -49,13 +49,11 @@ class Controller : NSObject,PController{
     }
     //MARK:- Fetch details methods
     //method to get category list from rest api
-    func mGetCategoryDetailsFromRest() {
+    func mGetCategoryDetails() -> [Categorylist]{
+        let categoryDetails = mLocalDataBaseObj.mFetchCategoryDetails()
         mApiRequesrObj.mFetchCategoryList()
-    }
-    
-    //method to get category lisf from local database
-    func mGetCategoryDetailsFromLB() {
-        mLocalDataBaseObj.mFetchCategoryDetails()
+        
+        return categoryDetails
     }
     
     //method to get subcategory from rest api
@@ -106,8 +104,13 @@ class Controller : NSObject,PController{
     //method to update category view model
     func updateCategoryDetails(notification : NSNotification){
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerCategoryUodate", object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerSubCategoryUpdate", object: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateCategoryViewModel", object: self, userInfo: notification.userInfo)
+        if mLocalDataBaseObj.mCheckCategoryUpdates(notification.userInfo!["category"] as! [Categorylist]){
+            
+             NSNotificationCenter.defaultCenter().postNotificationName(
+                "UpdateCategoryViewModel", object: self, userInfo: nil)
+            
+        }
+       
     }
     
     //method to update SubCategory View model
@@ -136,7 +139,8 @@ class Controller : NSObject,PController{
     }
     
     func updateAvatars(notification : NSNotification){
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateAvatarsViewModel", object: self, userInfo: notification.userInfo)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+       NSNotificationCenter.defaultCenter().postNotificationName(
+        "UpdateAvatarsViewModel", object: self, userInfo: notification.userInfo)
+       NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

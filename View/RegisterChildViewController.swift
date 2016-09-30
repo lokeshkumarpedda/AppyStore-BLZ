@@ -37,16 +37,29 @@ class RegisterChildViewController: UIViewController {
             .addObserver(self, selector: #selector(invalidChildName(_:)), name: "RegistrationFailed", object: nil)
     }
     
+    //method to dismiss keyboard when return button pressed
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        mNameTxtFld.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func registrationButton(sender: AnyObject) {
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
         //checking the texfield is empty or not
-        let text = mNameTxtFld.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let text = mNameTxtFld.text!
         if text.characters.count != 0{
             showActivityIndicator()
             let dateFormater = NSDateFormatter()
             dateFormater.dateFormat = "yyyy-MM-dd"
             let date = dateFormater.stringFromDate(mDatePicker.date)
             Controller().mRegisterChildDetails(text, dob: date, avatarId: mSelectedAvatar!)
+
+            //removing object
+            defaults.removeObjectForKey("imageAvtar")
+
         }
         else{
             //creating alert view

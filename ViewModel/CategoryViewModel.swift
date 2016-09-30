@@ -20,7 +20,9 @@ class CategoryViewModel : NSObject {
     override init(){
         super.init()
         mControllerObj = Controller()
-        mFetchCategoryDetailsFromController()
+        mCategoryList = mControllerObj.mGetCategoryDetails()
+        mTotalCount = mCategoryList.count
+        
         NSNotificationCenter.defaultCenter()
             .addObserver(self, selector: #selector(CategoryViewModel.updateCategoryViewModel(_:)), name: "UpdateCategoryViewModel", object: nil)
     }
@@ -30,15 +32,8 @@ class CategoryViewModel : NSObject {
         return mCategoryList[index]
     }
     
-    //method to fetch category list
-    func mFetchCategoryDetailsFromController()  {
-        mControllerObj.mGetCategoryDetailsFromRest()
-    }
-    
     //method to update category view model
     func updateCategoryViewModel(notification : NSNotification) {
-        mCategoryList = notification.userInfo!["category"] as! [Categorylist]
-        mTotalCount = mCategoryList.count
         NSNotificationCenter.defaultCenter()
             .postNotificationName("updateCategoryViewController", object: nil)
     }

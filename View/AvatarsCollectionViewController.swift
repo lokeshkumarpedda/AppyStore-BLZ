@@ -2,7 +2,9 @@
 //  AvatarsCollectionViewController.swift
 //  AppyStoreBLZ
 //
-//  Created by BridgeLabz on 18/09/16.
+//  Purpose : Displaying avatars to select from
+//
+//  Created by Lokesh kumar on 18/09/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
 
@@ -79,6 +81,7 @@ class AvatarsCollectionViewController: UICollectionViewController {
                     if data != nil {
                         if let img = UIImage(data: data!) {
                             self.cache.setObject(img, forKey: image!)
+                            cell.VideoImageView.layer.cornerRadius = 0
                             if cell.imgUrl == image {
                                 cell.VideoImageView.image = img
                             }

@@ -12,14 +12,15 @@ import Alamofire
 import AVKit
 import AVFoundation
 import SystemConfiguration
-
+import AlamofireImage
 
 
 class Utility: NSObject {
     
     var mVideoPlayer : AVPlayer!
     var mPlayerViewController : AVPlayerViewController!
-    var cache = NSCache()
+//    var cache = NSCache()
+    let imageCache = AutoPurgingImageCache()
     var backgroundMusicPlayer: AVAudioPlayer?
 
     //fetch image from string url
@@ -70,26 +71,21 @@ class Utility: NSObject {
         
         cell.VideoLabel.text = subCategory.title.value
         cell.imgUrl = image
+        
         //checking image is in cache or not
-        if let cachedImage = cache.objectForKey(image!) as? UIImage {
+        if let cachedImage = imageCache.imageWithIdentifier(image!){
             cell.VideoImageView.image = cachedImage
         }
-        else {
-            let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: image!)!) {(data, response, error) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if data != nil {
-                        if let img = UIImage(data: data!) {
-                            self.cache.setObject(img, forKey: image!)
-                            if cell.imgUrl == image {
-                                cell.VideoImageView.image = img
-                                cell.activityIndicator.stopAnimating()
-                                cell.activityIndicator.hidden = true
-                            }
-                        }
-                    }
-                })
+        else{
+            Alamofire.request(NSURLRequest(URL: NSURL(string: image!)!)).responseImage{
+                response in
+                if let img = response.result.value{
+                    self.imageCache.addImage(img, withIdentifier: image!)
+                    cell.VideoImageView.image = img
+                    cell.activityIndicator.stopAnimating()
+                    cell.activityIndicator.hidden = true
+                }
             }
-            task.resume()
         }
     }
     
