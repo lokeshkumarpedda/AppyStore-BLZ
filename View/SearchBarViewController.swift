@@ -38,12 +38,13 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     var sViewButton : UIButton!
     var headerViewChecker : Bool = true
     var searchKeyword : String?
-    let mActivityIndicator = UIActivityIndicatorView()
-    let mActivityIndicatorContainer = UIView()
+    var mActivityIndicator = UIActivityIndicatorView()
     
     //MARK:- View methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        
         BackGroundMusic.sharedPlayer.playMusic()
         mSearchViewModelObj = SearchViewModel(searchVCObj: self) //create object of serach view model
         //creating layout for cell in collection view
@@ -97,7 +98,7 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         mSearchViewModelObj.mReceivedCategoryCount = 0
         
         collectionView.reloadData()
-        showActivityIndicator()
+        mActivityIndicator.startAnimating()
         Sview.hidden = true
         headerViewChecker = false
         
@@ -219,7 +220,7 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     
     //method to update search view controller
     func updateSearchViewController() {
-        stopActivityIndicator()
+        mActivityIndicator.stopAnimating()
         if mSearchViewModelObj.mTotalSearchCategory > 0 {
             collectionView.reloadData()
         }
@@ -231,7 +232,6 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
             collectionView.backgroundView = label
         }
     }
-    
     
     //For reloading particular cell
     func cellReloading()  {
@@ -246,35 +246,4 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
             }
         }
     }
-    
-    //MARK: activity indicator methods
-    
-    //For activity indicator display and animation
-    func showActivityIndicator(){
-        
-        mActivityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicatorContainer.center = view.center
-        mActivityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
-        mActivityIndicatorContainer.layer.cornerRadius = 10
-        
-        mActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicator.activityIndicatorViewStyle = .White
-        mActivityIndicator.clipsToBounds = true
-        mActivityIndicator.hidesWhenStopped = true
-        
-        //Adding activity indicator to particular view
-        mActivityIndicatorContainer.addSubview(mActivityIndicator)
-        view.addSubview(mActivityIndicatorContainer)
-        
-        //Staring the the animation
-        mActivityIndicator.startAnimating()
-        
-    }
-    
-    //For stop displaying the activity indicator
-    func stopActivityIndicator() {
-        mActivityIndicator.stopAnimating()
-        mActivityIndicatorContainer.removeFromSuperview()
-    }
-
 }

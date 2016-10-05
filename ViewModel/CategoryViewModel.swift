@@ -20,14 +20,18 @@ class CategoryViewModel : NSObject {
     override init(){
         super.init()
         mControllerObj = Controller()
-        mCategoryList = mControllerObj.mGetCategoryDetails()
-        mTotalCount = mCategoryList.count
-        
+        self.mGetCategories()
         NSNotificationCenter.defaultCenter()
             .addObserver(self, selector: #selector(CategoryViewModel.updateCategoryViewModel(_:)), name: "UpdateCategoryViewModel", object: nil)
     }
     
-    //mehtod to send category details
+    //method to asking data to controller
+    func mGetCategories() {
+        mCategoryList = mControllerObj.mGetCategoryDetails()
+        mTotalCount = mCategoryList.count
+    }
+    
+    //method to send category details
     func mGetCategoryDetails(index : Int) -> Categorylist {
         return mCategoryList[index]
     }

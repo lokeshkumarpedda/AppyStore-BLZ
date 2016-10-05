@@ -36,13 +36,13 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     var collectionViewCell : CollectionViewCell?
     //variable to to store selected category
     var mselectedCategory : Categorylist!
-    var cache = NSCache()
+    var cache = AutoPurgingImageCache()
     
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
-    let mActivityIndicatorContainer = UIView()          //For activity indicator display
     
     override func viewDidLoad() {
-        showActivityIndicator()
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator.startAnimating()
         
         //setting background for button
         mHomeButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
@@ -55,8 +55,6 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         //setting image for buttons
         mChangeButtonImage()
         mVideoButton.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
-        
-        let mlocalDataBaseObj = LocalDataBase() //object of local database
         
         //setting background for views
         collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
@@ -96,7 +94,7 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     //method to return number of item in collection view section
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if mCategoryViewModelObj.mTotalCount != 0{
-            stopActivityIndicator()
+            mActivityIndicator.stopAnimating()
         }
         return mCategoryViewModelObj.mTotalCount
     }
@@ -122,28 +120,24 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         
         cell.VideoLabel.text = category?.name.value
         cell.imgUrl = image
+        
         //checking image is in cache or not
-        if let cachedImage = cache.objectForKey(image!) as? UIImage {
+        if let cachedImage = cache.imageWithIdentifier(image!){
             cell.VideoImageView.image = cachedImage
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.hidden = true
         }
-        else {
-            let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: image!)!) {(data, response, error) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if data != nil {
-                        if let img = UIImage(data: data!) {
-                            self.cache.setObject(img, forKey: image!)
-                            if cell.imgUrl == image {
-                                cell.VideoImageView.image = img
-                                cell.activityIndicator.stopAnimating()
-                                cell.activityIndicator.hidden = true
-                            }
-                        }
-                    }
-                })
+        else{
+            Alamofire.request(NSURLRequest(URL: NSURL(string: image!)!)).responseImage{
+                response in
+                if let img = response.result.value{
+                    self.cache.addImage(img, withIdentifier: image!)
+                    cell.VideoImageView.image = img
+                    cell.activityIndicator.stopAnimating()
+                    cell.activityIndicator.hidden = true
+                }
             }
-            task.resume()
         }
-
         return cell
     }
 
@@ -163,9 +157,12 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     //method to update category view contrller
     func updateCategoryViewController(notification : NSNotification) {
         
-        stopActivityIndicator()
-        
+        if mCategoryViewModelObj.mTotalCount == 0 {
+            mCategoryViewModelObj.mGetCategories()
+        }
+        mActivityIndicator.stopAnimating()
         collectionView.reloadData()
+        
     }
     //method to set image for buttons
     func mChangeButtonImage() {
@@ -211,40 +208,5 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     //comming back from the parenting area
     @IBAction func backToCategoryVC(unwindSegue : UIStoryboardSegue){
         
-    }
-    
-    //MARK: Activity indicator methods
-    
-    //For activity indicator display and animation
-    func showActivityIndicator(){
-        
-        //customizing container for activity indicator
-        mActivityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicatorContainer.center = view.center
-        mActivityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
-        mActivityIndicatorContainer.layer.cornerRadius = 10
-        
-        //customizing activity indicator
-        mActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicator.activityIndicatorViewStyle = .White
-        mActivityIndicator.clipsToBounds = true
-        mActivityIndicator.hidesWhenStopped = true
-        
-        //Adding activity indicator to particular view
-        mActivityIndicatorContainer.addSubview(mActivityIndicator)
-        view.addSubview(mActivityIndicatorContainer)
-        
-        //Starting the the animation
-        mActivityIndicator.startAnimating()
-        
-    }
-    
-    //For stop displaying the activity indicator
-    func stopActivityIndicator() {
-        
-        mActivityIndicator.stopAnimating()
-        
-        //removing from the screen
-        mActivityIndicatorContainer.removeFromSuperview()
     }
 }

@@ -369,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRz-mw-DQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3099" y="599"/>
+            <point key="canvasLocation" x="1599" y="-977"/>
         </scene>
         <!--Sub Category View Contoller-->
         <scene sceneID="IPo-r7-i4N">
@@ -1676,9 +1676,9 @@
         <image name="previousvideobutton" width="54" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vnk-rj-NgP"/>
-        <segue reference="UDj-z8-HTj"/>
+        <segue reference="lZl-6j-Uaj"/>
         <segue reference="rzI-H6-4xl"/>
+        <segue reference="agE-rU-ZUI"/>
         <segue reference="Kp3-yl-Wet"/>
     </inferredMetricsTieBreakers>
 </document>

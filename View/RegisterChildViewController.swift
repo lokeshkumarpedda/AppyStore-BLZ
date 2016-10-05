@@ -17,14 +17,13 @@ class RegisterChildViewController: UIViewController {
     
     
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
-    let mActivityIndicatorContainer = UIView()          //For activity indicator display
     
     var mSelectedAvatar : Int?
     
     //when view loaded
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
-        
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
         //putting datepicker maximum date to current date
         mDatePicker.maximumDate = mDatePicker.date
         
@@ -51,7 +50,7 @@ class RegisterChildViewController: UIViewController {
         //checking the texfield is empty or not
         let text = mNameTxtFld.text!
         if text.characters.count != 0{
-            showActivityIndicator()
+            mActivityIndicator.startAnimating()
             let dateFormater = NSDateFormatter()
             dateFormater.dateFormat = "yyyy-MM-dd"
             let date = dateFormater.stringFromDate(mDatePicker.date)
@@ -73,7 +72,7 @@ class RegisterChildViewController: UIViewController {
     }
     //when registration is completed
     func registrationSuccessful(notification : NSNotification){
-        stopActivityIndicator()
+        mActivityIndicator.stopAnimating()
         
         //creating alert view
         let alertController = UIAlertController(title: "Successful", message: "Child Registered", preferredStyle: UIAlertControllerStyle.Alert)
@@ -87,7 +86,7 @@ class RegisterChildViewController: UIViewController {
     
     //showing the message that name is already exists
     func invalidChildName(notification : NSNotification){
-        stopActivityIndicator()
+        mActivityIndicator.stopAnimating()
         //creating alert view
         let alertController = UIAlertController(title: "Invalid Name", message: "Child Name already exists", preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -102,37 +101,4 @@ class RegisterChildViewController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    //MARK: Activity indicator methods
-    
-    //For activity indicator display and animation
-    func showActivityIndicator(){
-        
-        //customizing container for activity indicator
-        mActivityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicatorContainer.center = view.center
-        mActivityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
-        mActivityIndicatorContainer.layer.cornerRadius = 10
-        
-        //customizing activity indicator
-        mActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicator.activityIndicatorViewStyle = .White
-        mActivityIndicator.clipsToBounds = true
-        mActivityIndicator.hidesWhenStopped = true
-        
-        //Adding activity indicator to particular view
-        mActivityIndicatorContainer.addSubview(mActivityIndicator)
-        view.addSubview(mActivityIndicatorContainer)
-        
-        //Starting the the animation
-        mActivityIndicator.startAnimating()
-    }
-    
-    //For stop displaying the activity indicator
-    func stopActivityIndicator() {
-        
-        mActivityIndicator.stopAnimating()
-        
-        //removing from the screen
-        mActivityIndicatorContainer.removeFromSuperview()
-    }
 }

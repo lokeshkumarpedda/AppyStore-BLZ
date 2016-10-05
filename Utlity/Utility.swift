@@ -19,7 +19,6 @@ class Utility: NSObject {
     
     var mVideoPlayer : AVPlayer!
     var mPlayerViewController : AVPlayerViewController!
-//    var cache = NSCache()
     let imageCache = AutoPurgingImageCache()
     var backgroundMusicPlayer: AVAudioPlayer?
 
@@ -126,5 +125,18 @@ class Utility: NSObject {
         let needsConnection = flags == .ConnectionRequired
         
         return isReachable && !needsConnection
+    }
+    
+    //For activity indicator display and animation
+    func showActivityIndicator(activity : UIActivityIndicatorView , view : UIView) -> UIActivityIndicatorView{
+        //customizing activity indicator
+        activity.frame = CGRectMake(0, 0, 50, 50)
+        activity.center = view.center
+        activity.activityIndicatorViewStyle = .White
+        activity.clipsToBounds = true
+        activity.hidesWhenStopped = true
+        view.addSubview(activity)
+        
+        return activity
     }
   }

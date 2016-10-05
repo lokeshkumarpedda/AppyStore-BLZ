@@ -14,11 +14,15 @@ class AvatarsCollectionViewController: UICollectionViewController {
 
     var mAvatarVMobj : AvatarsViewModel?
     var cache = NSCache()
+    var mActivityIndicator = UIActivityIndicatorView()
     
     var mSelectedAvatarId : Int?
     
     //When the view loaded
     override func viewDidLoad() {
+        
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator.startAnimating()
         
         //setting the background
         collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
@@ -106,7 +110,7 @@ class AvatarsCollectionViewController: UICollectionViewController {
     
     //updating view controller
     func updateAvatarVC(notification : NSNotification){
-        
+        mActivityIndicator.stopAnimating()
         collectionView?.reloadData()
     }
     

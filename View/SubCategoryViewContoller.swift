@@ -44,12 +44,12 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     //------------------------------
     
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
-    let mActivityIndicatorContainer = UIView()          //For activity indicator display
     
     //MARK:- View methods
     override func viewDidLoad() {
         
-        showActivityIndicator()
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator.startAnimating()
         
         //setting background for buttons
         mBackButtonLabel.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
@@ -205,7 +205,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     //method to update subcategory view controller
     func updataSubCategoryViewController(notification : NSNotification) {
         
-        stopActivityIndicator()
+        mActivityIndicator.stopAnimating()
         let recievedCategories = mSubcategoryViewModelObj.mSubcategoryList.count
         let totalCategories = mSubcategoryViewModelObj.mTotalSubCategoryCount
         
@@ -223,38 +223,4 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         
     }
     
-    //MARK: Activity indicator methods
-    
-    //For activity indicator display and animation
-    func showActivityIndicator(){
-        
-        //customizing container for activity indicator
-        mActivityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicatorContainer.center = view.center
-        mActivityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
-        mActivityIndicatorContainer.layer.cornerRadius = 10
-        
-        //customizing activity indicator
-        mActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicator.activityIndicatorViewStyle = .White
-        mActivityIndicator.clipsToBounds = true
-        mActivityIndicator.hidesWhenStopped = true
-        
-        //Adding activity indicator to particular view
-        mActivityIndicatorContainer.addSubview(mActivityIndicator)
-        view.addSubview(mActivityIndicatorContainer)
-        
-        //Starting the the animation
-        mActivityIndicator.startAnimating()
-        
-    }
-    
-    //For stop displaying the activity indicator
-    func stopActivityIndicator() {
-        
-        mActivityIndicator.stopAnimating()
-        
-        //removing from the screen
-        mActivityIndicatorContainer.removeFromSuperview()
-    }
 }

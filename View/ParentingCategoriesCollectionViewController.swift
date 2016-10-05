@@ -10,23 +10,26 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
+
 //reusing the identifier in this particular class
 private let reuseIdentifier = "CollectionViewCell"
 
 class ParentingCategoriesCollectionViewController: UICollectionViewController {
 
     var mParentCategoryVMobj : ParentingCategoriesViewModel! //model object reference
-    var cache = NSCache()                                    //cache for storing images
+    var cache = AutoPurgingImageCache()                                    //cache for storing images
     var mSelectedCategory : Categorylist!                    //selected category
     
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
-    let mActivityIndicatorContainer = UIView()          //For activity indicator display
     
     //When the view loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showActivityIndicator()
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator.startAnimating()
         //creating model object
         mParentCategoryVMobj = ParentingCategoriesViewModel(parentCategoryVCobj: self)
 
@@ -79,7 +82,7 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
     //for each cell
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let parentCategory: Categorylist? = mParentCategoryVMobj.getCellValues(indexPath.row)
-        stopActivityIndicator()
+        mActivityIndicator.stopAnimating()
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
         let image = parentCategory?.image
         
@@ -99,25 +102,19 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
         cell.imgUrl = image
         
         //checking image is in cache or not
-        if let cachedImage = cache.objectForKey(image!) as? UIImage {
+        if let cachedImage = cache.imageWithIdentifier(image!){
             cell.VideoImageView.image = cachedImage
         }
-        else {
-            let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: image!)!) {(data, response, error) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if data != nil {
-                        if let img = UIImage(data: data!) {
-                            self.cache.setObject(img, forKey: image!)
-                            if cell.imgUrl == image {
-                                cell.VideoImageView.image = img
-                                cell.activityIndicator.stopAnimating()
-                                cell.activityIndicator.hidden = true
-                            }
-                        }
-                    }
-                })
+        else{
+            Alamofire.request(NSURLRequest(URL: NSURL(string: image!)!)).responseImage{
+                response in
+                if let img = response.result.value{
+                    self.cache.addImage(img, withIdentifier: image!)
+                    cell.VideoImageView.image = img
+                    cell.activityIndicator.stopAnimating()
+                    cell.activityIndicator.hidden = true
+                }
             }
-            task.resume()
         }
         return cell
     }
@@ -137,39 +134,6 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
     @IBAction func backButtonPressed(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
-    
-    //MARK: activity indicator methods
-    
-    //For activity indicator display and animation
-    func showActivityIndicator(){
-        
-        //customizing container for activity indicator
-        mActivityIndicatorContainer.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicatorContainer.center = view.center
-        mActivityIndicatorContainer.backgroundColor = UIColor.darkGrayColor()
-        mActivityIndicatorContainer.layer.cornerRadius = 10
-        
-        //customizing activity indicator
-        mActivityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        mActivityIndicator.activityIndicatorViewStyle = .White
-        mActivityIndicator.clipsToBounds = true
-        mActivityIndicator.hidesWhenStopped = true
-        
-        //Adding activity indicator to particular view
-        mActivityIndicatorContainer.addSubview(mActivityIndicator)
-        view.addSubview(mActivityIndicatorContainer)
-        
-        //Starting the the animation
-        mActivityIndicator.startAnimating()
-        
-    }
-    
-    //For stop displaying the activity indicator
-    func stopActivityIndicator() {
-        
-        mActivityIndicator.stopAnimating()
-        
-        //removing from the screen
-        mActivityIndicatorContainer.removeFromSuperview()
-    }
+
+
 }
