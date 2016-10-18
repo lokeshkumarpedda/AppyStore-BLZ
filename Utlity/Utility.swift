@@ -80,9 +80,10 @@ class Utility: NSObject {
                 response in
                 if let img = response.result.value{
                     self.imageCache.addImage(img, withIdentifier: image!)
-                    cell.VideoImageView.image = img
+                    if cell.imgUrl == image{
+                        cell.VideoImageView.image = img
+                    }
                     cell.activityIndicator.stopAnimating()
-                    cell.activityIndicator.hidden = true
                 }
             }
         }

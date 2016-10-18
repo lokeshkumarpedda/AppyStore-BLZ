@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, PHistoryViewController {
     //MARK:- Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mheaderView: UIView!

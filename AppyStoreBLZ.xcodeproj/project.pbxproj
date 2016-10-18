@@ -14,8 +14,11 @@
 		0A3694CF1D59E53E0005EA82 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3694CD1D59E53E0005EA82 /* FMDB.framework */; };
 		0A3694D01D59E53E0005EA82 /* ReactiveFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3694CE1D59E53E0005EA82 /* ReactiveFoundation.framework */; };
 		0A3694D21D59E5450005EA82 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3694D11D59E5450005EA82 /* libsqlite3.0.tbd */; };
-		0A81839F1D5895190030204B /* PSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81839E1D5895190030204B /* PSearchViewModel.swift */; };
-		0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8183A01D5895280030204B /* PSearchViewController.swift */; };
+		0A7CFA4F1DB484920099AD22 /* PSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CFA4E1DB484910099AD22 /* PSearch.swift */; };
+		0A7CFA511DB4D7950099AD22 /* PCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CFA501DB4D7950099AD22 /* PCategory.swift */; };
+		0A7CFA531DB4E6400099AD22 /* PSubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CFA521DB4E6400099AD22 /* PSubCategory.swift */; };
+		0A7CFA551DB501910099AD22 /* PHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CFA541DB501910099AD22 /* PHistory.swift */; };
+		0A7CFA571DB50A4B0099AD22 /* PAvatars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CFA561DB50A4B0099AD22 /* PAvatars.swift */; };
 		0A8183A31D58B1C60030204B /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8183A21D58B1C60030204B /* CollectionReusableView.swift */; };
 		0A8ECBD31D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */; };
 		0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */; };
@@ -49,9 +52,7 @@
 		7007F07E1D570BFF00A3C543 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F07C1D570BFF00A3C543 /* ApiRequest.swift */; };
 		7007F07F1D570BFF00A3C543 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F07D1D570BFF00A3C543 /* APIResponse.swift */; };
 		7007F0821D570C0800A3C543 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0811D570C0800A3C543 /* Utility.swift */; };
-		7007F0861D573D4A00A3C543 /* PCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0851D573D4A00A3C543 /* PCategoryViewModel.swift */; };
 		7007F0881D573DBD00A3C543 /* PController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F0871D573DBD00A3C543 /* PController.swift */; };
-		7007F08C1D57474C00A3C543 /* PSubCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007F08B1D57474C00A3C543 /* PSubCategoryViewModel.swift */; };
 		70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA12521D4F04390086ECEC /* AppDelegate.swift */; };
 		70DA12581D4F04390086ECEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70DA12561D4F04390086ECEC /* Main.storyboard */; };
 		70DA125D1D4F04390086ECEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70DA125B1D4F04390086ECEC /* LaunchScreen.storyboard */; };
@@ -70,8 +71,11 @@
 		0A3694CD1D59E53E0005EA82 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "Pods/../build/Debug-iphoneos/FMDB/FMDB.framework"; sourceTree = "<group>"; };
 		0A3694CE1D59E53E0005EA82 /* ReactiveFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveFoundation.framework; path = "../../../Library/Developer/Xcode/DerivedData/AppyStoreBLZ-frlbufotlcqfdbbkzqdcjmbdkcej/Build/Products/Debug-iphonesimulator/ReactiveFoundation/ReactiveFoundation.framework"; sourceTree = "<group>"; };
 		0A3694D11D59E5450005EA82 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		0A81839E1D5895190030204B /* PSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSearchViewModel.swift; sourceTree = "<group>"; };
-		0A8183A01D5895280030204B /* PSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSearchViewController.swift; sourceTree = "<group>"; };
+		0A7CFA4E1DB484910099AD22 /* PSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSearch.swift; sourceTree = "<group>"; };
+		0A7CFA501DB4D7950099AD22 /* PCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCategory.swift; sourceTree = "<group>"; };
+		0A7CFA521DB4E6400099AD22 /* PSubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSubCategory.swift; sourceTree = "<group>"; };
+		0A7CFA541DB501910099AD22 /* PHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHistory.swift; sourceTree = "<group>"; };
+		0A7CFA561DB50A4B0099AD22 /* PAvatars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAvatars.swift; sourceTree = "<group>"; };
 		0A8183A21D58B1C60030204B /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		0A8ECBD21D7FEFA80083C633 /* ParentsAreaCollectionviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentsAreaCollectionviewController.swift; sourceTree = "<group>"; };
 		0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
@@ -104,9 +108,7 @@
 		7007F07C1D570BFF00A3C543 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		7007F07D1D570BFF00A3C543 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		7007F0811D570C0800A3C543 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		7007F0851D573D4A00A3C543 /* PCategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCategoryViewModel.swift; sourceTree = "<group>"; };
 		7007F0871D573DBD00A3C543 /* PController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PController.swift; sourceTree = "<group>"; };
-		7007F08B1D57474C00A3C543 /* PSubCategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSubCategoryViewModel.swift; sourceTree = "<group>"; };
 		70DA124F1D4F04390086ECEC /* AppyStoreBLZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppyStoreBLZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70DA12521D4F04390086ECEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70DA12571D4F04390086ECEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -208,11 +210,12 @@
 		7007F0781D570BF200A3C543 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7007F0851D573D4A00A3C543 /* PCategoryViewModel.swift */,
+				0A7CFA501DB4D7950099AD22 /* PCategory.swift */,
+				0A7CFA521DB4E6400099AD22 /* PSubCategory.swift */,
 				7007F0871D573DBD00A3C543 /* PController.swift */,
-				7007F08B1D57474C00A3C543 /* PSubCategoryViewModel.swift */,
-				0A8183A01D5895280030204B /* PSearchViewController.swift */,
-				0A81839E1D5895190030204B /* PSearchViewModel.swift */,
+				0A7CFA541DB501910099AD22 /* PHistory.swift */,
+				0A7CFA561DB50A4B0099AD22 /* PAvatars.swift */,
+				0A7CFA4E1DB484910099AD22 /* PSearch.swift */,
 				7007F0791D570BF200A3C543 /* CategoryDetails.swift */,
 				0AA0BAEC1D8E78D6007DC3E7 /* ChildInformation.swift */,
 			);
@@ -437,7 +440,7 @@
 				0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */,
 				7007F07A1D570BF200A3C543 /* CategoryDetails.swift in Sources */,
 				0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */,
-				7007F0861D573D4A00A3C543 /* PCategoryViewModel.swift in Sources */,
+				0A7CFA511DB4D7950099AD22 /* PCategory.swift in Sources */,
 				0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */,
 				7007F0721D570BE100A3C543 /* HistoryViewModel.swift in Sources */,
 				0A1257B21D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift in Sources */,
@@ -445,7 +448,6 @@
 				7007F0771D570BEA00A3C543 /* Controller.swift in Sources */,
 				7007F0821D570C0800A3C543 /* Utility.swift in Sources */,
 				7007F0731D570BE100A3C543 /* SearchViewModel.swift in Sources */,
-				0A81839F1D5895190030204B /* PSearchViewModel.swift in Sources */,
 				7007F0661D570BD000A3C543 /* CategoryViewController.swift in Sources */,
 				0A3694C91D59D64A0005EA82 /* LoginViewController.swift in Sources */,
 				0AA0BAED1D8E78D6007DC3E7 /* ChildInformation.swift in Sources */,
@@ -454,6 +456,7 @@
 				0A1257B01D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift in Sources */,
 				7007F06A1D570BD000A3C543 /* SearchBarViewController.swift in Sources */,
 				0AEC45AF1D65F09E007E06F1 /* VideoPlayerViewController.swift in Sources */,
+				0A7CFA571DB50A4B0099AD22 /* PAvatars.swift in Sources */,
 				7007F0741D570BE100A3C543 /* SubCategoryViewModel.swift in Sources */,
 				0AA0BAF11D8E82A6007DC3E7 /* AvatarsViewModel.swift in Sources */,
 				7007F06B1D570BD000A3C543 /* SubCategoryViewContoller.swift in Sources */,
@@ -462,12 +465,13 @@
 				0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */,
 				0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */,
 				0AC626DC1D8D3EEB00D71907 /* RegisterChildViewController.swift in Sources */,
+				0A7CFA551DB501910099AD22 /* PHistory.swift in Sources */,
+				0A7CFA531DB4E6400099AD22 /* PSubCategory.swift in Sources */,
 				7007F0881D573DBD00A3C543 /* PController.swift in Sources */,
 				0AA0BAEF1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift in Sources */,
-				0A8183A11D5895280030204B /* PSearchViewController.swift in Sources */,
 				0AC626D81D8D0C4600D71907 /* BackGroundMusic.swift in Sources */,
-				7007F08C1D57474C00A3C543 /* PSubCategoryViewModel.swift in Sources */,
 				0AFA4AF11D5B3D4300C9D24B /* LocalDataBase.swift in Sources */,
+				0A7CFA4F1DB484920099AD22 /* PSearch.swift in Sources */,
 				0A8183A31D58B1C60030204B /* CollectionReusableView.swift in Sources */,
 				7007F0671D570BD000A3C543 /* CollectionViewCell.swift in Sources */,
 			);

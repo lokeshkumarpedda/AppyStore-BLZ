@@ -16,7 +16,7 @@ import AlamofireImage
 //reusing the identifier in this particular class
 private let reuseIdentifier = "CollectionViewCell"
 
-class ParentingCategoriesCollectionViewController: UICollectionViewController {
+class ParentingCategoriesCollectionViewController: UICollectionViewController ,PCategoryViewController{
 
     var mParentCategoryVMobj : ParentingCategoriesViewModel! //model object reference
     var cache = AutoPurgingImageCache()                                    //cache for storing images
@@ -49,7 +49,7 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
     }
     
     //reload the collection view
-    func updateVC() {
+    func updateCategoryViewController() {
         
         collectionView?.reloadData()
         
@@ -112,7 +112,6 @@ class ParentingCategoriesCollectionViewController: UICollectionViewController {
                     self.cache.addImage(img, withIdentifier: image!)
                     cell.VideoImageView.image = img
                     cell.activityIndicator.stopAnimating()
-                    cell.activityIndicator.hidden = true
                 }
             }
         }

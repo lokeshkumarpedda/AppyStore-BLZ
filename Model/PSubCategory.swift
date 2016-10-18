@@ -1,10 +1,14 @@
 //
-//  PSubCategoryViewModel.swift
+//  PSubCategory.swift
 //  AppyStoreBLZ
 //
-//  Created by Shelly on 07/08/16.
+//  Created by BridgeLabz on 17/10/16.
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
+
+protocol PSubCategoryViewController {
+    func updataSubCategoryViewController()
+}
 
 protocol PSubCategoryViewModel {
     func updateSubCategoryViewModel(subCategoryList : [SubCategorylist])

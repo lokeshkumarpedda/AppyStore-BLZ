@@ -12,25 +12,24 @@
 
 import UIKit
 
-class SubCategoryViewModel: NSObject {
+class SubCategoryViewModel: NSObject ,PSubCategoryViewModel{
     
+    var mSubCategoryVC : PSubCategoryViewController!
     var mControllerObj : Controller!  //create controller object
     var mSubcategoryList :[SubCategorylist] = []  //variable hold list of sub categories details
     var mTotalSubCategoryCount = 0    //varible to store total number of subCategories
     
     var mCategory : Categorylist! // varibale to store total selected category
-    init(category : Categorylist) {
+    init(category : Categorylist, obj :PSubCategoryViewController) {
         super.init()
+        mSubCategoryVC = obj
         mCategory = category
         mFetchSubCategoryDetailsFromController (0)
     }
     
     //method to fetch subcategory details from controller
     func mFetchSubCategoryDetailsFromController (offSet : Int) {
-        
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: #selector(SubCategoryViewModel.updateSubCategoryViewModel(_:)), name: "UpdateSubCategoryViewModel", object: nil)
-        mControllerObj = Controller()
+        mControllerObj = Controller(subCategoryVMObj: self)
         mControllerObj.mGetSubCategoryDetails(mCategory.categoryId, pId: mCategory.parentId, offSet: offSet)
         
     }
@@ -44,19 +43,14 @@ class SubCategoryViewModel: NSObject {
     }
     
     //mehtod to update subcategory list in sub category view controller
-    func updateSubCategoryViewModel(notification : NSNotification){
-        var subCategoryList = notification.userInfo!["SubCategory"] as! [SubCategorylist]
+    func updateSubCategoryViewModel(subCategoryList : [SubCategorylist]){
         
         mTotalSubCategoryCount = subCategoryList[0].totalCount
         //adding content to list
         for category in subCategoryList {
             mSubcategoryList.append(category)
         }
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateSubCategoryViewModel", object: nil)
-        
-        
-            NSNotificationCenter.defaultCenter()
-                .postNotificationName("UpdateSubCategoryViewController", object: nil)
+        mSubCategoryVC.updataSubCategoryViewController()
             NSNotificationCenter.defaultCenter()
                 .postNotificationName("updatePlayList", object: nil)
       }

@@ -28,7 +28,7 @@ class ApiRequest: NSObject {
         "X_APPY_PCP_ID" : "999"
         ]
     
-    func mFetchCategoryList() {
+    func mFetchCategoryList(controllerObj: PController) {
         if self.utilityObj.isinternetAvailable(){
             //getting url from info.plist
             let url = infoPlist!["Web_Url"] as! String
@@ -37,13 +37,13 @@ class ApiRequest: NSObject {
                 .responseJSON { response in
                     
                     let APIresponseObj = APIResponse()
-                    APIresponseObj.mParseCategoryDetails(response.result.value as! [String : AnyObject])
+                    APIresponseObj.mParseCategoryDetails(controllerObj ,response: response.result.value as! [String : AnyObject])
             }
         }
     }
     
     //method to fetch sub category list
-    func mFetchSubCategoryList(c_Id : Int,p_Id : Int,offset : Int) {
+    func mFetchSubCategoryList(controllerObj: PController,c_Id : Int,p_Id : Int,offset : Int) {
         if self.utilityObj.isinternetAvailable(){
             //getting url from info.plist
             let url = infoPlist!["Web_Url"] as! String
@@ -53,7 +53,7 @@ class ApiRequest: NSObject {
                     if(response.result.value != nil){
                         
                         let APIresponseObj = APIResponse()
-                        APIresponseObj.mParseSubCategoryDetails(response.result.value as! [String : AnyObject])
+                        APIresponseObj.mParseSubCategoryDetails(controllerObj,response: response.result.value as! [String : AnyObject])
                     }
                     else{
                         print("Error")
@@ -81,7 +81,7 @@ class ApiRequest: NSObject {
         }
     }
     //method to fetch parent categories
-    func mFetchParentCategories(controllerObj : Controller) {
+    func mFetchParentCategories(controllerObj : PController) {
         if self.utilityObj.isinternetAvailable(){
             //getting url from info.plist
             let url = infoPlist!["Web_Url"] as! String
@@ -95,7 +95,7 @@ class ApiRequest: NSObject {
         }
     }
     //method to fetch parenting sub categories
-    func mFetchSubParentingCategories(c_Id : Int,p_Id : Int,offset : Int) {
+    func mFetchSubParentingCategories(controllerObj : PController,c_Id : Int,p_Id : Int,offset : Int) {
         if self.utilityObj.isinternetAvailable(){
             //getting url from info.plist
             let url = infoPlist!["Web_Url"] as! String
@@ -106,7 +106,7 @@ class ApiRequest: NSObject {
                 .responseJSON { response in
                     if(response.result.value != nil){
                         let APIresponseObj = APIResponse()
-                        APIresponseObj.mParseParentSubCategoryDetails(response.result.value as! [String : AnyObject])
+                        APIresponseObj.mParseParentSubCategoryDetails(controllerObj,response: response.result.value as! [String : AnyObject])
                     }
                     else{
                         
@@ -117,7 +117,7 @@ class ApiRequest: NSObject {
     }
     
     //method to fetch avatar list
-    func mFetchAvatarList() {
+    func mFetchAvatarList(controllerObj: PController) {
         if self.utilityObj.isinternetAvailable(){
             //getting url from info.plist
             let url = infoPlist!["Web_Url"] as! String
@@ -126,7 +126,7 @@ class ApiRequest: NSObject {
                 .responseJSON { response in
                     if(response.result.value != nil){
                         let APIresponseObj = APIResponse()
-                        APIresponseObj.mParseAvatarList(response.result.value as! [String : AnyObject])
+                        APIresponseObj.mParseAvatarList(controllerObj,response: response.result.value as! [String : AnyObject])
                     }
                     else{
                         

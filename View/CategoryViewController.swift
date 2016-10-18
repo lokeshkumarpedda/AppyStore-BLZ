@@ -19,7 +19,7 @@ import Alamofire
 import AlamofireImage
 
 
-class CategoryViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+class CategoryViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,PCategoryViewController {
     //MARK:- Outlets
     @IBOutlet weak var mHomeButton: UIButton!
     @IBOutlet weak var mVideoButton: UIButton!
@@ -68,16 +68,11 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame) , height : CGRectGetHeight(self.view.frame))
         
         //creating object for category view model
-        mCategoryViewModelObj = CategoryViewModel()
+        mCategoryViewModelObj = CategoryViewModel(obj: self)
+        mCategoryViewModelObj.mGetCategories()
         
         headerLabel.text = "Main Menu"
         
-        //notification
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CategoryViewController.updateCategoryViewController(_:)), name: "updateCategoryViewController", object: nil)
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func didReceiveMemoryWarning(){
@@ -134,7 +129,6 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
                     self.cache.addImage(img, withIdentifier: image!)
                     cell.VideoImageView.image = img
                     cell.activityIndicator.stopAnimating()
-                    cell.activityIndicator.hidden = true
                 }
             }
         }
@@ -155,7 +149,7 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     }
 
     //method to update category view contrller
-    func updateCategoryViewController(notification : NSNotification) {
+    func updateCategoryViewController() {
         
         if mCategoryViewModelObj.mTotalCount == 0 {
             mCategoryViewModelObj.mGetCategories()

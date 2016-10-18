@@ -16,7 +16,7 @@ import AlamofireImage
 import ReactiveKit
 import ReactiveUIKit
 
-class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate ,PSubCategoryViewController{
     //MARK:- Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mBackButtonLabel: UIButton!
@@ -69,9 +69,8 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         
         //creating layout for cell in collection view
         collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame))
-
         
-        mSubcategoryViewModelObj = SubCategoryViewModel(category: mCategory!)
+        mSubcategoryViewModelObj = SubCategoryViewModel(category: mCategory!, obj : self)
         
         // setting background image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
@@ -79,7 +78,6 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         headerView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         
         headerLabel.text = mCategory.name.value
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateSubCategoryViewController", object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -203,7 +201,7 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     }
 
     //method to update subcategory view controller
-    func updataSubCategoryViewController(notification : NSNotification) {
+    func updataSubCategoryViewController() {
         
         mActivityIndicator.stopAnimating()
         let recievedCategories = mSubcategoryViewModelObj.mSubcategoryList.count

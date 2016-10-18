@@ -11,18 +11,17 @@
 
 import UIKit
 
-class CategoryViewModel : NSObject {
+class CategoryViewModel : NSObject ,PCategoryViewModel{
     
     var mControllerObj : Controller!
+    var mCategoryVCObj : PCategoryViewController!
     var mCategoryList = [Categorylist]()
     var mTotalCount = 0
 
-    override init(){
+    init(obj : PCategoryViewController){
         super.init()
-        mControllerObj = Controller()
-        self.mGetCategories()
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: #selector(CategoryViewModel.updateCategoryViewModel(_:)), name: "UpdateCategoryViewModel", object: nil)
+        mCategoryVCObj = obj
+        mControllerObj = Controller(categoryVMObj: self)
     }
     
     //method to asking data to controller
@@ -37,8 +36,7 @@ class CategoryViewModel : NSObject {
     }
     
     //method to update category view model
-    func updateCategoryViewModel(notification : NSNotification) {
-        NSNotificationCenter.defaultCenter()
-            .postNotificationName("updateCategoryViewController", object: nil)
+    func updateCategoryViewModel(categortList : [Categorylist]) {
+        mCategoryVCObj.updateCategoryViewController()
     }
 }

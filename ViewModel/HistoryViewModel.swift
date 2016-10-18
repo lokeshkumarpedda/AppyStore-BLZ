@@ -15,9 +15,9 @@ class HistoryViewModel: NSObject {
     var mHistoryList = [SubCategorylist]() //to store history deatils for view controller
     var mHistoryListCount = 0 // to store total number of history
     var mControllerObj : Controller! //create object of contoller
-    var mHistoryViewControllerObj : HistoryViewController!
+    var mHistoryViewControllerObj : PHistoryViewController!
     
-    init (historyVCObj : HistoryViewController) {
+    init (historyVCObj : PHistoryViewController) {
         super.init()
         mHistoryViewControllerObj = historyVCObj
         mControllerObj = Controller(historyVMObj: self)

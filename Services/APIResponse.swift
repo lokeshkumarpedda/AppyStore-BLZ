@@ -15,7 +15,7 @@ class APIResponse: NSObject {
     }
     
     //method to parse category list
-    func mParseCategoryDetails(response : [String : AnyObject]) {     //response : [String : AnyObject]
+    func mParseCategoryDetails(controllerObj: PController , response : [String : AnyObject]) {     //response : [String : AnyObject]
 
         var categories = [Categorylist]()
         let count = response["Responsedetails"]!["category_count"] as! Int
@@ -28,12 +28,11 @@ class APIResponse: NSObject {
             
             categories.append(Categorylist(name: title, image: image, cId: cId!, pId: pId!, totalCount: totalCount))
         }
-
-        NSNotificationCenter.defaultCenter().postNotificationName("ControllerCategoryUpdate", object: self, userInfo: ["category" : categories])
+        controllerObj.updateCategoryDetails(categories)
     }
    
     //method to parse subcategory list
-    func mParseSubCategoryDetails(response : [String : AnyObject]) {
+    func mParseSubCategoryDetails(controllerObj: PController, response : [String : AnyObject]) {
         var subcategories = [SubCategorylist]()
         
         let totalcount = response["Responsedetails"]!["total_count"] as! Int
@@ -47,7 +46,7 @@ class APIResponse: NSObject {
 
             subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: totalcount))
         }
-        NSNotificationCenter.defaultCenter().postNotificationName("ControllerSubCategoryUpdate", object: self, userInfo: ["SubCategory" : subcategories])
+        controllerObj.updateSubCategoryList(subcategories)
     }
     
     //method to parse Search category list 
@@ -77,7 +76,7 @@ class APIResponse: NSObject {
     }
     
     //method to parse parent categories
-    func mParseParentCategories(controllerObj : Controller, response : [String : AnyObject]) {
+    func mParseParentCategories(controllerObj : PController, response : [String : AnyObject]) {
         var parentCategories = [Categorylist]()
         let count = response["Responsedetails"]!["category_count"] as! Int
         for i in 0..<count {
@@ -93,7 +92,7 @@ class APIResponse: NSObject {
     }
     
     //method to parse parent subcategory list
-    func mParseParentSubCategoryDetails(response : [String : AnyObject]) {
+    func mParseParentSubCategoryDetails(controllerObj : PController,response : [String : AnyObject]) {
         var subcategories = [SubCategorylist]()
         
         let totalcount = response["Responsedetails"]!["total_count"] as! Int
@@ -107,11 +106,11 @@ class APIResponse: NSObject {
             
             subcategories.append(SubCategorylist(title: title, duration: duration, downloadUrl: downloadUrl, imageUrl: imageUrl, totalCount: totalcount))
         }
-        NSNotificationCenter.defaultCenter().postNotificationName("ControllerParentSubCategoryUpdate", object: self, userInfo: ["ParentSubCategory" : subcategories])
+        controllerObj.updateParentSubCategoryList(subcategories)
     }
     
     //method to parse avatar list
-    func mParseAvatarList(response : [String : AnyObject]){
+    func mParseAvatarList(controllerObj: PController,response : [String : AnyObject]){
         var avatarList = [Avatar]()
         
         let count = response["Responsedetails"]!.count as Int
@@ -122,7 +121,7 @@ class APIResponse: NSObject {
             
             avatarList.append(Avatar(id: avatarId, url: avatarUrl))
         }
-        NSNotificationCenter.defaultCenter().postNotificationName("ControllerAvatarsUpdate", object: self, userInfo: ["Avatars" : avatarList])
+        controllerObj.updateAvatars(avatarList)
     }
     
     //method to get the child registratoin response

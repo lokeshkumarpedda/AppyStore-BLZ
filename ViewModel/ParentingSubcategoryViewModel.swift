@@ -10,17 +10,19 @@
 
 import UIKit
 
-class ParentingSubcategoryViewModel: NSObject {
+class ParentingSubcategoryViewModel: NSObject ,PSubCategoryViewModel{
     var mControllerObj : Controller!    //create controller object
     var mParentSubcategoryList :[SubCategorylist] = []
                                         //variable hold list of sub categories details
     var mTotalParentSubCategoryCount = 0
                                         //store total number of ParentsubCategories
     var mCategory : Categorylist!       // varibale to store total selected category
+    var mParentSubCategoryVC : PSubCategoryViewController!
     
-    init(parentingSubCategory : Categorylist) {
+    init(parentingSubCategory : Categorylist, obj :PSubCategoryViewController) {
         super.init()
         
+        mParentSubCategoryVC = obj
         //getting the selected parent category
         mCategory = parentingSubCategory
         
@@ -30,9 +32,7 @@ class ParentingSubcategoryViewModel: NSObject {
     
     //method to fetch subcategory details from controller
     func mFetchParentSubCategoryDetailsFromController (offSet : Int) {
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: #selector(updateParentSubCategoryViewModel(_:)), name: "UpdateParentSubCategoryViewModel", object: nil)
-        mControllerObj = Controller()
+        mControllerObj = Controller(parentSubcategoryVMObj: self)
         
         //Asking controller for data
         mControllerObj.mGetParentSubCategoryDetails(mCategory.categoryId, pId: mCategory.parentId, offSet: offSet)
@@ -49,8 +49,8 @@ class ParentingSubcategoryViewModel: NSObject {
     }
     
     //method to update subcategory list in sub category view controller
-    func updateParentSubCategoryViewModel(notification : NSNotification){
-        var parentSubCategoryList = notification.userInfo!["ParentSubCategory"] as! [SubCategorylist]
+    func updateSubCategoryViewModel(subCategoryList : [SubCategorylist]){
+        var parentSubCategoryList = subCategoryList
         
         //storing the total categories count
         mTotalParentSubCategoryCount = parentSubCategoryList[0].totalCount
@@ -59,13 +59,6 @@ class ParentingSubcategoryViewModel: NSObject {
         for category in parentSubCategoryList {
             mParentSubcategoryList.append(category)
         }
-        
-        //removing the observer for this view model
-        NSNotificationCenter.defaultCenter()
-            .removeObserver(self, name: "UpdateParentSubCategoryViewModel", object: nil)
-        
-        //posting a notification to update view controller
-        NSNotificationCenter.defaultCenter()
-            .postNotificationName("UpdateParentSubCategoryViewController", object: nil)
+        mParentSubCategoryVC.updataSubCategoryViewController()
     }
 }

@@ -15,7 +15,7 @@ import AVFoundation
 
 private let reuseIdentifier = "CollectionViewCell"
 
-class ParentingSubCategoryCollectionViewController: UICollectionViewController {
+class ParentingSubCategoryCollectionViewController: UICollectionViewController,PSubCategoryViewController {
 
     var mParentSubcategoryViewModelObj : ParentingSubcategoryViewModel!//viewmodel object
     var mParentCategory : Categorylist!   //to store selected category from category view
@@ -33,7 +33,7 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         mActivityIndicator.startAnimating()
         self.navigationItem.title = mParentCategory.name.value
         
-        mParentSubcategoryViewModelObj = ParentingSubcategoryViewModel(parentingSubCategory: mParentCategory!)
+        mParentSubcategoryViewModelObj = ParentingSubcategoryViewModel(parentingSubCategory: mParentCategory!, obj :self)
         
         //setting the background
         collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
@@ -43,10 +43,6 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         
         //creating layout for cell in collection view
         layOutWithOutFooter()
-        
-        //observer relaoding the collection view when data came
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: #selector(SubCategoryViewContoller.updataSubCategoryViewController(_:)), name: "UpdateParentSubCategoryViewController", object: nil)
     }
     
     //when view appears playing the music
@@ -54,14 +50,6 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
         
         BackGroundMusic.sharedPlayer.playMusic()
         
-    }
-    
-    //when view will disappear
-    override func viewWillDisappear(animated: Bool) {
-        
-        //removing the observer
-        NSNotificationCenter.defaultCenter()
-            .removeObserver(self, name: "UpdateParentSubCategoryViewController", object: nil)
     }
 
     // MARK: UICollectionViewDataSource
@@ -91,7 +79,7 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController {
     }
     
     //method to update subcategory view controller
-    func updataSubCategoryViewController(notification : NSNotification) {
+    func updataSubCategoryViewController() {
         mActivityIndicator.stopAnimating()
         let recievedCategories = mParentSubcategoryViewModelObj.mParentSubcategoryList.count
         let totalCategories = mParentSubcategoryViewModelObj.mTotalParentSubCategoryCount

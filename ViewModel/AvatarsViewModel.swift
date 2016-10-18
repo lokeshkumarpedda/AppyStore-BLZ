@@ -10,26 +10,24 @@
 
 import UIKit
 
-class AvatarsViewModel: NSObject {
+class AvatarsViewModel: NSObject ,PAvatarViewModel{
     
     var mAvatarList = [Avatar]()  //creating array of Avatar list
     var mControllerObj : Controller!    //creating controller reference
     var mTotalCount = 0
+    var mAvatarVCObj : PAvatarViewController!
     
-    override init(){
+    init(obj : PAvatarViewController){
         super.init()
-        mControllerObj = Controller()
+        mAvatarVCObj = obj
+        mControllerObj = Controller(avatarVMObj: self)
         mControllerObj!.mGetAvatars()
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: #selector(updateAvatarsViewModel(_:)), name: "UpdateAvatarsViewModel", object: nil)
     }
     
     //updating view model
-    func updateAvatarsViewModel(notification : NSNotification){
-        mAvatarList = notification.userInfo!["Avatars"] as! [Avatar]
+    func updateAvatarsViewModel(avatarList: [Avatar]){
+        mAvatarList = avatarList
         mTotalCount = mAvatarList.count
-        NSNotificationCenter.defaultCenter()
-            .postNotificationName("UpdateAvatarsViewController", object: nil)
         
     }
     

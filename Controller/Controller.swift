@@ -20,21 +20,22 @@ class Controller : NSObject,PController{
     var mSubCategoryViewModelObj : PSubCategoryViewModel! //object of sub category view model
     var mSearchViewModelObj : PSearchViewModel! //object od search view model
     var mHistoryViewModel : HistoryViewModel! //object of history view model
-    var mParentCategoryVMobj : ParentingCategoriesViewModel!
+    var mParentCategoryVMobj : PCategoryViewModel!
+    var mparentSubcategoryVMObj :PSubCategoryViewModel!
+    var mAvatarVMObj : PAvatarViewModel!
     
-    //init for category
     override init() {
         super.init()
-        //observe notification for category list updates
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateCategoryDetails(_:)), name:"ControllerCategoryUpdate", object: nil)
-        //observe notification for subcategory list updates
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateSubCategoryList(_:)), name: "ControllerSubCategoryUpdate", object: nil)
-        //observe notification for parent sub category list updates
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateParentSubCategoryList(_:)), name: "ControllerParentSubCategoryUpdate", object: nil)
-        //observe notification for avatar list
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Controller.updateAvatars(_:)), name: "ControllerAvatarsUpdate", object: nil)
-        
     }
+    
+    init(categoryVMObj : PCategoryViewModel) {
+        mCategoryViewModelObj = categoryVMObj
+    }
+    
+    init(subCategoryVMObj : PSubCategoryViewModel) {
+        mSubCategoryViewModelObj = subCategoryVMObj
+    }
+    
     //init for search
     init(searchViewMode : PSearchViewModel) {
         mSearchViewModelObj = searchViewMode
@@ -44,21 +45,30 @@ class Controller : NSObject,PController{
         mHistoryViewModel = historyVMObj
     }
     //init for parent categories
-    init(parentCategoryVMobj : ParentingCategoriesViewModel) {
+    init(parentCategoryVMobj : PCategoryViewModel) {
         mParentCategoryVMobj = parentCategoryVMobj
     }
+    
+    init(parentSubcategoryVMObj : PSubCategoryViewModel) {
+        mparentSubcategoryVMObj = parentSubcategoryVMObj
+    }
+    
+    init(avatarVMObj : PAvatarViewModel) {
+        mAvatarVMObj = avatarVMObj
+    }
+    
     //MARK:- Fetch details methods
     //method to get category list from rest api
     func mGetCategoryDetails() -> [Categorylist]{
         let categoryDetails = mLocalDataBaseObj.mFetchCategoryDetails()
-        mApiRequesrObj.mFetchCategoryList()
+        mApiRequesrObj.mFetchCategoryList(self)
         
         return categoryDetails
     }
     
     //method to get subcategory from rest api
     func mGetSubCategoryDetails(cId : Int,pId : Int,offSet : Int) {
-        mApiRequesrObj.mFetchSubCategoryList(cId,p_Id : pId,offset: offSet)
+        mApiRequesrObj.mFetchSubCategoryList(self,c_Id: cId,p_Id : pId,offset: offSet)
     }
     
     //medthod to get SearchDetails from api
@@ -83,12 +93,12 @@ class Controller : NSObject,PController{
     
     //method to get parent subcategories
     func mGetParentSubCategoryDetails(cId : Int,pId : Int,offSet : Int) {
-        mApiRequesrObj.mFetchSubParentingCategories(cId,p_Id : pId,offset: offSet)
+        mApiRequesrObj.mFetchSubParentingCategories(self,c_Id: cId,p_Id : pId,offset: offSet)
     }
     
     //method to get avatar list
     func mGetAvatars() {
-        mApiRequesrObj.mFetchAvatarList()
+        mApiRequesrObj.mFetchAvatarList(self)
     }
     
     //method to registering a child
@@ -102,22 +112,17 @@ class Controller : NSObject,PController{
         mLocalDataBaseObj.mInsertInToHistoryTabel(subCategory)
     }
     //method to update category view model
-    func updateCategoryDetails(notification : NSNotification){
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerCategoryUodate", object: nil)
-        if mLocalDataBaseObj.mCheckCategoryUpdates(notification.userInfo!["category"] as! [Categorylist]){
-            
-             NSNotificationCenter.defaultCenter().postNotificationName(
-                "UpdateCategoryViewModel", object: self, userInfo: nil)
-            
+    func updateCategoryDetails(categories: [Categorylist]){
+        if mLocalDataBaseObj.mCheckCategoryUpdates(categories){
+             mCategoryViewModelObj.updateCategoryViewModel(categories)
         }
        
     }
     
     //method to update SubCategory View model
-    func updateSubCategoryList(notification : NSNotification){
+    func updateSubCategoryList(subCategories : [SubCategorylist]){
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ControllerSubCategoryUpdate", object: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateSubCategoryViewModel", object: self, userInfo: notification.userInfo)
+        mSubCategoryViewModelObj.updateSubCategoryViewModel(subCategories)
         
     }
     
@@ -128,19 +133,15 @@ class Controller : NSObject,PController{
 
     //method to update parent categories view model
     func updateParentCategoryList(categoryList : [Categorylist]) {
-        mParentCategoryVMobj.mUpdateViewModel(categoryList)
+        mParentCategoryVMobj.updateCategoryViewModel(categoryList)
     }
     
     //method to update Parent sub category view model
-    func updateParentSubCategoryList(notification : NSNotification){
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateParentSubCategoryViewModel", object: self, userInfo: notification.userInfo)
-         NSNotificationCenter.defaultCenter().removeObserver(self)
-        
+    func updateParentSubCategoryList(subCategories : [SubCategorylist]){
+        mparentSubcategoryVMObj.updateSubCategoryViewModel(subCategories)
     }
     
-    func updateAvatars(notification : NSNotification){
-       NSNotificationCenter.defaultCenter().postNotificationName(
-        "UpdateAvatarsViewModel", object: self, userInfo: notification.userInfo)
-       NSNotificationCenter.defaultCenter().removeObserver(self)
+    func updateAvatars(avatars: [Avatar]){
+        mAvatarVMObj.updateAvatarsViewModel(avatars)
     }
 }

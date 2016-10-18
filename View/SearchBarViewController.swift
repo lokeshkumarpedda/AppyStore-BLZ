@@ -18,7 +18,7 @@ import Alamofire
 import AVKit
 import AVFoundation
 
-class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate,PSearchViewController,UITextFieldDelegate {
+class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate,PSearchViewController {
     
     //MARK:- IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!

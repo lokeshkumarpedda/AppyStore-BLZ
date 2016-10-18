@@ -18,6 +18,7 @@ target 'AppyStoreBLZ' do
   pod 'ReactiveKit', '~> 1.0'
   pod 'ReactiveUIKit', '~> 1.0'
   pod 'ReactiveFoundation', '~> 1.0'
+  pod 'MBProgressHUD', '~> 0.9.0'
   
   # Pods for AppyStoreBLZ
 

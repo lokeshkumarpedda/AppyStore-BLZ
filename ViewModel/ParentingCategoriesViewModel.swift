@@ -11,15 +11,15 @@
 
 import UIKit
 
-class ParentingCategoriesViewModel: NSObject {
+class ParentingCategoriesViewModel: NSObject ,PCategoryViewModel{
     
     var mControllerObj : Controller!            //creating controller model object
-    var mParentCategoryVCobj : ParentingCategoriesCollectionViewController!
+    var mParentCategoryVCobj : PCategoryViewController!
                                                 //creating view controller object
     var mParentCategoryList = [Categorylist]()  //creating array of category list
     
     //construter with view controller object
-    init(parentCategoryVCobj : ParentingCategoriesCollectionViewController){
+    init(parentCategoryVCobj : PCategoryViewController){
         super.init()
         mControllerObj = Controller(parentCategoryVMobj: self)
         mParentCategoryVCobj = parentCategoryVCobj
@@ -27,9 +27,9 @@ class ParentingCategoriesViewModel: NSObject {
     }
     
     //updating the view model when the response came
-    func mUpdateViewModel(parentCategories : [Categorylist]) {
-        mParentCategoryList = parentCategories
-        mParentCategoryVCobj.updateVC()
+    func updateCategoryViewModel(categortList : [Categorylist]) {
+        mParentCategoryList = categortList
+        mParentCategoryVCobj.updateCategoryViewController()
     }
     
     //giving cells count to the view controller

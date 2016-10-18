@@ -10,9 +10,9 @@
 
 import UIKit
 
-class AvatarsCollectionViewController: UICollectionViewController {
+class AvatarsCollectionViewController: UICollectionViewController,PAvatarViewController {
 
-    var mAvatarVMobj : AvatarsViewModel?
+    var mAvatarVMobj : AvatarsViewModel!
     var cache = NSCache()
     var mActivityIndicator = UIActivityIndicatorView()
     
@@ -35,11 +35,7 @@ class AvatarsCollectionViewController: UICollectionViewController {
         collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame) , height : CGRectGetHeight(self.view.frame))
         
         //creating view model object
-        mAvatarVMobj = AvatarsViewModel()
-        
-        //adding observer for details
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: #selector(updateAvatarVC(_:)), name: "UpdateAvatarsViewController", object: nil)
+        mAvatarVMobj = AvatarsViewModel(obj: self)
         
     }
     //when view will disappear
@@ -109,7 +105,7 @@ class AvatarsCollectionViewController: UICollectionViewController {
     }
     
     //updating view controller
-    func updateAvatarVC(notification : NSNotification){
+    func updateAvatarVC(){
         mActivityIndicator.stopAnimating()
         collectionView?.reloadData()
     }

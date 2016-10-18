@@ -10,5 +10,16 @@
 
 
 protocol PController {
+    
+    func updateCategoryDetails(categories: [Categorylist])
+    
+    func updateSubCategoryList(subCategories : [SubCategorylist])
+    
     func updateSearchCategoryList(subCategoryList : [SubCategorylist])
+    
+    func updateParentCategoryList(categoryList : [Categorylist])
+    
+    func updateParentSubCategoryList(subCategories : [SubCategorylist])
+    
+    func updateAvatars(avatars: [Avatar])
 }
