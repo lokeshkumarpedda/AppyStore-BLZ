@@ -25,12 +25,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         //for background music
         BackGroundMusic.sharedPlayer.backGroundMusic()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
+        self.view.backgroundColor = UIColor(
+            patternImage: UIImage(named: "backgroundimage")!)
         
         //to dismiss keyboard 
         mobileNoTextField.delegate = self
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard)))
+        self.view.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(LoginViewController.dismissKeyboard)))
         
     }
     

@@ -60,20 +60,29 @@ class VideoPlayerViewController: UIViewController {
         super.viewDidLoad()
         
         //Customizing all the views backgrounds
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
-        self.mHeaderView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.2)
-        self.mPlayListView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0)
+        self.view.backgroundColor = UIColor(
+            patternImage: UIImage(named: "backgroundimage.jpg")!)
+        self.mHeaderView.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0.2)
+        self.mPlayListView.backgroundColor =
+            UIColor.whiteColor().colorWithAlphaComponent(0)
         self.mVideoView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0)
-        self.mButtonsView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0)
+        self.mButtonsView.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0)
         mCollectionView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0)
         
         //CollectionViewCell class registration
-        mCollectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
+        mCollectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil),
+                                    forCellWithReuseIdentifier: "CollectionViewCell")
         
         layOutWithOutFooter()
         
         //adding observers for loading the collection view
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updataPlayList(_:)), name: "updatePlayList", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(updataPlayList(_:)),
+            name: "updatePlayList",
+            object: nil)
     }
     
     //After appearing the view
@@ -85,7 +94,12 @@ class VideoPlayerViewController: UIViewController {
         BackGroundMusic.sharedPlayer.pauseMusic()
         
         //Timer to update slider for each second
-        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:#selector(updateSlider) , userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(
+            1.0,
+            target: self,
+            selector:#selector(updateSlider) ,
+            userInfo: nil,
+            repeats: true)
         
         //adding taget to the slider
         mTimeSlider.addTarget(self, action: #selector(changeInSlider),
@@ -118,7 +132,8 @@ class VideoPlayerViewController: UIViewController {
         
         //checking the identifier
         if segue.identifier == "VideoPlayerToSubCategory"{
-            let subCategoryViewControllerObj = segue.destinationViewController as! SubCategoryViewContoller
+            let subCategoryViewControllerObj =
+                segue.destinationViewController as! SubCategoryViewContoller
             
             //sending subcategory to video player controller
             subCategoryViewControllerObj.mCategory = mCategory
@@ -159,33 +174,54 @@ class VideoPlayerViewController: UIViewController {
 
         
         //Observer for starting the video
-        mVideoPlayerItem!.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.New, context: nil)
+        mVideoPlayerItem!.addObserver(
+            self,
+            forKeyPath: "status",
+            options: NSKeyValueObservingOptions.New,
+            context: nil)
         
         //Observer for checking if the buffer is empty
-        mVideoPlayerItem!.addObserver(self, forKeyPath: "playbackBufferEmpty", options: NSKeyValueObservingOptions.New, context: nil)
+        mVideoPlayerItem!.addObserver(
+            self,
+            forKeyPath: "playbackBufferEmpty",
+            options: NSKeyValueObservingOptions.New,
+            context: nil)
         
         //Observer for when video is ready to play
-        mVideoPlayerItem!.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: NSKeyValueObservingOptions.New, context: nil)
+        mVideoPlayerItem!.addObserver(
+            self,
+            forKeyPath: "playbackLikelyToKeepUp",
+            options: NSKeyValueObservingOptions.New,
+            context: nil)
         
     }
     
     //For video loading and Buffering
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>){
+    override func observeValueForKeyPath(
+        keyPath: String?,
+        ofObject object: AnyObject?,
+        change: [String : AnyObject]?,
+        context: UnsafeMutablePointer<Void>){
         
         if keyPath == "status"{
             
             //checking the video is in playable status or not
-            if mVideoPlayer.status == .ReadyToPlay && mVideoPlayerItem!.status == .ReadyToPlay{
+            if mVideoPlayer.status == .ReadyToPlay &&
+                mVideoPlayerItem!.status == .ReadyToPlay{
                 
                 //stoping the activity indicator and removing it from the screen
                 stopActivityIndicator()
                 
                 //adding gesture recognizer
-                let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoPlayerViewController.tapToFullscreen(_:)))
+                let gestureRecognizer = UITapGestureRecognizer(
+                    target: self,
+                    action: #selector(VideoPlayerViewController.tapToFullscreen(_:)))
+                
                 mVideoView.addGestureRecognizer(gestureRecognizer)
                 
                 //setting total time of the video to slider maximum value
-                mTimeSlider.maximumValue = Float(Int(mVideoPlayerItem!.duration.value) / Int(mVideoPlayerItem!.duration.timescale))
+                mTimeSlider.maximumValue = Float(Int(mVideoPlayerItem!.duration.value) /
+                    Int(mVideoPlayerItem!.duration.timescale))
                 
                 //setting total time label to maximum video length
                 mTotalTimeLabel.text = convertingSeconds(Int(mTimeSlider.maximumValue))
@@ -246,7 +282,8 @@ class VideoPlayerViewController: UIViewController {
     func updateSlider(){
         
         //adding player time to the slider
-        mTimeSlider.value = Float(Int( mVideoPlayerItem!.currentTime().value) / Int(mVideoPlayerItem!.currentTime().timescale))
+        mTimeSlider.value = Float(Int( mVideoPlayerItem!.currentTime().value) /
+            Int(mVideoPlayerItem!.currentTime().timescale))
         
         //adding time to the label
         mCurrentTimeLabel.text = convertingSeconds(Int(mTimeSlider.value))
@@ -282,7 +319,10 @@ class VideoPlayerViewController: UIViewController {
     func goToIndex(indexpath : NSIndexPath) {
         
         //checking for is it the first two cells or not
-        mCollectionView.scrollToItemAtIndexPath(indexpath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+        mCollectionView.scrollToItemAtIndexPath(
+            indexpath,
+            atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally,
+            animated: true)
         
         //updating current index
         mCurrentVideoIndex = indexpath.row
@@ -339,7 +379,9 @@ class VideoPlayerViewController: UIViewController {
         self.view.addSubview(mFullScreenView)
         
         //Adding gesture recognition to the fullscreen
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoPlayerViewController.cancelingFullScreen(_:)))
+        let gestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(VideoPlayerViewController.cancelingFullScreen(_:)))
         mFullScreenView.addGestureRecognizer(gestureRecognizer)
     }
     
@@ -356,7 +398,10 @@ class VideoPlayerViewController: UIViewController {
         mVideoPlayerLayer?.frame = mVideoView.bounds
   
         //adding gesture recognizer
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoPlayerViewController.tapToFullscreen(_:)))
+        let gestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(VideoPlayerViewController.tapToFullscreen(_:)))
+        
         mVideoView.addGestureRecognizer(gestureRecognizer)
     }
     
@@ -385,7 +430,8 @@ class VideoPlayerViewController: UIViewController {
     @IBAction func previousVideoAction(sender: AnyObject) {
         
         //checking the video exists in subCategoryList
-        if mCurrentVideoIndex > 0 && mCurrentVideoIndex < mSubcategoryViewModelObj.mSubcategoryList.count{
+        if mCurrentVideoIndex > 0 &&
+            mCurrentVideoIndex < mSubcategoryViewModelObj.mSubcategoryList.count{
             
             //playing the video
             playerValues(NSURL(string: mSubcategoryViewModelObj.mSubcategoryList[mCurrentVideoIndex - 1].downloadUrl.value)!)
@@ -428,11 +474,17 @@ class VideoPlayerViewController: UIViewController {
     
     func layOutWithFooter(){
     
-        mCollectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(mPlayListView.frame), view: "videoPlayerWithFooter")
+        mCollectionView.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(mPlayListView.frame),
+            view: "videoPlayerWithFooter")
     }
     func layOutWithOutFooter(){
         
-        mCollectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(mPlayListView.frame), view: "videoPlayer")
+        mCollectionView.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(mPlayListView.frame),
+            view: "videoPlayer")
     }
 }
 
@@ -440,18 +492,24 @@ class VideoPlayerViewController: UIViewController {
 extension VideoPlayerViewController: UICollectionViewDataSource{
     
     //method to return number of item in each section of collection view
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    func collectionView(collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int{
         
         return mSubcategoryViewModelObj.mSubcategoryList.count
         
     }
     
     //method to create collection view cell
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+    func collectionView(collectionView: UICollectionView,
+                        cellForItemAtIndexPath indexPath: NSIndexPath)
+                        -> UICollectionViewCell{
         
         //getting sub category for the index
-        let subCategory : SubCategorylist? = mSubcategoryViewModelObj.mGetSubCategory(indexPath.row)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+        let subCategory : SubCategorylist? =
+            mSubcategoryViewModelObj.mGetSubCategory(indexPath.row)
+        let cell =
+            collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell",
+                                forIndexPath: indexPath) as! CollectionViewCell
         
         //binding the sub category to cell
         Utility().mBindCollectionViewCell(cell, subCategory: subCategory!)
@@ -463,7 +521,8 @@ extension VideoPlayerViewController: UICollectionViewDataSource{
 //MARK:- CollectionView Delegates
 extension VideoPlayerViewController : UICollectionViewDelegate{
     //Selected video
-    @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+    @objc func collectionView(collectionView: UICollectionView,
+                              didSelectItemAtIndexPath indexPath: NSIndexPath){
         
         //getting the url for the selected sub category
         mUrl = NSURL(string: mSubcategoryViewModelObj.mSubcategoryList[indexPath.row].downloadUrl.value)
@@ -477,12 +536,21 @@ extension VideoPlayerViewController : UICollectionViewDelegate{
         
         //Adding to the history
         let LocalDB = LocalDataBase()
-        LocalDB.mInsertInToHistoryTabel(mSubcategoryViewModelObj.mSubcategoryList[indexPath.row])
+        LocalDB.mInsertInToHistoryTabel(
+            mSubcategoryViewModelObj.mSubcategoryList[indexPath.row])
     }
     
     //Adding custom footer
-    @objc func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
-        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "playlistFooter", forIndexPath: indexPath)
+    @objc func collectionView(
+        collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+                                          atIndexPath indexPath: NSIndexPath)
+            -> UICollectionReusableView{
+                
+        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            kind,
+            withReuseIdentifier: "playlistFooter",
+            forIndexPath: indexPath)
         return footerView
     }
     

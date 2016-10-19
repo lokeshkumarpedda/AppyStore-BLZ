@@ -22,18 +22,26 @@ class RegisterChildViewController: UIViewController {
     
     //when view loaded
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
-        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        self.view.backgroundColor =
+            UIColor(patternImage: UIImage(named: "backgroundimage")!)
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,
+                                                             view : self.view)
         //putting datepicker maximum date to current date
         mDatePicker.maximumDate = mDatePicker.date
         
         //observer for registration success
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: #selector(registrationSuccessful(_:)), name: "RegistrationSuccess", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(
+                self,
+                selector: #selector(registrationSuccessful(_:)),
+                name: "RegistrationSuccess",
+                object: nil)
         
         //observer registration failure
-        NSNotificationCenter.defaultCenter()
-            .addObserver(self, selector: #selector(invalidChildName(_:)), name: "RegistrationFailed", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(invalidChildName(_:)),
+            name: "RegistrationFailed",
+            object: nil)
     }
     
     //method to dismiss keyboard when return button pressed
@@ -54,7 +62,9 @@ class RegisterChildViewController: UIViewController {
             let dateFormater = NSDateFormatter()
             dateFormater.dateFormat = "yyyy-MM-dd"
             let date = dateFormater.stringFromDate(mDatePicker.date)
-            Controller().mRegisterChildDetails(text, dob: date, avatarId: mSelectedAvatar!)
+            Controller().mRegisterChildDetails(text,
+                                               dob: date,
+                                               avatarId: mSelectedAvatar!)
 
             //removing object
             defaults.removeObjectForKey("imageAvtar")
@@ -62,9 +72,15 @@ class RegisterChildViewController: UIViewController {
         }
         else{
             //creating alert view
-            let alertController = UIAlertController(title: "Invalid Name", message: "Enter the name", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(
+                title: "Invalid Name",
+                message: "Enter the name",
+                preferredStyle: UIAlertControllerStyle.Alert)
             
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+            let okAction = UIAlertAction(title: "OK",
+                                         style: UIAlertActionStyle.Default)
+            { (result : UIAlertAction) -> Void in
+                
             }
             alertController.addAction(okAction)
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -75,9 +91,14 @@ class RegisterChildViewController: UIViewController {
         mActivityIndicator.stopAnimating()
         
         //creating alert view
-        let alertController = UIAlertController(title: "Successful", message: "Child Registered", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(
+            title: "Successful",
+            message: "Child Registered",
+            preferredStyle: UIAlertControllerStyle.Alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+        let okAction = UIAlertAction(title: "OK",
+                                     style: UIAlertActionStyle.Default)
+        { (result : UIAlertAction) -> Void in
             self.navigationController?.popToRootViewControllerAnimated(true)
         }
         alertController.addAction(okAction)
@@ -88,9 +109,15 @@ class RegisterChildViewController: UIViewController {
     func invalidChildName(notification : NSNotification){
         mActivityIndicator.stopAnimating()
         //creating alert view
-        let alertController = UIAlertController(title: "Invalid Name", message: "Child Name already exists", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(
+            title: "Invalid Name",
+            message: "Child Name already exists",
+            preferredStyle: UIAlertControllerStyle.Alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+        let okAction = UIAlertAction(title: "OK",
+                                     style: UIAlertActionStyle.Default)
+        { (result : UIAlertAction) -> Void in
+            
         }
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -100,5 +127,4 @@ class RegisterChildViewController: UIViewController {
     @IBAction func backButton(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
-    
 }

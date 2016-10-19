@@ -18,7 +18,10 @@ class LocalDataBase: NSObject {
     override init() {
         
         let fileManager = NSFileManager.defaultManager()
-        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+                                                          .UserDomainMask,
+                                                          true)
+        
         dataBasePath = dirPath[0] + "/AppyStoreDatabase.db"
         
         if(fileManager.fileExistsAtPath(dataBasePath)) {
@@ -127,7 +130,8 @@ class LocalDataBase: NSObject {
             if AppyStoreDataBase.open() {
                 //Deleting the whole table
                 let deleteTable = "DELETE FROM CATEGORY"
-                if AppyStoreDataBase.executeUpdate(deleteTable, withArgumentsInArray: nil){
+                if AppyStoreDataBase.executeUpdate(deleteTable,
+                                                   withArgumentsInArray: nil){
                     print("table deleted")
                 }
                 //sql query to create history table
@@ -154,10 +158,17 @@ class LocalDataBase: NSObject {
         if AppyStoreDataBase.open() {
             //fetch query
             let querySql = "SELECT * FROM CATEGORY"
-            let result = AppyStoreDataBase.executeQuery(querySql, withArgumentsInArray: nil)
+            let result = AppyStoreDataBase.executeQuery(querySql,
+                                                        withArgumentsInArray: nil)
             if (result != nil) {
                 while result!.next() {
-                    let category = Categorylist(name: result!.stringForColumn("category_name"), image: result!.stringForColumn("image_path"), cId: Int((result?.stringForColumn("category_id"))!)!, pId: Int((result?.intForColumn("parent_category_id"))!), totalCount: Int((result?.intForColumn("TotalCount"))!))
+                    let category = Categorylist(
+                        name: result!.stringForColumn("category_name"),
+                        image: result!.stringForColumn("image_path"),
+                        cId: Int((result?.stringForColumn("category_id"))!)!,
+                        pId: Int((result?.intForColumn("parent_category_id"))!),
+                        totalCount: Int((result?.intForColumn("TotalCount"))!))
+                    
                     categories.append(category)
                 }
             }
@@ -177,11 +188,17 @@ class LocalDataBase: NSObject {
             //fetch query for history
             let querySql = "SELECT * FROM HISTORY"
             //execute query
-            let result = AppyStoreDataBase.executeQuery(querySql, withArgumentsInArray: nil)
+            let result = AppyStoreDataBase.executeQuery(querySql,
+                                                        withArgumentsInArray: nil)
             if (result != nil) {
                 while result.next() {
                     
-                    let category = SubCategorylist(title: result.stringForColumn("title"), duration: result.stringForColumn("content_duration"), downloadUrl: result.stringForColumn("DwnLUrl"), imageUrl: result.stringForColumn("image_path")!, totalCount: 0)
+                    let category = SubCategorylist(
+                        title: result.stringForColumn("title"),
+                        duration: result.stringForColumn("content_duration"),
+                        downloadUrl: result.stringForColumn("DwnLUrl"),
+                        imageUrl: result.stringForColumn("image_path")!,
+                        totalCount: 0)
                     
                     history.append(category)
                 }

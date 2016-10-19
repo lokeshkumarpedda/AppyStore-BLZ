@@ -25,7 +25,9 @@ class Utility: NSObject {
     //fetch image from string url
     func fetchImage(url : String) -> Operation<UIImage, NSError> {
         return Operation { observe in
-            let request = Alamofire.request(.GET, NSURL(string: "")!).response { request, response, data, error in
+            let request = Alamofire.request(.GET,
+                NSURL(string: "")!).response { request, response, data, error in
+                    
                 if data != nil {
                     observe.next(UIImage(data: data!)!)
                     observe.success()
@@ -41,13 +43,15 @@ class Utility: NSObject {
         }
     }
     
-    func mBindCollectionViewCell(cell : CollectionViewCell , subCategory : SubCategorylist) {
+    func mBindCollectionViewCell(cell : CollectionViewCell ,
+                                 subCategory : SubCategorylist) {
         let blank = UIImage(named: "loading_img")
         cell.VideoImageView.image = blank
         let image = subCategory.imageUrl
         
         //setting layout for image view inside cell
-        cell.VideoImageView.image = UIImage(named: "angry_birds_space_image_rectangular_box")
+        cell.VideoImageView.image =
+            UIImage(named: "angry_birds_space_image_rectangular_box")
         cell.VideoImageView.layer.cornerRadius = 8
         cell.VideoImageView.clipsToBounds = true
         cell.VideoImageView.layer.borderWidth = 2
@@ -60,7 +64,8 @@ class Utility: NSObject {
                 let sec = duration!%60 < 10 ? "0\(duration!%60)" : "\(duration!%60)"
                 let min = duration!/60 < 10 ? "0\(duration!/60)" : "\(duration!/60)"
                 cell.VideoDurationLabel.text = "\(min) : \(sec)"
-                cell.VideoDurationLabel.backgroundColor = UIColor(patternImage: UIImage(named: "videos_categories_play__tranparent_box")!)
+                cell.VideoDurationLabel.backgroundColor = UIColor(patternImage: UIImage(
+                    named: "videos_categories_play__tranparent_box")!)
             }
         }
 
@@ -94,7 +99,9 @@ class Utility: NSObject {
         list.title.bindTo(cell.VideoLabel)
         
         cell.activityIndicator.startAnimating()
-        Alamofire.request(.GET, NSURL(string: list.imageUrl!)!).response { request, response, data, error in
+        Alamofire.request(.GET,
+            NSURL(string: list.imageUrl!)!).response { request, response, data, error in
+                
             if data != nil {
                 if cell.imgUrl == list.imageUrl {
                     cell.VideoImageView.image = UIImage(data: data!)
@@ -129,7 +136,8 @@ class Utility: NSObject {
     }
     
     //For activity indicator display and animation
-    func showActivityIndicator(activity : UIActivityIndicatorView , view : UIView) -> UIActivityIndicatorView{
+    func showActivityIndicator(activity : UIActivityIndicatorView , view : UIView)
+        -> UIActivityIndicatorView{
         //customizing activity indicator
         activity.frame = CGRectMake(0, 0, 50, 50)
         activity.center = view.center

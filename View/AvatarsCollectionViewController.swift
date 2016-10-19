@@ -21,18 +21,23 @@ class AvatarsCollectionViewController: UICollectionViewController,PAvatarViewCon
     //When the view loaded
     override func viewDidLoad() {
         
-        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,
+                                                             view : self.view)
         mActivityIndicator.startAnimating()
         
         //setting the background
-        collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
+        collectionView?.backgroundColor =
+            UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
         // Register cell classes
-        collectionView!.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView!.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil),
+                                    forCellWithReuseIdentifier: "CollectionViewCell")
         
         super.viewDidLoad()
         //setting the layout for cells
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame) , height : CGRectGetHeight(self.view.frame))
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame) ,
+            height : CGRectGetHeight(self.view.frame))
         
         //creating view model object
         mAvatarVMobj = AvatarsViewModel(obj: self)
@@ -48,13 +53,18 @@ class AvatarsCollectionViewController: UICollectionViewController,PAvatarViewCon
     // MARK: UICollectionViewDataSource
     
     //number of cells in the collection view
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView,
+                                 numberOfItemsInSection section: Int) -> Int {
         return mAvatarVMobj!.getCellsCount()
     }
     
     //for each cell
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+    override func collectionView(collectionView: UICollectionView,
+                                 cellForItemAtIndexPath indexPath: NSIndexPath)
+                                 -> UICollectionViewCell {
+        let cell =
+            collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell",
+                                        forIndexPath: indexPath) as! CollectionViewCell
         
         //getting sub category
         let avatar : Avatar = mAvatarVMobj!.getAvatar(indexPath.row)
@@ -62,8 +72,12 @@ class AvatarsCollectionViewController: UICollectionViewController,PAvatarViewCon
         cell.VideoLabel.text = String(avatar.avatarId)
         cell.activityIndicator.hidden = true
         
-        cell.VideoImageView.image = UIImage(named: "angry_birds_space_image_rectangular_box")
-        cell.VideoImageView.layer.cornerRadius = (cell.VideoImageView.frame.size.height/2)
+        cell.VideoImageView.image =
+            UIImage(named: "angry_birds_space_image_rectangular_box")
+                                    
+        cell.VideoImageView.layer.cornerRadius =
+            (cell.VideoImageView.frame.size.height/2)
+                                    
         cell.VideoImageView.clipsToBounds = true
         cell.VideoDurationLabel.hidden = true
         
@@ -76,7 +90,8 @@ class AvatarsCollectionViewController: UICollectionViewController,PAvatarViewCon
             
         }
         else {
-            let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: image!)!) {(data, response, error) in
+            let task = NSURLSession.sharedSession().dataTaskWithURL(
+                                    NSURL(string: image!)!) {(data, response, error) in
                 dispatch_async(dispatch_get_main_queue(), {
                     if data != nil {
                         if let img = UIImage(data: data!) {
@@ -85,6 +100,7 @@ class AvatarsCollectionViewController: UICollectionViewController,PAvatarViewCon
                             if cell.imgUrl == image {
                                 cell.VideoImageView.image = img
                             }
+                            cell.activityIndicator.stopAnimating()
                         }
                     }
                 })
@@ -99,7 +115,8 @@ class AvatarsCollectionViewController: UICollectionViewController,PAvatarViewCon
     // MARK: UICollectionViewDelegate
     
     //when collection view cell selected
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+    override func collectionView(collectionView: UICollectionView,
+                                 didSelectItemAtIndexPath indexPath: NSIndexPath){
         mSelectedAvatarId = mAvatarVMobj!.getAvatar(indexPath.row).avatarId
         performSegueWithIdentifier("AvatarToRegistration", sender: nil)
     }
@@ -114,7 +131,8 @@ class AvatarsCollectionViewController: UICollectionViewController,PAvatarViewCon
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AvatarToRegistration" {
-            let registrationChildVCObj = segue.destinationViewController as! RegisterChildViewController
+            let registrationChildVCObj =
+                segue.destinationViewController as! RegisterChildViewController
             registrationChildVCObj.mSelectedAvatar = mSelectedAvatarId
         }
     }

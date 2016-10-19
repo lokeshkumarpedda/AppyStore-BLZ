@@ -36,7 +36,12 @@ class SubCategorylist {
     var imageUrl : String?
     var totalCount : Int
     
-    init(title : String,duration : String,downloadUrl : String,imageUrl : String,totalCount : Int){
+    init(title : String,
+         duration : String,
+         downloadUrl : String,
+         imageUrl : String,
+         totalCount : Int){
+        
         self.title = Observable(title)
         self.duration = Observable(duration)
         self.downloadUrl = Observable(downloadUrl)

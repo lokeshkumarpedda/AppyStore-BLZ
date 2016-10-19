@@ -19,7 +19,8 @@ import Alamofire
 import AlamofireImage
 
 
-class CategoryViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,PCategoryViewController {
+class CategoryViewController: UIViewController,UICollectionViewDataSource,
+                        UICollectionViewDelegate,PCategoryViewController {
     //MARK:- Outlets
     @IBOutlet weak var mHomeButton: UIButton!
     @IBOutlet weak var mVideoButton: UIButton!
@@ -41,31 +42,39 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     var mActivityIndicator = UIActivityIndicatorView()  //For loading
     
     override func viewDidLoad() {
-        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,
+                                                             view : self.view)
         mActivityIndicator.startAnimating()
         
         //setting background for button
         mHomeButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         mVideoButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
-        mHistoryButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
+        mHistoryButton.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0.1)
         mSearchButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         mCartButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         headerView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         
         //setting image for buttons
         mChangeButtonImage()
-        mVideoButton.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
+        mVideoButton.setImage(UIImage(named: "videobackground.png"),
+                              forState: UIControlState.Normal)
         
         //setting background for views
-        collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
+        collectionView.backgroundColor = UIColor(
+            patternImage: UIImage(named: "backgroundimage")!)
+        self.view.backgroundColor = UIColor(
+            patternImage: UIImage(named: "backgroundimage")!)
         
         //Registering class
-        collectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: "CollectionViewCell")
         
         super.viewDidLoad()
         //creating custom layout for collection view cell
-        collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame) , height : CGRectGetHeight(self.view.frame))
+        collectionView.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame) ,
+            height : CGRectGetHeight(self.view.frame))
         
         //creating object for category view model
         mCategoryViewModelObj = CategoryViewModel(obj: self)
@@ -87,22 +96,28 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
         return 1
     }
     //method to return number of item in collection view section
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         if mCategoryViewModelObj.mTotalCount != 0{
             mActivityIndicator.stopAnimating()
         }
         return mCategoryViewModelObj.mTotalCount
     }
     //method to return collection view cell
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView,
+                        cellForItemAtIndexPath indexPath: NSIndexPath)
+                        -> UICollectionViewCell {
         //fetch category details
-        let category : Categorylist? = mCategoryViewModelObj.mGetCategoryDetails(indexPath.row)
+        let category : Categorylist? =
+            mCategoryViewModelObj.mGetCategoryDetails(indexPath.row)
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            "CollectionViewCell",forIndexPath: indexPath) as! CollectionViewCell
         
         let image = category?.image
         //setting layout for image view inside cell
-        cell.VideoImageView.image = UIImage(named: "angry_birds_space_image_rectangular_box")
+        cell.VideoImageView.image = UIImage(
+            named: "angry_birds_space_image_rectangular_box")
         cell.VideoImageView.layer.cornerRadius = 8
         cell.VideoImageView.clipsToBounds = true
         cell.VideoImageView.layer.borderWidth = 2
@@ -127,7 +142,9 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
                 response in
                 if let img = response.result.value{
                     self.cache.addImage(img, withIdentifier: image!)
-                    cell.VideoImageView.image = img
+                    if cell.imgUrl == image{
+                        cell.VideoImageView.image = img
+                    }
                     cell.activityIndicator.stopAnimating()
                 }
             }
@@ -136,14 +153,16 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     }
 
     //method will be called when category is selected
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView,
+                        didSelectItemAtIndexPath indexPath: NSIndexPath) {
         mselectedCategory = mCategoryViewModelObj.mCategoryList[indexPath.row]
         performSegueWithIdentifier("CategoryToSubCategory", sender: nil)
     }
     //method will be called before performing segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "CategoryToSubCategory" {
-            let subCategoryViewControllerObj = segue.destinationViewController as! SubCategoryViewContoller
+            let subCategoryViewControllerObj = segue.destinationViewController
+                as! SubCategoryViewContoller
             subCategoryViewControllerObj.mCategory = mselectedCategory
         }
     }
@@ -160,11 +179,16 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     }
     //method to set image for buttons
     func mChangeButtonImage() {
-        mHomeButton.setImage(UIImage(named: "ladyimage"), forState: UIControlState.Normal)
-        mVideoButton.setImage(UIImage(named: "videoimage"), forState: UIControlState.Normal)
-        mHistoryButton.setImage(UIImage(named: "historyimage"), forState: UIControlState.Normal)
-        mSearchButton.setImage(UIImage(named: "searchimage"), forState: UIControlState.Normal)
-        mCartButton.setImage(UIImage(named: "carimage"), forState: UIControlState.Normal)
+        mHomeButton.setImage(UIImage(named: "ladyimage"),
+                             forState: UIControlState.Normal)
+        mVideoButton.setImage(UIImage(named: "videoimage"),
+                              forState: UIControlState.Normal)
+        mHistoryButton.setImage(UIImage(named: "historyimage"),
+                                forState: UIControlState.Normal)
+        mSearchButton.setImage(UIImage(named: "searchimage"),
+                               forState: UIControlState.Normal)
+        mCartButton.setImage(UIImage(named: "carimage"),
+                             forState: UIControlState.Normal)
     }
     //MARK:- IBActions
     @IBAction func mHomeButtonPressed(sender: UIButton) {
@@ -184,14 +208,18 @@ class CategoryViewController: UIViewController,UICollectionViewDataSource,UIColl
     
     @IBAction func mCartButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mCartButton.setImage(UIImage(named: "cartbackground.png"), forState: UIControlState.Normal)
+        mCartButton.setImage(UIImage(named: "cartbackground.png"),
+                             forState: UIControlState.Normal)
         
         //creating alert view
-        let alertController = UIAlertController(title: "Sorry !!", message: "Cart is not available at this time", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(
+            title: "Sorry !!",
+            message: "Cart is not available at this time",
+            preferredStyle: UIAlertControllerStyle.Alert)
 
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
-            print("OK")
-            
+        let okAction = UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.Default){ (result : UIAlertAction) -> Void in
             self.mChangeButtonImage()
             self.mVideoButton.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
         }

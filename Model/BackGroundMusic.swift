@@ -15,7 +15,8 @@ class BackGroundMusic {
     var backgroundMusicPlayer : AVAudioPlayer?
     
     func backGroundMusic() {
-        let url = NSBundle.mainBundle().URLForResource("background_music", withExtension: "mp3")
+        let url = NSBundle.mainBundle().URLForResource("background_music",
+                                                       withExtension: "mp3")
         if url == nil{
             print("music file not found")
         }

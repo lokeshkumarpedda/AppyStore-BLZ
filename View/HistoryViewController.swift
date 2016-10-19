@@ -10,7 +10,8 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, PHistoryViewController {
+class HistoryViewController: UIViewController,UICollectionViewDelegate,
+                                UICollectionViewDataSource, PHistoryViewController {
     //MARK:- Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mheaderView: UIView!
@@ -35,25 +36,32 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
         //setting background for button
         mBackButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         mVideoButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
-        mHistoryButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
+        mHistoryButton.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0.1)
         mSearchButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         mCartButton.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         
         //setting background for view
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
-        collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
+        self.view.backgroundColor =
+            UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
+        collectionView.backgroundColor =
+            UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
         mheaderView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         mHeaderLabel.text = "History"
         
         //setting image for buttons
         mChangeButtonImage()
-        mHistoryButton.setImage(UIImage(named: "historybackground"), forState: UIControlState.Normal)
+        mHistoryButton.setImage(UIImage(named: "historybackground"),
+                                forState: UIControlState.Normal)
         
         //creating layout for cell in collection view
-        collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame))
+        collectionView.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(self.view.frame))
         
         //CollectionViewCell class registeration
-        collectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil),
+                                   forCellWithReuseIdentifier: "CollectionViewCell")
         
         mHistoryViewModelObj = HistoryViewModel(historyVCObj: self)
         
@@ -78,13 +86,18 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     //method will return number of item in each section
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return mHistoryViewModelObj.mHistoryList.count
     }
     //method will return collection view cell
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView,
+                        cellForItemAtIndexPath indexPath: NSIndexPath)
+                        -> UICollectionViewCell {
         let history : SubCategorylist? = mHistoryViewModelObj.mHistoryList[indexPath.row]
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+        let cell =
+            collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell",
+                                        forIndexPath: indexPath) as! CollectionViewCell
       
         Utility().mBindCollectionViewCell(cell, subCategory: history!)
 
@@ -93,11 +106,13 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     
     //For selected video
-    @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+    @objc func collectionView(collectionView: UICollectionView,
+                              didSelectItemAtIndexPath indexPath: NSIndexPath){
         BackGroundMusic.sharedPlayer.pauseMusic()
         
         //getting the selected video url
-        let url = NSURL(string: mHistoryViewModelObj.mHistoryList[indexPath.row].downloadUrl.value)
+        let url = NSURL(
+            string: mHistoryViewModelObj.mHistoryList[indexPath.row].downloadUrl.value)
         
         //creating a avplayer
         mAvPlayer = AVPlayer(URL: url!)
@@ -134,13 +149,20 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     @IBAction func mCartButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mCartButton.setImage(UIImage(named: "cartbackground.png"), forState: UIControlState.Normal)
+        mCartButton.setImage(UIImage(named: "cartbackground.png"),
+                             forState: UIControlState.Normal)
         
-        let alertController = UIAlertController(title: "Sorry !!", message: "Cart is not available at this time", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(
+            title: "Sorry !!",
+            message: "Cart is not available at this time",
+            preferredStyle: UIAlertControllerStyle.Alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+        let okAction = UIAlertAction(
+        title: "OK",
+        style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
             self.mChangeButtonImage()
-            self.mHistoryButton.setImage(UIImage(named: "historybackground"), forState: UIControlState.Normal)
+            self.mHistoryButton.setImage(UIImage(named: "historybackground"),
+                                         forState: UIControlState.Normal)
         }
         alertController.addAction(okAction)
         
@@ -149,9 +171,14 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     //button to cleat history
     @IBAction func mClearHistory(sender: UIButton) {
         
-        let alertController = UIAlertController(title: "CLEAR", message: "It's Clear Your Whole History", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(
+            title: "CLEAR",
+            message: "It's Clear Your Whole History",
+            preferredStyle: UIAlertControllerStyle.Alert)
             
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+        let okAction = UIAlertAction(
+        title: "OK",
+        style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
             if self.mHistoryViewModelObj.deleteHistory(){
                 self.mHistoryViewModelObj.mGetHistoryDetails()
             }
@@ -166,10 +193,15 @@ class HistoryViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     //method to change background image of buttons
     func mChangeButtonImage () {
-        mBackButton.setImage(UIImage(named: "backarrow.png"), forState: UIControlState.Normal)
-        mVideoButton.setImage(UIImage(named: "videoimage.png"), forState: UIControlState.Normal)
-        mHistoryButton.setImage(UIImage(named: "historyimage.png"), forState: UIControlState.Normal)
-        mSearchButton.setImage(UIImage(named: "searchimage.png"), forState: UIControlState.Normal)
-        mCartButton.setImage(UIImage(named: "carimage.png"), forState: UIControlState.Normal)
+        mBackButton.setImage(UIImage(named: "backarrow.png"),
+                             forState: UIControlState.Normal)
+        mVideoButton.setImage(UIImage(named: "videoimage.png"),
+                              forState: UIControlState.Normal)
+        mHistoryButton.setImage(UIImage(named: "historyimage.png"),
+                                forState: UIControlState.Normal)
+        mSearchButton.setImage(UIImage(named: "searchimage.png"),
+                               forState: UIControlState.Normal)
+        mCartButton.setImage(UIImage(named: "carimage.png"),
+                             forState: UIControlState.Normal)
     }
 }

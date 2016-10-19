@@ -16,7 +16,8 @@ class SubCategoryViewModel: NSObject ,PSubCategoryViewModel{
     
     var mSubCategoryVC : PSubCategoryViewController!
     var mControllerObj : Controller!  //create controller object
-    var mSubcategoryList :[SubCategorylist] = []  //variable hold list of sub categories details
+    var mSubcategoryList :[SubCategorylist] = []
+                                //variable hold list of sub categories details
     var mTotalSubCategoryCount = 0    //varible to store total number of subCategories
     
     var mCategory : Categorylist! // varibale to store total selected category
@@ -30,13 +31,18 @@ class SubCategoryViewModel: NSObject ,PSubCategoryViewModel{
     //method to fetch subcategory details from controller
     func mFetchSubCategoryDetailsFromController (offSet : Int) {
         mControllerObj = Controller(subCategoryVMObj: self)
-        mControllerObj.mGetSubCategoryDetails(mCategory.categoryId, pId: mCategory.parentId, offSet: offSet)
+        mControllerObj.mGetSubCategoryDetails(mCategory.categoryId,
+                                              pId: mCategory.parentId,
+                                              offSet: offSet)
         
     }
     
     //method to send sub category details 
     func mGetSubCategory(index : Int) -> SubCategorylist? {
-        if (index+4) > mSubcategoryList.count && index+1 < mTotalSubCategoryCount && index > 0 {
+        if (index+4) > mSubcategoryList.count &&
+            index+1 < mTotalSubCategoryCount &&
+            index > 0 {
+            
             self.mFetchSubCategoryDetailsFromController(index+1)
         }
         return mSubcategoryList[index]

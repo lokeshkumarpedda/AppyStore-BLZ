@@ -15,7 +15,8 @@ import AVFoundation
 
 private let reuseIdentifier = "CollectionViewCell"
 
-class ParentingSubCategoryCollectionViewController: UICollectionViewController,PSubCategoryViewController {
+class ParentingSubCategoryCollectionViewController: UICollectionViewController,
+                                                PSubCategoryViewController {
 
     var mParentSubcategoryViewModelObj : ParentingSubcategoryViewModel!//viewmodel object
     var mParentCategory : Categorylist!   //to store selected category from category view
@@ -29,17 +30,22 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController,P
     override func viewDidLoad() {
         super.viewDidLoad()
         //for displaying the activity indicator
-        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator =
+            Utility().showActivityIndicator(mActivityIndicator,view : self.view)
         mActivityIndicator.startAnimating()
         self.navigationItem.title = mParentCategory.name.value
         
-        mParentSubcategoryViewModelObj = ParentingSubcategoryViewModel(parentingSubCategory: mParentCategory!, obj :self)
+        mParentSubcategoryViewModelObj = ParentingSubcategoryViewModel(
+            parentingSubCategory: mParentCategory!,
+            obj :self)
         
         //setting the background
-        collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
+        collectionView?.backgroundColor =
+            UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
         //CollectionViewCell class registration
-        collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil),
+                                    forCellWithReuseIdentifier: reuseIdentifier)
         
         //creating layout for cell in collection view
         layOutWithOutFooter()
@@ -55,16 +61,22 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController,P
     // MARK: UICollectionViewDataSource
     
     //number of cells in the collection view
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView,
+                                 numberOfItemsInSection section: Int)
+                                 -> Int {
         return mParentSubcategoryViewModelObj.mParentSubcategoryList.count
     }
 
     //for each cell
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
+    override func collectionView(collectionView: UICollectionView,
+                                 cellForItemAtIndexPath indexPath: NSIndexPath)
+                                 -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier,
+                                        forIndexPath: indexPath) as! CollectionViewCell
         
         //getting sub category
-        let parentSubCategory : SubCategorylist? = mParentSubcategoryViewModelObj.mGetParentSubCategory(indexPath.row)
+        let parentSubCategory : SubCategorylist? =
+            mParentSubcategoryViewModelObj.mGetParentSubCategory(indexPath.row)
         
         //binding sub category to cell
         Utility().mBindCollectionViewCell(cell, subCategory: parentSubCategory!)
@@ -73,15 +85,25 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController,P
     }
     
     //setting the sub category view
-    @objc override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
-        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ParentingSubCategoryFooter", forIndexPath: indexPath)
+    @objc override func collectionView(
+        collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        atIndexPath indexPath: NSIndexPath)
+        -> UICollectionReusableView{
+            
+        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            kind,
+            withReuseIdentifier: "ParentingSubCategoryFooter",
+            forIndexPath: indexPath)
+            
         return footerView
     }
     
     //method to update subcategory view controller
     func updataSubCategoryViewController() {
         mActivityIndicator.stopAnimating()
-        let recievedCategories = mParentSubcategoryViewModelObj.mParentSubcategoryList.count
+        let recievedCategories =
+            mParentSubcategoryViewModelObj.mParentSubcategoryList.count
         let totalCategories = mParentSubcategoryViewModelObj.mTotalParentSubCategoryCount
         
         //for first cells in the collection view
@@ -105,20 +127,26 @@ class ParentingSubCategoryCollectionViewController: UICollectionViewController,P
     func layOutWithFooter() {
         
         //creating layout for cell in collection view
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategory")
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(self.view.frame),view: "parentSubCategory")
     }
     
     //removing footer from the collection view
     func layOutWithOutFooter() {
         
         //creating layout for cell in collection view
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "parentSubCategorywithoutFooter")
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(self.view.frame),
+            view: "parentSubCategorywithoutFooter")
     }
     
     // MARK: UICollectionViewDelegate
     
     //for selected video
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+    override func collectionView(collectionView: UICollectionView,
+                                 didSelectItemAtIndexPath indexPath: NSIndexPath){
         
         BackGroundMusic.sharedPlayer.pauseMusic()
         

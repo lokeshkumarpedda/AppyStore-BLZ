@@ -19,6 +19,7 @@ class Avatar {
     }
 }
 
+
 //registered child details
 //this class is conform to NSCoding
 class ChildDetails: NSObject, NSCoding {
@@ -29,7 +30,13 @@ class ChildDetails: NSObject, NSCoding {
     var avatarId: Int?
     var avatarUrl: String?
     
-    init(name : String , dob: String, age: Int, childId: Int, avatarId: Int, avatarUrl: String){
+    init(name : String ,
+         dob: String,
+         age: Int,
+         childId: Int,
+         avatarId: Int,
+         avatarUrl: String){
+        
         self.childName = name
         self.dateOfBirth = dob
         self.age = age
@@ -44,7 +51,12 @@ class ChildDetails: NSObject, NSCoding {
         let childId = aDecoder.decodeIntegerForKey("childId")
         let avatarId = aDecoder.decodeIntegerForKey("avatarId")
         let avatarUrl = aDecoder.decodeObjectForKey("avatarUrl") as! String
-        self.init(name : childName , dob: dateOfBirth, age: age, childId: childId, avatarId: avatarId, avatarUrl: avatarUrl)
+        self.init(name : childName ,
+                  dob: dateOfBirth,
+                  age: age,
+                  childId: childId,
+                  avatarId: avatarId,
+                  avatarUrl: avatarUrl)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

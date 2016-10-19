@@ -13,25 +13,28 @@
 import UIKit
 
 class Controller : NSObject,PController{
-    
+    //MARK:- Objects
     var mApiRequesrObj = ApiRequest() //create object to make rest call
     var mLocalDataBaseObj = LocalDataBase() //object of local database
     var mCategoryViewModelObj : PCategoryViewModel! //object od category view model
-    var mSubCategoryViewModelObj : PSubCategoryViewModel! //object of sub category view model
-    var mSearchViewModelObj : PSearchViewModel! //object od search view model
+    var mSubCategoryViewModelObj : PSubCategoryViewModel!
+                                            //object of sub category view model
+    var mSearchViewModelObj : PSearchViewModel! //object of search view model
     var mHistoryViewModel : HistoryViewModel! //object of history view model
-    var mParentCategoryVMobj : PCategoryViewModel!
-    var mparentSubcategoryVMObj :PSubCategoryViewModel!
-    var mAvatarVMObj : PAvatarViewModel!
+    var mParentCategoryVMobj : PCategoryViewModel! //object of parent category view model
+    var mparentSubcategoryVMObj :PSubCategoryViewModel!//object of parent subcategry veiw model
+    var mAvatarVMObj : PAvatarViewModel!//object of Avatar view model
     
     override init() {
         super.init()
     }
     
+    //init for categories
     init(categoryVMObj : PCategoryViewModel) {
         mCategoryViewModelObj = categoryVMObj
     }
     
+    //init for subcategories
     init(subCategoryVMObj : PSubCategoryViewModel) {
         mSubCategoryViewModelObj = subCategoryVMObj
     }
@@ -40,19 +43,23 @@ class Controller : NSObject,PController{
     init(searchViewMode : PSearchViewModel) {
         mSearchViewModelObj = searchViewMode
     }
+    
     //init for history
     init(historyVMObj : HistoryViewModel) {
         mHistoryViewModel = historyVMObj
     }
+    
     //init for parent categories
     init(parentCategoryVMobj : PCategoryViewModel) {
         mParentCategoryVMobj = parentCategoryVMobj
     }
     
+    //init for parent subcategories
     init(parentSubcategoryVMObj : PSubCategoryViewModel) {
         mparentSubcategoryVMObj = parentSubcategoryVMObj
     }
     
+    //init for avatars
     init(avatarVMObj : PAvatarViewModel) {
         mAvatarVMObj = avatarVMObj
     }
@@ -93,7 +100,11 @@ class Controller : NSObject,PController{
     
     //method to get parent subcategories
     func mGetParentSubCategoryDetails(cId : Int,pId : Int,offSet : Int) {
-        mApiRequesrObj.mFetchSubParentingCategories(self,c_Id: cId,p_Id : pId,offset: offSet)
+        mApiRequesrObj.mFetchSubParentingCategories(self,
+                                                    c_Id: cId,
+                                                    p_Id : pId,
+                                                    offset: offSet)
+        
     }
     
     //method to get avatar list
@@ -141,6 +152,7 @@ class Controller : NSObject,PController{
         mparentSubcategoryVMObj.updateSubCategoryViewModel(subCategories)
     }
     
+    //method to update avatar view model
     func updateAvatars(avatars: [Avatar]){
         mAvatarVMObj.updateAvatarsViewModel(avatars)
     }

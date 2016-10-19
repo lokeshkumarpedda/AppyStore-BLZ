@@ -16,7 +16,8 @@ import AlamofireImage
 import ReactiveKit
 import ReactiveUIKit
 
-class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate ,PSubCategoryViewController{
+class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,
+                                UICollectionViewDelegate ,PSubCategoryViewController{
     //MARK:- Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mBackButtonLabel: UIButton!
@@ -48,33 +49,48 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     //MARK:- View methods
     override func viewDidLoad() {
         
-        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,
+                                                             view : self.view)
         mActivityIndicator.startAnimating()
         
         //setting background for buttons
-        mBackButtonLabel.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
-        mVideoButtonLabel.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
-        mHistoryButtonLabel.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
-        mSearchButtonLabel.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
-        mCartButtonLabel.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
+        mBackButtonLabel.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0.1)
+        mVideoButtonLabel.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0.1)
+        mHistoryButtonLabel.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0.1)
+        mSearchButtonLabel.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0.1)
+        mCartButtonLabel.backgroundColor =
+            UIColor.clearColor().colorWithAlphaComponent(0.1)
         
         //setting image for buttons
         mChangeButtonImage()
-        mVideoButtonLabel.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
+        mVideoButtonLabel.setImage(UIImage(
+            named: "videobackground.png"),
+            forState: UIControlState.Normal)
         super.viewDidLoad()
         
         //CollectionViewCell class registeration
-        collectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
-        collectionView.registerNib(UINib(nibName: "CollectionHeaderReusableView", bundle: nil), forCellWithReuseIdentifier: "Header")
+        collectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil),
+                                   forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.registerNib(UINib(nibName: "CollectionHeaderReusableView",
+                                    bundle: nil),
+                                   forCellWithReuseIdentifier: "Header")
         
         //creating layout for cell in collection view
-        collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame))
+        collectionView.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(self.view.frame))
         
         mSubcategoryViewModelObj = SubCategoryViewModel(category: mCategory!, obj : self)
         
         // setting background image
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
-        collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
+        self.view.backgroundColor = UIColor(
+            patternImage: UIImage(named: "backgroundimage.jpg")!)
+        collectionView.backgroundColor = UIColor(
+            patternImage: UIImage(named: "backgroundimage.jpg")!)
         headerView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.1)
         
         headerLabel.text = mCategory.name.value
@@ -94,16 +110,23 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
         return 1
     }
     //method to return number of item in each section of collection view
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return mSubcategoryViewModelObj.mSubcategoryList.count
     }
 
     //method to create collection view cell
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView,
+                        cellForItemAtIndexPath indexPath: NSIndexPath)
+                        -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+        let cell =
+            collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell",
+                                        forIndexPath: indexPath) as! CollectionViewCell
         
-        let subCategory : SubCategorylist? = mSubcategoryViewModelObj.mGetSubCategory(indexPath.row)
+        let subCategory : SubCategorylist? =
+            mSubcategoryViewModelObj.mGetSubCategory(indexPath.row)
+                            
         Utility().mBindCollectionViewCell(cell, subCategory: subCategory!)
         
         return cell
@@ -111,7 +134,8 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
 
     
     //method wil be called when item in collection view is selected
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView,
+                        didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         mVideoUrl = NSURL(string: mSubcategoryViewModelObj.mSubcategoryList[indexPath.row].downloadUrl.value)
         mCurrentIndexPath = indexPath
@@ -127,7 +151,8 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SubCategoryToVideoPlayer"
         {
-            let videoControllerObj = segue.destinationViewController as! VideoPlayerViewController
+            let videoControllerObj =
+                segue.destinationViewController as! VideoPlayerViewController
             videoControllerObj.mUrl = mVideoUrl
             videoControllerObj.mCurrentVideoIndexPath = mCurrentIndexPath
             videoControllerObj.mCategory = mCategory
@@ -136,56 +161,80 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     }
 
     
-    @objc func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
-        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "subCategoryFooter", forIndexPath: indexPath)
+    @objc func collectionView(collectionView: UICollectionView,
+                viewForSupplementaryElementOfKind kind: String,
+                atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
+        
+        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            kind,
+            withReuseIdentifier: "subCategoryFooter",
+            forIndexPath: indexPath)
+        
         return footerView
     }
     //adding footer with Activity indicator
     func layOutWithFooter() {
         
         //creating layout for cell in collection view
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "subCategory")
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(self.view.frame),
+            view: "subCategory")
     }
     
     //removing footer from the collection view
     func layOutWithOutFooter() {
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame),view: "subCategorywithoutFooter")
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(self.view.frame),
+            view: "subCategorywithoutFooter")
     }
     //MARK:- IBActions
     
     @IBAction func mBackButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mBackButtonLabel.setImage(UIImage(named: "backY.png"), forState: UIControlState.Normal)
+        mBackButtonLabel.setImage(UIImage(named: "backY.png"),
+                                  forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToCategory", sender: nil)
     }
     
     @IBAction func mVideoButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mVideoButtonLabel.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
+        mVideoButtonLabel.setImage(UIImage(named: "videobackground.png"),
+                                   forState: UIControlState.Normal)
     }
     
     @IBAction func mHistoryButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mHistoryButtonLabel.setImage(UIImage(named: "historybackground.png"), forState: UIControlState.Normal)
+        mHistoryButtonLabel.setImage(UIImage(named: "historybackground.png"),
+                                     forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToHistory", sender: nil)
     }
     
     @IBAction func mSearchButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mSearchButtonLabel.setImage(UIImage(named: "searchbackground.png"), forState: UIControlState.Normal)
+        mSearchButtonLabel.setImage(UIImage(named: "searchbackground.png"),
+                                    forState: UIControlState.Normal)
         performSegueWithIdentifier("SubCategoryToSearch", sender: nil)
     }
     
     @IBAction func mCartButtonPressed(sender: UIButton) {
         mChangeButtonImage()
-        mCartButtonLabel.setImage(UIImage(named: "cartbackground.png"), forState: UIControlState.Normal)
+        mCartButtonLabel.setImage(UIImage(named: "cartbackground.png"),
+                                  forState: UIControlState.Normal)
         
         //creating alert view
-        let alertController = UIAlertController(title: "Sorry !!", message: "Cart is not available at this time", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(
+            title: "Sorry !!",
+            message: "Cart is not available at this time",
+            preferredStyle: UIAlertControllerStyle.Alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+        let okAction = UIAlertAction(
+        title: "OK",
+        style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
             self.mChangeButtonImage()
-            self.mVideoButtonLabel.setImage(UIImage(named: "videobackground.png"), forState: UIControlState.Normal)
+            self.mVideoButtonLabel.setImage(UIImage(named: "videobackground.png"),
+                                            forState: UIControlState.Normal)
         }
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -193,11 +242,16 @@ class SubCategoryViewContoller: UIViewController,UICollectionViewDataSource,UICo
     
     //method to change background image of buttons
     func mChangeButtonImage () {
-        mBackButtonLabel.setImage(UIImage(named: "backarrow.png"), forState: UIControlState.Normal)
-        mVideoButtonLabel.setImage(UIImage(named: "videoimage.png"), forState: UIControlState.Normal)
-        mHistoryButtonLabel.setImage(UIImage(named: "historyimage.png"), forState: UIControlState.Normal)
-        mSearchButtonLabel.setImage(UIImage(named: "searchimage.png"), forState: UIControlState.Normal)
-        mCartButtonLabel.setImage(UIImage(named: "carimage.png"), forState: UIControlState.Normal)
+        mBackButtonLabel.setImage(UIImage(named: "backarrow.png"),
+                                  forState: UIControlState.Normal)
+        mVideoButtonLabel.setImage(UIImage(named: "videoimage.png"),
+                                   forState: UIControlState.Normal)
+        mHistoryButtonLabel.setImage(UIImage(named: "historyimage.png"),
+                                     forState: UIControlState.Normal)
+        mSearchButtonLabel.setImage(UIImage(named: "searchimage.png"),
+                                    forState: UIControlState.Normal)
+        mCartButtonLabel.setImage(UIImage(named: "carimage.png"),
+                                  forState: UIControlState.Normal)
     }
 
     //method to update subcategory view controller

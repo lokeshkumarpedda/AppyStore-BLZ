@@ -17,10 +17,14 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
     //when view is loaded
     override func viewDidLoad() {
         //setting the collection view back ground
-        collectionView?.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
+        collectionView?.backgroundColor =
+            UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
         //Layouts for the cells
-        collectionView!.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame) , height : CGRectGetHeight(self.view.frame) , view: "parentArea")
+        collectionView!.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame) ,
+            height : CGRectGetHeight(self.view.frame) ,
+            view: "parentArea")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,16 +35,20 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
     //MARK: CollectionView DataSource
     
     //number of cells
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    override func collectionView(collectionView: UICollectionView,
+                                 numberOfItemsInSection section: Int) -> Int{
         
         //it is static because the view is statically created
         return 6
     }
     
     //For each cell
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+    override func collectionView(collectionView: UICollectionView,
+                                 cellForItemAtIndexPath indexPath: NSIndexPath)
+                                 -> UICollectionViewCell{
         //using reusable cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! parentsAreaCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",
+                                            forIndexPath: indexPath) as! parentsAreaCell
         
         //getting the text in to the cell
         cell.textLabel?.text = getCellName(indexPath.row)
@@ -77,7 +85,8 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
     //MARK: CollectionView Delegate
     
     //For selected cell
-    @objc override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+    @objc override func collectionView(collectionView: UICollectionView,
+                                       didSelectItemAtIndexPath indexPath: NSIndexPath){
         //each functionaly for each cell
         if indexPath.row == 0{
             
@@ -90,17 +99,24 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
             }
             else{
                 //creating alert view
-                let alertController = UIAlertController(title: "Register A child", message: "Please register a child", preferredStyle: UIAlertControllerStyle.Alert)
+                let alertController = UIAlertController(
+                    title: "Register A child",
+                    message: "Please register a child",
+                    preferredStyle: UIAlertControllerStyle.Alert)
                 
                 //creating action for alertView
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                let okAction = UIAlertAction(
+                title: "OK",
+                style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
                 }
                 
                 //adding action to alertView
                 alertController.addAction(okAction)
                 
                 //adding alertView  to viewController
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.presentViewController(alertController,
+                                           animated: true,
+                                           completion: nil)
             }
         }
         else if indexPath.row == 1{
@@ -125,8 +141,13 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
         else if indexPath.row == 5{
             //sharing the app
             let shareText = "Give the right start to your child's learning, check out Appystore's latest app at https://play.google.com/store/apps/details?id=com.appy.store.lite"
-            let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
-            presentViewController(activityViewController, animated: true, completion: nil)
+            let activityViewController = UIActivityViewController(
+                activityItems: [shareText],
+                applicationActivities: [])
+            
+            presentViewController(activityViewController,
+                                  animated: true,
+                                  completion: nil)
             
         }
     }

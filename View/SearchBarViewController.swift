@@ -18,7 +18,8 @@ import Alamofire
 import AVKit
 import AVFoundation
 
-class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate,PSearchViewController {
+class SearchBarViewController: UIViewController, UICollectionViewDataSource,
+                    UICollectionViewDelegate,UITextFieldDelegate,PSearchViewController {
     
     //MARK:- IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -43,21 +44,31 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
     //MARK:- View methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,view : self.view)
+        mActivityIndicator = Utility().showActivityIndicator(mActivityIndicator,
+                                                             view : self.view)
         
         BackGroundMusic.sharedPlayer.playMusic()
-        mSearchViewModelObj = SearchViewModel(searchVCObj: self) //create object of serach view model
+        mSearchViewModelObj = SearchViewModel(searchVCObj: self)
+                                                    //create object of serach view model
+        
         //creating layout for cell in collection view
-        collectionView.collectionViewLayout = CustomViewFlowLayout(width : CGRectGetWidth(self.view.frame),height : CGRectGetHeight(self.view.frame))
+        collectionView.collectionViewLayout = CustomViewFlowLayout(
+            width : CGRectGetWidth(self.view.frame),
+            height : CGRectGetHeight(self.view.frame))
         
         //CollectionViewCell class registeration
-        collectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.registerNib(UINib(nibName: "CollectionViewCell", bundle: nil),
+                                   forCellWithReuseIdentifier: "CollectionViewCell")
         
         //setting background image
-        backButtonLabel.setImage(UIImage(named: "backarrow.png"), forState: UIControlState.Normal)
-        searchButtonLabel.setImage(UIImage(named: "searchimage.png"), forState: UIControlState.Normal)
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
-        collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage.jpg")!)
+        backButtonLabel.setImage(UIImage(named: "backarrow.png"),
+                                 forState: UIControlState.Normal)
+        searchButtonLabel.setImage(UIImage(named: "searchimage.png"),
+                                   forState: UIControlState.Normal)
+        self.view.backgroundColor = UIColor(
+            patternImage: UIImage(named: "backgroundimage.jpg")!)
+        collectionView.backgroundColor = UIColor(
+            patternImage: UIImage(named: "backgroundimage.jpg")!)
         //to dismiss keyboard
         inputTextField.delegate = self
     }
@@ -104,8 +115,10 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         
         //checking the entered text is not empty
         if keyword.characters.count > 0{
-            let tempKeyword = keyword.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            searchKeyword = tempKeyword.stringByReplacingOccurrencesOfString(" ", withString: "-")
+            let tempKeyword = keyword.stringByTrimmingCharactersInSet(
+                    NSCharacterSet.whitespaceCharacterSet())
+            searchKeyword = tempKeyword.stringByReplacingOccurrencesOfString(" ",
+                                                                        withString: "-")
             label.hidden = true
             mSearchViewModelObj.mGetSearchCategory(searchKeyword!,index: 0)
         }
@@ -172,22 +185,30 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         return 1
     }
     //method will return number of rows in each collection view section
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return mSearchViewModelObj.mTotalSearchCategory
     }
     //method will return collection view cell
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let searchCategory : SubCategorylist? = mSearchViewModelObj.mGetSearchCategory(searchKeyword! , index: indexPath.row)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+    func collectionView(collectionView: UICollectionView,
+                        cellForItemAtIndexPath indexPath: NSIndexPath)
+                        -> UICollectionViewCell {
+        let searchCategory : SubCategorylist? =
+            mSearchViewModelObj.mGetSearchCategory(searchKeyword! , index: indexPath.row)
+        let cell =
+            collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell",
+                                        forIndexPath: indexPath) as! CollectionViewCell
         
         Utility().mBindCollectionViewCell(cell, subCategory: searchCategory!)
         
         return cell
     }
     //method get called any item in collection view is pressed
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView,
+                        didSelectItemAtIndexPath indexPath: NSIndexPath) {
         BackGroundMusic.sharedPlayer.pauseMusic()
-        let url = NSURL(string: mSearchViewModelObj.mSearchList[indexPath.row].downloadUrl.value)
+        let url = NSURL(
+            string: mSearchViewModelObj.mSearchList[indexPath.row].downloadUrl.value)
         mVideoPlayer = AVPlayer(URL: url!)
         mPlayerViewController = AVPlayerViewController()
         
@@ -201,14 +222,22 @@ class SearchBarViewController: UIViewController, UICollectionViewDataSource,UICo
         LocalDB.mInsertInToHistoryTabel(mSearchViewModelObj.mSearchList[indexPath.row])
     }
     //method to display header in collection view for easy search buttons
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind
+                        kind: String,
+                        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
-        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView",forIndexPath: indexPath) as! CollectionReusableView
+        let cell =
+            collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader,
+                                    withReuseIdentifier: "HeaderView",
+                                    forIndexPath: indexPath) as! CollectionReusableView
         cell.mSetBorder()
         return cell
     }
     //mehtod will return size of collection view header
-    func collectionView(collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                               referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         if (headerViewChecker != true ){
             return CGSizeZero

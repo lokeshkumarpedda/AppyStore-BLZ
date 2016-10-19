@@ -14,8 +14,8 @@
 
 import UIKit
 
-class ChildDetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
-{
+class ChildDetailsViewController: UIViewController, UIImagePickerControllerDelegate,
+                                    UINavigationControllerDelegate{
     //outlet of UIImageView
     @IBOutlet weak var mImageView: UIImageView!
     
@@ -45,7 +45,8 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         self.setTapGesture()
         
         //setting background color to view
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundimage")!)
+        self.view.backgroundColor =
+            UIColor(patternImage: UIImage(named: "backgroundimage")!)
         
     }
     
@@ -69,7 +70,9 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     func setTapGesture()
     {
         // create tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ChildDetailsViewController.imageTapped))
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(ChildDetailsViewController.imageTapped))
         
         // add it to the image view;
         mImageView.addGestureRecognizer(tapGesture)
@@ -135,7 +138,8 @@ class ChildDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     //getting selected image from photo library
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+    func imagePickerController(picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
         {

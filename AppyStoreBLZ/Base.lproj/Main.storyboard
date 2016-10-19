@@ -1445,15 +1445,23 @@
                                         </date>
                                     </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWN-5n-W3y">
-                                        <rect key="frame" x="275" y="415" width="50" height="30"/>
+                                        <rect key="frame" x="240" y="415" width="121" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="0Js-HJ-bel"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="WAl-1Q-OdW"/>
+                                            <constraint firstAttribute="height" constant="54" id="xSP-HK-XXp"/>
+                                            <constraint firstAttribute="width" constant="121" id="xfG-xb-rJM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Register">
+                                        <state key="normal" title="Register" backgroundImage="imagebutton">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="0Js-HJ-bel"/>
+                                                <exclude reference="WAl-1Q-OdW"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="registrationButton:" destination="PM8-bI-2MQ" eventType="touchUpInside" id="ZpE-8i-bGF"/>
                                         </connections>
@@ -1499,7 +1507,6 @@
                             <constraint firstItem="Tup-CQ-gvW" firstAttribute="centerX" secondItem="3Bu-PZ-8DC" secondAttribute="centerX" id="D9X-Wt-37y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Tup-CQ-gvW" secondAttribute="trailing" constant="-20" id="Jfc-q8-uDl"/>
                             <constraint firstItem="Tup-CQ-gvW" firstAttribute="leading" secondItem="3Bu-PZ-8DC" secondAttribute="leadingMargin" constant="-20" id="PTh-Qd-TwW"/>
-                            <constraint firstItem="Tup-CQ-gvW" firstAttribute="centerY" secondItem="3Bu-PZ-8DC" secondAttribute="centerY" id="Uf5-ue-Fpa"/>
                             <constraint firstItem="Tup-CQ-gvW" firstAttribute="top" secondItem="WLK-xw-6xb" secondAttribute="bottom" constant="-20" id="WXf-Eg-s2J"/>
                             <constraint firstItem="toc-fe-Yc6" firstAttribute="top" secondItem="Tup-CQ-gvW" secondAttribute="bottom" id="cpL-JM-7Ra"/>
                         </constraints>

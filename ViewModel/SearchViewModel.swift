@@ -35,7 +35,11 @@ class SearchViewModel: PSearchViewModel {
                 mControllerObj.mGetSearchCategory(keyWord,index: index)
             }
             //creating dummy data
-            let category = SubCategorylist(title: "", duration: "", downloadUrl: "", imageUrl: "", totalCount: index)
+            let category = SubCategorylist(title: "",
+                                           duration: "",
+                                           downloadUrl: "",
+                                           imageUrl: "",
+                                           totalCount: index)
             //inserting dummy content into search list
             mSearchList.insert(category, atIndex: index)
             return mSearchList[index]

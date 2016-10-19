@@ -35,14 +35,19 @@ class ParentingSubcategoryViewModel: NSObject ,PSubCategoryViewModel{
         mControllerObj = Controller(parentSubcategoryVMObj: self)
         
         //Asking controller for data
-        mControllerObj.mGetParentSubCategoryDetails(mCategory.categoryId, pId: mCategory.parentId, offSet: offSet)
+        mControllerObj.mGetParentSubCategoryDetails(mCategory.categoryId,
+                                                    pId: mCategory.parentId,
+                                                    offSet: offSet)
     }
     
     //method to send sub category details
     func mGetParentSubCategory(index : Int) -> SubCategorylist? {
         
         //making the call when we get to the bottom of the collection view
-        if (index+2) > mParentSubcategoryList.count && index+1 < mTotalParentSubCategoryCount && index > 0{
+        if (index+2) > mParentSubcategoryList.count &&
+            index+1 < mTotalParentSubCategoryCount &&
+            index > 0{
+            
             mFetchParentSubCategoryDetailsFromController(index+1)
         }
         return mParentSubcategoryList[index]

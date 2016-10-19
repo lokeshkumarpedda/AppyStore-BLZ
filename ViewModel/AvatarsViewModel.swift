@@ -15,7 +15,7 @@ class AvatarsViewModel: NSObject ,PAvatarViewModel{
     var mAvatarList = [Avatar]()  //creating array of Avatar list
     var mControllerObj : Controller!    //creating controller reference
     var mTotalCount = 0
-    var mAvatarVCObj : PAvatarViewController!
+    var mAvatarVCObj : PAvatarViewController! //creating controller protocol object
     
     init(obj : PAvatarViewController){
         super.init()
@@ -28,6 +28,7 @@ class AvatarsViewModel: NSObject ,PAvatarViewModel{
     func updateAvatarsViewModel(avatarList: [Avatar]){
         mAvatarList = avatarList
         mTotalCount = mAvatarList.count
+        mAvatarVCObj.updateAvatarVC()
         
     }
     
