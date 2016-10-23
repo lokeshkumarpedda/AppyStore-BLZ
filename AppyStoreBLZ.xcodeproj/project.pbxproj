@@ -598,6 +598,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bridgelabz.AppyStoreBLZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = Pods/HotlineSDK/HotlineSDK/Hotline.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;

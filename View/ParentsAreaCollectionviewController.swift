@@ -9,7 +9,6 @@
 //
 //  Copyright © 2016 bridgelabz. All rights reserved.
 //
-
 import UIKit
 //Using the collection view controller
 class ParentsAreaCollectionviewController: UICollectionViewController {
@@ -72,7 +71,7 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
         case 2 :
             return "Parenting Videos"
         case 3 :
-            return "View Plans"
+            return "Chat"
         case 4 :
             return "Rate the App"
         case 5 :
@@ -131,7 +130,11 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
             performSegueWithIdentifier("ParentAreaToCategories", sender: nil)
             
         }
-        else if indexPath.row == 3 || indexPath.row == 4{
+        else if indexPath.row == 3{
+            //For moving to chat area
+            Hotline.sharedInstance().showConversations(self)
+        }
+        else if indexPath.row == 4{
             //stoping the music
             BackGroundMusic.sharedPlayer.pauseMusic()
             
