@@ -1265,6 +1265,7 @@
                         <segue destination="XKg-vB-eUy" kind="show" identifier="ParentAreaToRating" id="HfN-qe-byl"/>
                         <segue destination="CZ5-tV-Id2" kind="show" identifier="ParentAreaToAvatars" id="TEQ-Fl-ewu"/>
                         <segue destination="EUC-lP-JKd" kind="show" identifier="Parent'sAreaToChildDetails" id="vsm-fj-kx0"/>
+                        <segue destination="iVk-Vx-iFW" kind="show" identifier="AppyToChat" id="hsn-R1-Lnh"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yd3-zk-QpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1355,6 +1356,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcQ-Ca-LSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="270" y="1464"/>
+        </scene>
+        <!--BridgeChatApp-->
+        <scene sceneID="CBP-gf-RSq">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="BridgeChatApp" storyboardName="BridgeChatApp" id="iVk-Vx-iFW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2lE-iD-wHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-96.5" y="1069"/>
         </scene>
         <!--Select A Avatar-->
         <scene sceneID="yfv-aZ-1kS">

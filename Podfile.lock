@@ -2,10 +2,31 @@ PODS:
   - Alamofire (3.4.1)
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
+  - Firebase (3.4.0):
+    - Firebase/Core (= 3.4.0)
+  - Firebase/Analytics (3.4.0):
+    - FirebaseAnalytics (~> 3.3)
+  - Firebase/Core (3.4.0):
+    - Firebase/Analytics
+  - Firebase/Database (3.4.0):
+    - Firebase/Analytics
+    - FirebaseDatabase (= 3.0.2)
+  - FirebaseAnalytics (3.3.0):
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleUtilities (~> 1.2)
+  - FirebaseDatabase (3.0.2):
+    - FirebaseAnalytics (~> 3.2)
+  - FirebaseInstanceID (1.0.8)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - HotlineSDK (1.1.2)
+  - GoogleInterchangeUtilities (1.2.1):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.1.1)
+  - GoogleUtilities (1.3.1):
+    - GoogleSymbolUtilities (~> 1.0)
   - ReactiveFoundation (1.0.4):
     - ReactiveKit
   - ReactiveKit (1.1.3)
@@ -16,8 +37,9 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
+  - Firebase
+  - Firebase/Database
   - FMDB
-  - HotlineSDK
   - ReactiveFoundation (~> 1.0)
   - ReactiveKit (~> 1.0)
   - ReactiveUIKit (~> 1.0)
@@ -25,12 +47,18 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  Firebase: 754562547af419cc2f4b15247fee419081924bc2
+  FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
+  FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
+  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  HotlineSDK: b73865cb51ec46b351b89b6e7c7e0ef03a491bb2
+  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
+  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
+  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   ReactiveFoundation: ea146bd578c3e9c9c5d0b2fc87320f10ac7917bb
   ReactiveKit: b027b07f74d1b5e5bf31170b52c5d9c19982d14a
   ReactiveUIKit: b3abc88e716ebd60f9c08708ee148e4b8e94c137
 
-PODFILE CHECKSUM: d0395855f92bd0ceb502b19651e838733248cd36
+PODFILE CHECKSUM: d3f28e105112ac8cbf7b75da440ed3f2f0afa6c1
 
 COCOAPODS: 1.0.1

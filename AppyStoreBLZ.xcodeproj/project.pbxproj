@@ -24,6 +24,15 @@
 		0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */; };
 		0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */; };
 		0A937AA51D82F28400740CD0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A937AA41D82F28400740CD0 /* Social.framework */; };
+		0A96B4631DC99645007B2725 /* BridgeChatApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A96B4621DC99645007B2725 /* BridgeChatApp.storyboard */; };
+		0A96B4661DC9A6EA007B2725 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B4651DC9A6EA007B2725 /* HomeViewController.swift */; };
+		0A96B46F1DC9AACB007B2725 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B4671DC9AACB007B2725 /* ChatController.swift */; };
+		0A96B4701DC9AACB007B2725 /* CustomCellChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B4681DC9AACB007B2725 /* CustomCellChat.swift */; };
+		0A96B4711DC9AACB007B2725 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A96B4691DC9AACB007B2725 /* GoogleService-Info.plist */; };
+		0A96B4721DC9AACB007B2725 /* ChatLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B46A1DC9AACB007B2725 /* ChatLoginViewController.swift */; };
+		0A96B4731DC9AACB007B2725 /* MessageInboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B46B1DC9AACB007B2725 /* MessageInboxViewController.swift */; };
+		0A96B4751DC9AACB007B2725 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B46D1DC9AACB007B2725 /* RegisterViewController.swift */; };
+		0A96B4761DC9AACB007B2725 /* RestCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B46E1DC9AACB007B2725 /* RestCall.swift */; };
 		0AA0BAED1D8E78D6007DC3E7 /* ChildInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAEC1D8E78D6007DC3E7 /* ChildInformation.swift */; };
 		0AA0BAEF1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAEE1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift */; };
 		0AA0BAF11D8E82A6007DC3E7 /* AvatarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0BAF01D8E82A6007DC3E7 /* AvatarsViewModel.swift */; };
@@ -81,6 +90,15 @@
 		0A8EFFC21D8BB2890032F1FD /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		0A8EFFC41D8BD5920032F1FD /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music.mp3; sourceTree = "<group>"; };
 		0A937AA41D82F28400740CD0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0A96B4621DC99645007B2725 /* BridgeChatApp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BridgeChatApp.storyboard; sourceTree = "<group>"; };
+		0A96B4651DC9A6EA007B2725 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0A96B4671DC9AACB007B2725 /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		0A96B4681DC9AACB007B2725 /* CustomCellChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellChat.swift; sourceTree = "<group>"; };
+		0A96B4691DC9AACB007B2725 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0A96B46A1DC9AACB007B2725 /* ChatLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLoginViewController.swift; sourceTree = "<group>"; };
+		0A96B46B1DC9AACB007B2725 /* MessageInboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInboxViewController.swift; sourceTree = "<group>"; };
+		0A96B46D1DC9AACB007B2725 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0A96B46E1DC9AACB007B2725 /* RestCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestCall.swift; sourceTree = "<group>"; };
 		0AA0BAEC1D8E78D6007DC3E7 /* ChildInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildInformation.swift; sourceTree = "<group>"; };
 		0AA0BAEE1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsCollectionViewController.swift; sourceTree = "<group>"; };
 		0AA0BAF01D8E82A6007DC3E7 /* AvatarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsViewModel.swift; sourceTree = "<group>"; };
@@ -156,6 +174,22 @@
 				0AC626DB1D8D3EEB00D71907 /* RegisterChildViewController.swift */,
 			);
 			name = "Parent's Area";
+			sourceTree = "<group>";
+		};
+		0A96B4641DC9A6C9007B2725 /* BridgeChatApp */ = {
+			isa = PBXGroup;
+			children = (
+				0A96B4651DC9A6EA007B2725 /* HomeViewController.swift */,
+				0A96B4671DC9AACB007B2725 /* ChatController.swift */,
+				0A96B4681DC9AACB007B2725 /* CustomCellChat.swift */,
+				0A96B4691DC9AACB007B2725 /* GoogleService-Info.plist */,
+				0A96B46A1DC9AACB007B2725 /* ChatLoginViewController.swift */,
+				0A96B46B1DC9AACB007B2725 /* MessageInboxViewController.swift */,
+				0A96B46D1DC9AACB007B2725 /* RegisterViewController.swift */,
+				0A96B46E1DC9AACB007B2725 /* RestCall.swift */,
+			);
+			name = BridgeChatApp;
+			path = AppyStoreBLZ;
 			sourceTree = "<group>";
 		};
 		0AFA4AEF1D5B3D3000C9D24B /* LocalDataBase */ = {
@@ -250,6 +284,7 @@
 				7007F07B1D570BFF00A3C543 /* Services */,
 				0AFA4AEF1D5B3D3000C9D24B /* LocalDataBase */,
 				7007F0801D570C0800A3C543 /* Utlity */,
+				0A96B4641DC9A6C9007B2725 /* BridgeChatApp */,
 				70DA12511D4F04390086ECEC /* AppyStoreBLZ */,
 				70DA12501D4F04390086ECEC /* Products */,
 				F67393F9B8583981C7F3ADC9 /* Pods */,
@@ -270,6 +305,7 @@
 			children = (
 				70DA12521D4F04390086ECEC /* AppDelegate.swift */,
 				70DA12561D4F04390086ECEC /* Main.storyboard */,
+				0A96B4621DC99645007B2725 /* BridgeChatApp.storyboard */,
 				70DD5B9A1D5314E600A016B9 /* Assets.xcassets */,
 				70DA125B1D4F04390086ECEC /* LaunchScreen.storyboard */,
 				70DA125E1D4F04390086ECEC /* Info.plist */,
@@ -372,10 +408,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DA125D1D4F04390086ECEC /* LaunchScreen.storyboard in Resources */,
+				0A96B4711DC9AACB007B2725 /* GoogleService-Info.plist in Resources */,
 				70DA12581D4F04390086ECEC /* Main.storyboard in Resources */,
 				0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */,
 				0AFBDF3C1D5C52E30043AA98 /* angry_birds_space_image_rectangular_box.png in Resources */,
 				70DD5B9B1D5314E600A016B9 /* Assets.xcassets in Resources */,
+				0A96B4631DC99645007B2725 /* BridgeChatApp.storyboard in Resources */,
 				7007F0681D570BD000A3C543 /* CollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +478,7 @@
 				0AFA4AEC1D5B3C9100C9D24B /* CollectionHeaderReusableView.swift in Sources */,
 				7007F07A1D570BF200A3C543 /* CategoryDetails.swift in Sources */,
 				0AAA85CC1D8416AF00BCFE7E /* ParentingSubCategoryCollectionViewController.swift in Sources */,
+				0A96B46F1DC9AACB007B2725 /* ChatController.swift in Sources */,
 				0A7CFA511DB4D7950099AD22 /* PCategory.swift in Sources */,
 				0AFA4AEA1D5B3C8200C9D24B /* HistoryViewController.swift in Sources */,
 				7007F0721D570BE100A3C543 /* HistoryViewModel.swift in Sources */,
@@ -447,11 +486,13 @@
 				7007F0711D570BE100A3C543 /* CategoryViewModel.swift in Sources */,
 				7007F0771D570BEA00A3C543 /* Controller.swift in Sources */,
 				7007F0821D570C0800A3C543 /* Utility.swift in Sources */,
+				0A96B4761DC9AACB007B2725 /* RestCall.swift in Sources */,
 				7007F0731D570BE100A3C543 /* SearchViewModel.swift in Sources */,
 				7007F0661D570BD000A3C543 /* CategoryViewController.swift in Sources */,
 				0A3694C91D59D64A0005EA82 /* LoginViewController.swift in Sources */,
 				0AA0BAED1D8E78D6007DC3E7 /* ChildInformation.swift in Sources */,
 				7007F07F1D570BFF00A3C543 /* APIResponse.swift in Sources */,
+				0A96B4701DC9AACB007B2725 /* CustomCellChat.swift in Sources */,
 				0A1523BB1D913B3300AAD145 /* ChildDetailsViewController.swift in Sources */,
 				0A1257B01D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift in Sources */,
 				7007F06A1D570BD000A3C543 /* SearchBarViewController.swift in Sources */,
@@ -463,13 +504,17 @@
 				7007F0691D570BD000A3C543 /* CustomViewFlowLayout.swift in Sources */,
 				70DA12531D4F04390086ECEC /* AppDelegate.swift in Sources */,
 				0AAA85CE1D84177100BCFE7E /* ParentingSubcategoryViewModel.swift in Sources */,
+				0A96B4731DC9AACB007B2725 /* MessageInboxViewController.swift in Sources */,
 				0A8EFFC31D8BB2890032F1FD /* RatingViewController.swift in Sources */,
 				0AC626DC1D8D3EEB00D71907 /* RegisterChildViewController.swift in Sources */,
 				0A7CFA551DB501910099AD22 /* PHistory.swift in Sources */,
 				0A7CFA531DB4E6400099AD22 /* PSubCategory.swift in Sources */,
+				0A96B4721DC9AACB007B2725 /* ChatLoginViewController.swift in Sources */,
+				0A96B4751DC9AACB007B2725 /* RegisterViewController.swift in Sources */,
 				7007F0881D573DBD00A3C543 /* PController.swift in Sources */,
 				0AA0BAEF1D8E81E6007DC3E7 /* AvatarsCollectionViewController.swift in Sources */,
 				0AC626D81D8D0C4600D71907 /* BackGroundMusic.swift in Sources */,
+				0A96B4661DC9A6EA007B2725 /* HomeViewController.swift in Sources */,
 				0AFA4AF11D5B3D4300C9D24B /* LocalDataBase.swift in Sources */,
 				0A7CFA4F1DB484920099AD22 /* PSearch.swift in Sources */,
 				0A8183A31D58B1C60030204B /* CollectionReusableView.swift in Sources */,
@@ -598,7 +643,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bridgelabz.AppyStoreBLZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = Pods/HotlineSDK/HotlineSDK/Hotline.h;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;

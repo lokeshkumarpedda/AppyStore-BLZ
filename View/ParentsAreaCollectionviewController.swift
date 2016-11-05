@@ -132,7 +132,9 @@ class ParentsAreaCollectionviewController: UICollectionViewController {
         }
         else if indexPath.row == 3{
             //For moving to chat area
-            Hotline.sharedInstance().showConversations(self)
+            
+            performSegueWithIdentifier("AppyToChat", sender: nil)
+            
         }
         else if indexPath.row == 4{
             //stoping the music
