@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A1257B01D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */; };
 		0A1257B21D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */; };
+		0A148EF21DD985EF008723CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A148EF11DD985EF008723CB /* GoogleService-Info.plist */; };
 		0A1523BB1D913B3300AAD145 /* ChildDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1523BA1D913B3300AAD145 /* ChildDetailsViewController.swift */; };
 		0A3694C91D59D64A0005EA82 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3694C81D59D64A0005EA82 /* LoginViewController.swift */; };
 		0A3694CF1D59E53E0005EA82 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3694CD1D59E53E0005EA82 /* FMDB.framework */; };
@@ -28,7 +29,6 @@
 		0A96B4661DC9A6EA007B2725 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B4651DC9A6EA007B2725 /* HomeViewController.swift */; };
 		0A96B46F1DC9AACB007B2725 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B4671DC9AACB007B2725 /* ChatController.swift */; };
 		0A96B4701DC9AACB007B2725 /* CustomCellChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B4681DC9AACB007B2725 /* CustomCellChat.swift */; };
-		0A96B4711DC9AACB007B2725 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A96B4691DC9AACB007B2725 /* GoogleService-Info.plist */; };
 		0A96B4721DC9AACB007B2725 /* ChatLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B46A1DC9AACB007B2725 /* ChatLoginViewController.swift */; };
 		0A96B4731DC9AACB007B2725 /* MessageInboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B46B1DC9AACB007B2725 /* MessageInboxViewController.swift */; };
 		0A96B4751DC9AACB007B2725 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B46D1DC9AACB007B2725 /* RegisterViewController.swift */; };
@@ -75,6 +75,7 @@
 /* Begin PBXFileReference section */
 		0A1257AF1D81704600D8AAB7 /* ParentingCategoriesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingCategoriesCollectionViewController.swift; sourceTree = "<group>"; };
 		0A1257B11D8172A500D8AAB7 /* ParentingCategoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentingCategoriesViewModel.swift; sourceTree = "<group>"; };
+		0A148EF11DD985EF008723CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A1523BA1D913B3300AAD145 /* ChildDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildDetailsViewController.swift; sourceTree = "<group>"; };
 		0A3694C81D59D64A0005EA82 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0A3694CD1D59E53E0005EA82 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = "Pods/../build/Debug-iphoneos/FMDB/FMDB.framework"; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		0A96B4651DC9A6EA007B2725 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0A96B4671DC9AACB007B2725 /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		0A96B4681DC9AACB007B2725 /* CustomCellChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellChat.swift; sourceTree = "<group>"; };
-		0A96B4691DC9AACB007B2725 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A96B46A1DC9AACB007B2725 /* ChatLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLoginViewController.swift; sourceTree = "<group>"; };
 		0A96B46B1DC9AACB007B2725 /* MessageInboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInboxViewController.swift; sourceTree = "<group>"; };
 		0A96B46D1DC9AACB007B2725 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -180,12 +180,12 @@
 			isa = PBXGroup;
 			children = (
 				0A96B4651DC9A6EA007B2725 /* HomeViewController.swift */,
-				0A96B4671DC9AACB007B2725 /* ChatController.swift */,
-				0A96B4681DC9AACB007B2725 /* CustomCellChat.swift */,
-				0A96B4691DC9AACB007B2725 /* GoogleService-Info.plist */,
+				0A96B46D1DC9AACB007B2725 /* RegisterViewController.swift */,
 				0A96B46A1DC9AACB007B2725 /* ChatLoginViewController.swift */,
 				0A96B46B1DC9AACB007B2725 /* MessageInboxViewController.swift */,
-				0A96B46D1DC9AACB007B2725 /* RegisterViewController.swift */,
+				0A96B4681DC9AACB007B2725 /* CustomCellChat.swift */,
+				0A96B4671DC9AACB007B2725 /* ChatController.swift */,
+				0A148EF11DD985EF008723CB /* GoogleService-Info.plist */,
 				0A96B46E1DC9AACB007B2725 /* RestCall.swift */,
 			);
 			name = BridgeChatApp;
@@ -408,7 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DA125D1D4F04390086ECEC /* LaunchScreen.storyboard in Resources */,
-				0A96B4711DC9AACB007B2725 /* GoogleService-Info.plist in Resources */,
+				0A148EF21DD985EF008723CB /* GoogleService-Info.plist in Resources */,
 				70DA12581D4F04390086ECEC /* Main.storyboard in Resources */,
 				0A8EFFC51D8BD5920032F1FD /* background_music.mp3 in Resources */,
 				0AFBDF3C1D5C52E30043AA98 /* angry_birds_space_image_rectangular_box.png in Resources */,
@@ -644,6 +644,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -664,6 +665,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bridgelabz.AppyStoreBLZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

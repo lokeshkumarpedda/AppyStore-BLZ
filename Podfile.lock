@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (3.4.1)
-  - AlamofireImage (2.4.0):
-    - Alamofire (~> 3.3)
+  - Alamofire (3.5.1)
+  - AlamofireImage (2.5.0):
+    - Alamofire (~> 3.5)
   - Firebase (3.4.0):
     - Firebase/Core (= 3.4.0)
   - Firebase/Analytics (3.4.0):
@@ -35,7 +35,7 @@ PODS:
     - ReactiveKit
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 3.5)
   - AlamofireImage
   - Firebase
   - Firebase/Database
@@ -45,8 +45,8 @@ DEPENDENCIES:
   - ReactiveUIKit (~> 1.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  AlamofireImage: 2d34936e5201270bb17a316a786e90e83b4a249d
   Firebase: 754562547af419cc2f4b15247fee419081924bc2
   FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
@@ -59,6 +59,6 @@ SPEC CHECKSUMS:
   ReactiveKit: b027b07f74d1b5e5bf31170b52c5d9c19982d14a
   ReactiveUIKit: b3abc88e716ebd60f9c08708ee148e4b8e94c137
 
-PODFILE CHECKSUM: d3f28e105112ac8cbf7b75da440ed3f2f0afa6c1
+PODFILE CHECKSUM: c8e02aa12e6df7e749abb105b5af4cb6c21e4b25
 
 COCOAPODS: 1.0.1

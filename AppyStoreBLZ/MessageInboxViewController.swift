@@ -161,8 +161,8 @@ class MessageInboxViewController: UIViewController, UITableViewDelegate,UITableV
         
                 NSNotificationCenter.defaultCenter().postNotificationName("AdminNotify", object: nil)
            
-//            //stopped activity indicator
-//            self.stopActivityIndicator()
+            //stopped activity indicator
+            self.stopActivityIndicator()
             })
         
     }

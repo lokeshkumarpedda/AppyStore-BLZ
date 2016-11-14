@@ -59,7 +59,7 @@ class ChatController: NSObject
             }
         
             //FIXME: total admin
-           if count == 3
+           if count == 1
            {
                 NSNotificationCenter.defaultCenter().postNotificationName("DisplayAlert", object: nil)
             }

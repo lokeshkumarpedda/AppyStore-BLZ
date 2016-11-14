@@ -10,7 +10,7 @@ target 'AppyStoreBLZ' do
   pod 'FMDB'
   
   #used for fetch data from rest services
-  pod 'Alamofire'
+  pod 'Alamofire','~> 3.5'
   
    #used for fetching image from rest services
   pod 'AlamofireImage'
